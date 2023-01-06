@@ -11,7 +11,7 @@ namespace qASIC.Toggling
 
         protected override void HandleInput()
         {
-            if (InputManager.GetInputDown(item.GetGroupName(), item.GetItemName()))
+            if (item.GetInputDown())
                 KeyToggle();
         }
     }

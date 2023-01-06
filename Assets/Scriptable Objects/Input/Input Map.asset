@@ -22,6 +22,11 @@ MonoBehaviour:
     - rid: 7525326016482115588
     - rid: 7525326016482115589
     - rid: 7525326016482115590
+  - itemName: Debug
+    guid: 58aa86f9-0300-4c91-ade9-605932074ed6
+    items:
+    - rid: 7525326017866760192
+    - rid: 7525326017866760193
   references:
     version: 2
     RefIds:
@@ -31,7 +36,7 @@ MonoBehaviour:
         itemName: Forward
         guid: de8d3484-da00-4824-9560-67b651186664
         keys:
-        - key_gamepad/
+        - key_gamepad/RightStickUp
         - key_keyboard/W
     - rid: 7525326016482115587
       type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
@@ -39,7 +44,7 @@ MonoBehaviour:
         itemName: Backward
         guid: 4083dab3-6ae0-450b-8391-2c7c9d7afa6c
         keys:
-        - key_gamepad/
+        - key_gamepad/RightStickDown
         - key_keyboard/S
     - rid: 7525326016482115588
       type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
@@ -47,7 +52,7 @@ MonoBehaviour:
         itemName: Left
         guid: fe9dc51a-4d02-4cb1-a122-5dace9f7eb8a
         keys:
-        - key_gamepad/
+        - key_gamepad/RightStickLeft
         - key_keyboard/D
     - rid: 7525326016482115589
       type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
@@ -55,7 +60,7 @@ MonoBehaviour:
         itemName: Right
         guid: c2d8351d-b71d-4fed-be19-f59f831988a7
         keys:
-        - key_gamepad/
+        - key_gamepad/RightStickRight
         - key_keyboard/A
     - rid: 7525326016482115590
       type: {class: Input2DAxis, ns: qASIC.Input.Map, asm: qASIC}
@@ -70,3 +75,18 @@ MonoBehaviour:
           axisGuid: 
           positiveGuid: de8d3484-da00-4824-9560-67b651186664
           negativeGuid: 4083dab3-6ae0-450b-8391-2c7c9d7afa6c
+    - rid: 7525326017866760192
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Console
+        guid: 870198d5-9452-4db1-9087-679f9cbe4193
+        keys:
+        - key_keyboard/BackQuote
+        - key_keyboard/Tilde
+    - rid: 7525326017866760193
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Debug Displayer
+        guid: f3b41dec-8c1c-45d2-b16f-ef31928764e8
+        keys:
+        - key_keyboard/F7

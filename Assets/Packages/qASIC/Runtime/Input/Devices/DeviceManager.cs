@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using qASIC.ProjectSettings;
 using qASIC.Input.Update;
+using static UnityEditor.Progress;
 
 namespace qASIC.Input.Devices
 {
@@ -35,19 +36,21 @@ namespace qASIC.Input.Devices
             {
                 item.Initialize();
 #if UNITY_EDITOR
-                UnityEditor.EditorApplication.update += item.Update;
-#else
-                InputUpdateManager.OnUpdate += item.Update;
+                if (Application.isPlaying)
+                    UnityEditor.EditorApplication.update += item.Update;
+                else
 #endif
+                    InputUpdateManager.OnUpdate += item.Update;
             }
 
             foreach (var item in Devices)
             {
 #if UNITY_EDITOR
-                UnityEditor.EditorApplication.update += item.Update;
-#else
-                InputUpdateManager.OnUpdate += item.Update;
+                if (Application.isPlaying)
+                    UnityEditor.EditorApplication.update += item.Update;
+                else
 #endif
+                    InputUpdateManager.OnUpdate += item.Update;
             }
 
             qDebug.LogInternal("[Device Manager] Initialization complete");
@@ -61,9 +64,8 @@ namespace qASIC.Input.Devices
                 item.Cleanup();
 #if UNITY_EDITOR
                 UnityEditor.EditorApplication.update -= item.Update;
-#else
-                InputUpdateManager.OnUpdate -= item.Update;
 #endif
+                InputUpdateManager.OnUpdate -= item.Update;
             }
 
             var devices = new List<IInputDevice>(Devices);
@@ -89,10 +91,11 @@ namespace qASIC.Input.Devices
             device.Initialize();
 
 #if UNITY_EDITOR
-            UnityEditor.EditorApplication.update += device.Update;
-#else
-            InputUpdateManager.OnUpdate += device.Update;
+            if (Application.isPlaying)
+                UnityEditor.EditorApplication.update += device.Update;
+            else
 #endif
+                InputUpdateManager.OnUpdate += device.Update;
 
             OnDeviceConnected?.Invoke(Devices.Count - 1, device);
         }
@@ -101,9 +104,8 @@ namespace qASIC.Input.Devices
         {
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.update -= device.Update;
-#else
-            InputUpdateManager.OnUpdate -= device.Update;
 #endif
+            InputUpdateManager.OnUpdate -= device.Update;
 
             int deviceIndex = Devices.IndexOf(device);
             Devices.RemoveAt(deviceIndex);
