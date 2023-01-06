@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7fff99c208a6cb43b02e622f339150a, type: 3}
+  m_Name: Input Map
+  m_EditorClassIdentifier: 
+  defaultGroup: 0
+  groups:
+  - itemName: Default
+    guid: 4de2dc8c-0f6b-4982-ae9f-a66eb61dd5df
+    items:
+    - rid: 7525326016482115586
+    - rid: 7525326016482115587
+    - rid: 7525326016482115588
+    - rid: 7525326016482115589
+    - rid: 7525326016482115590
+  references:
+    version: 2
+    RefIds:
+    - rid: 7525326016482115586
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Forward
+        guid: de8d3484-da00-4824-9560-67b651186664
+        keys:
+        - key_gamepad/
+        - key_keyboard/W
+    - rid: 7525326016482115587
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Backward
+        guid: 4083dab3-6ae0-450b-8391-2c7c9d7afa6c
+        keys:
+        - key_gamepad/
+        - key_keyboard/S
+    - rid: 7525326016482115588
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Left
+        guid: fe9dc51a-4d02-4cb1-a122-5dace9f7eb8a
+        keys:
+        - key_gamepad/
+        - key_keyboard/D
+    - rid: 7525326016482115589
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Right
+        guid: c2d8351d-b71d-4fed-be19-f59f831988a7
+        keys:
+        - key_gamepad/
+        - key_keyboard/A
+    - rid: 7525326016482115590
+      type: {class: Input2DAxis, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Movement
+        guid: b21fcd37-3227-47de-89b4-35142a65130a
+        XAxis:
+          axisGuid: 
+          positiveGuid: c2d8351d-b71d-4fed-be19-f59f831988a7
+          negativeGuid: fe9dc51a-4d02-4cb1-a122-5dace9f7eb8a
+        YAxis:
+          axisGuid: 
+          positiveGuid: de8d3484-da00-4824-9560-67b651186664
+          negativeGuid: 4083dab3-6ae0-450b-8391-2c7c9d7afa6c
