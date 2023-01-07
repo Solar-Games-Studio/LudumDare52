@@ -22,6 +22,7 @@ MonoBehaviour:
     - rid: 7525326016482115588
     - rid: 7525326016482115589
     - rid: 7525326016482115590
+    - rid: 7525326027426103296
   - itemName: Debug
     guid: 58aa86f9-0300-4c91-ade9-605932074ed6
     items:
@@ -39,6 +40,7 @@ MonoBehaviour:
         - key_gamepad/LeftStickUp
         - key_keyboard/W
         - key_gamepad/DPadUp
+        - key_keyboard/UpArrow
     - rid: 7525326016482115587
       type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
       data:
@@ -48,6 +50,7 @@ MonoBehaviour:
         - key_gamepad/LeftStickDown
         - key_keyboard/S
         - key_gamepad/DPadDown
+        - key_keyboard/DownArrow
     - rid: 7525326016482115588
       type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
       data:
@@ -57,6 +60,7 @@ MonoBehaviour:
         - key_gamepad/LeftStickLeft
         - key_keyboard/A
         - key_gamepad/DPadLeft
+        - key_keyboard/LeftArrow
     - rid: 7525326016482115589
       type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
       data:
@@ -66,6 +70,7 @@ MonoBehaviour:
         - key_gamepad/LeftStickRight
         - key_keyboard/D
         - key_gamepad/DPadRight
+        - key_keyboard/RightArrow
     - rid: 7525326016482115590
       type: {class: Input2DAxis, ns: qASIC.Input.Map, asm: qASIC}
       data:
@@ -94,3 +99,12 @@ MonoBehaviour:
         guid: f3b41dec-8c1c-45d2-b16f-ef31928764e8
         keys:
         - key_keyboard/F7
+    - rid: 7525326027426103296
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Interact
+        guid: de3100b5-4356-499d-b479-5aba7b046deb
+        keys:
+        - key_gamepad/X
+        - key_keyboard/E
+        - key_keyboard/X

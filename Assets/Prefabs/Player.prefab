@@ -238,3 +238,5 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
+  i_interact:
+    guid: de3100b5-4356-499d-b479-5aba7b046deb

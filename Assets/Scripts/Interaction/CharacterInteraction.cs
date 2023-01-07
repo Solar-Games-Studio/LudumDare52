@@ -1,13 +1,18 @@
 using UnityEngine;
+using qASIC.Input;
 
 namespace Game.Interaction
 {
     public class CharacterInteraction : MonoBehaviour
     {
+        [Label("Settings")]
         [SerializeField] Transform interactionPoint;
         [SerializeField] Vector3 offset;
         [SerializeField] float interactLength = 2f;
         [SerializeField] LayerMask interactableLayer;
+
+        [Label("Input")]
+        [SerializeField] InputMapItemReference i_interact;
 
         bool _didHit;
         RaycastHit _raycastHit;
@@ -22,7 +27,13 @@ namespace Game.Interaction
 
         private void Update()
         {
-            
+            if (_didHit && i_interact.GetInputDown())
+                Interact();
+        }
+
+        public void Interact()
+        {
+            _hitInteractable.Interact();
         }
 
         private void OnDrawGizmos()
