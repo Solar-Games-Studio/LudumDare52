@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using qASIC.Input;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class CharacterMovement : MonoBehaviour
 
     [SerializeField]
     CharacterCamera characterCamera;
+
+    [SerializeField] InputMapItemReference i_movement;
 
     [SerializeField]
     float speed = 5.0f;
@@ -23,11 +26,10 @@ public class CharacterMovement : MonoBehaviour
 
     void Update()
     {
-        // wihtout qASIC tho...
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
+        //piss off
+        var movement = i_movement.GetInputValue<Vector2>();
 
-        Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
+        Vector3 direction = new Vector3(movement.x, 0, movement.y).normalized;
         characterCamera.UpdateTargetOffset(direction);
 
         if (direction.magnitude > 0.1f)

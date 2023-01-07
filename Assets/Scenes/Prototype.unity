@@ -413,7 +413,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetFromCharacter: {x: 0, y: 7, z: -4}
-  targetOffset: {x: 0, y: 0, z: 0}
   smoothTime: 0.1
   offsetMagnitude: 0.3
 --- !u!1 &1318924019
@@ -628,9 +627,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterCamera: {fileID: 963194229}
+  i_movement:
+    guid: b21fcd37-3227-47de-89b4-35142a65130a
   speed: 5
   turnSmoothTime: 0.1
-  turnSmoothVelocity: 0
 --- !u!143 &1472823291
 CharacterController:
   m_ObjectHideFlags: 0
