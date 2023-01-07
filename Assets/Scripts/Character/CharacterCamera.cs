@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Character
 {
-    public class CharacterCamera : MonoBehaviour
+    public class CharacterCamera : Player.PlayerBehaviour
     {
         Transform characterTransform;
         [SerializeField]

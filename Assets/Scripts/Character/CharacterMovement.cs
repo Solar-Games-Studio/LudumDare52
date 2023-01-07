@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Game.Character
 {
-    public class CharacterMovement : MonoBehaviour
+    public class CharacterMovement : Player.PlayerBehaviour
     {
         CharacterController characterController;
         [SerializeField]

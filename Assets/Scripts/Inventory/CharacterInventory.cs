@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using Game.Interaction;
 using qASIC.Input;
+using UnityEngine.WSA;
 
 namespace Game.Inventory
 {
-    public class CharacterInventory : MonoBehaviour, IInteractionOverridable
+    public class CharacterInventory : Player.PlayerBehaviour, IInteractionOverridable
     {
         [Label("Throwing")]
         [SerializeField] Vector3 force;
@@ -16,7 +17,7 @@ namespace Game.Inventory
         [Label("Input")]
         [SerializeField] InputMapItemReference i_throw;
 
-        ItemObject _heldItem;
+        public ItemObject HeldItem { get; private set; }
 
         private void Reset()
         {
@@ -30,20 +31,20 @@ namespace Game.Inventory
 
         private void Update()
         {
-            if (_heldItem != null && i_throw.GetInputDown())
+            if (HeldItem != null && i_throw.GetInputDown())
                 Throw();
         }
 
         public void Throw()
         {
-            var item = _heldItem;
+            var item = HeldItem;
             UnEquipItem();
             item.Throw(transform.forward * force.z + transform.up * force.y + transform.right * force.x);
         }
 
         public void HandleInteractionInput(IInteractable interactable)
         {
-            if (interactable is IItemHolder itemHolder)
+            if (interactable is IItemHolder itemHolder && itemHolder.CanHold())
             {
                 PlaceItem(itemHolder);
                 return;
@@ -62,31 +63,38 @@ namespace Game.Inventory
 
         void EquipItem(ItemObject item)
         {
-            _heldItem = item;
-            _heldItem.ChangeState(ItemObject.State.PickedUp);
-            _heldItem.SetFollowTarget(itemHolder);
+            HeldItem = item;
+            HeldItem.ChangeState(ItemObject.State.PickedUp);
+            HeldItem.SetFollowTarget(itemHolder);
             interaction.OverrideInteraction(this);
         }
 
         void UnEquipItem()
         {
             interaction.RemoveInteractionOverride(this);
-            if (_heldItem == null) return;
-
-            _heldItem.ChangeState(ItemObject.State.Free);
-            _heldItem.SetFollowTarget(null);
-            _heldItem = null;
+            RemoveItem();
         }
 
         void PlaceItem(IItemHolder holder)
         {
-            if (_heldItem == null) return;
+            if (HeldItem == null) return;
 
-            _heldItem.ChangeState(ItemObject.State.Placed);
-            _heldItem.SetFollowTarget(holder.HolderTransform);
-            _heldItem = null;
+            HeldItem.ChangeState(ItemObject.State.Placed);
+            HeldItem.SetFollowTarget(holder.HolderTransform);
+            HeldItem = null;
 
             interaction.RemoveInteractionOverride(this);
+        }
+
+        public ItemObject RemoveItem()
+        {
+            if (HeldItem == null) return null;
+
+            var item = HeldItem;
+            HeldItem.ChangeState(ItemObject.State.Free);
+            HeldItem.SetFollowTarget(null);
+            HeldItem = null;
+            return item;
         }
     }
 }
