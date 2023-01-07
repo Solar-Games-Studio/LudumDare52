@@ -1,9 +1,9 @@
 {
-    "name": "Game.Character",
-    "rootNamespace": "Game.Character",
+    "name": "Game.Player",
+    "rootNamespace": "Game.Player",
     "references": [
         "GUID:b1181113609d0ad43a27c0338145e93c",
-        "GUID:d7718e03eef2e2d418039468b9657937"
+        "GUID:696a0953692949b40bec8730e64e1fdd"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

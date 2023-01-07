@@ -5,5 +5,7 @@ namespace Game.Inventory
     public interface IItemHolder
     {
         public Transform HolderTransform { get; }
+
+        public bool CanHold();
     }
 }

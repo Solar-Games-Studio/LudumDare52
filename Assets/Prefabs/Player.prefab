@@ -40,8 +40,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8785531562753097166}
-  - component: {fileID: 8785531562753097165}
+  - component: {fileID: 7800417497274717725}
   - component: {fileID: 8785531562753097164}
+  - component: {fileID: 8785531562753097165}
   - component: {fileID: 8785531562753097163}
   - component: {fileID: 2336807348458042789}
   m_Layer: 3
@@ -68,7 +69,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8785531562753097165
+--- !u!114 &7800417497274717725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -77,16 +78,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8785531562753097154}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10be66f84a0fa848a632f9c28f12b17, type: 3}
+  m_Script: {fileID: 11500000, guid: 3eae636793e383241823c01b0ba3c1e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  modelAnimator: {fileID: 1502644956}
-  characterCamera: {fileID: 0}
-  i_movement:
-    guid: b21fcd37-3227-47de-89b4-35142a65130a
-  speed: 5
-  turnSmoothTime: 0.05
-  animationTransitionTime: 0
 --- !u!143 &8785531562753097164
 CharacterController:
   m_ObjectHideFlags: 0
@@ -105,6 +99,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8785531562753097165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8785531562753097154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10be66f84a0fa848a632f9c28f12b17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerReference: {fileID: 0}
+  modelAnimator: {fileID: 1502644956}
+  characterCamera: {fileID: 0}
+  i_movement:
+    guid: b21fcd37-3227-47de-89b4-35142a65130a
+  speed: 5
+  turnSmoothTime: 0.05
+  animationTransitionTime: 0
 --- !u!114 &8785531562753097163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72dd115d0b5621f42abc6c7d57265bfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerReference: {fileID: 0}
   force: {x: 0, y: 2, z: -2.5}
   interaction: {fileID: 8785531562753097163}
   itemHolder: {fileID: 6311275911514573991}

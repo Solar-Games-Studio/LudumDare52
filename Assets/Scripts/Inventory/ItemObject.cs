@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using Game.Interaction;
+using Game.Character;
 
 namespace Game.Inventory
 {
     public class ItemObject : Interactable
     {
+        const string MOVEMENT_MULTIPLIER_IDENTIFIER = "held_item";
+
         public enum State { Free, PickedUp, Placed, }
 
         public State CurrentState { get; private set; } = State.Free;
@@ -42,6 +45,7 @@ namespace Game.Inventory
             switch (state)
             {
                 case State.Free:
+                    CharacterMovement.ChangeMultiplier(MOVEMENT_MULTIPLIER_IDENTIFIER, 1f);
                     if (rb != null)
                         rb.isKinematic = false;
 
@@ -52,6 +56,7 @@ namespace Game.Inventory
                     }
                     break;
                 case State.PickedUp:
+                    CharacterMovement.ChangeMultiplier(MOVEMENT_MULTIPLIER_IDENTIFIER, movementMultiplier);
                     if (rb != null)
                         rb.isKinematic = true;
 
@@ -62,6 +67,7 @@ namespace Game.Inventory
                     }
                     break;
                 case State.Placed:
+                    CharacterMovement.ChangeMultiplier(MOVEMENT_MULTIPLIER_IDENTIFIER, 1f);
                     if (rb != null)
                         rb.isKinematic = true;
 

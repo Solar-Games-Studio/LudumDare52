@@ -9,5 +9,7 @@ namespace Game.Inventory
 
         public Transform HolderTransform =>
             itemHolder;
+
+        public bool CanHold() => true;
     }
 }
