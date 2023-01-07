@@ -17,6 +17,8 @@ public class CharacterMovement : MonoBehaviour
     
     float turnSmoothVelocity;
 
+    bool canMove = true;
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -30,7 +32,7 @@ public class CharacterMovement : MonoBehaviour
         Vector3 direction = new Vector3(movement.x, 0, movement.y).normalized;
         characterCamera.UpdateTargetOffset(direction);
 
-        if (direction.magnitude > 0.1f)
+        if (direction.magnitude > 0.1f && canMove)
         {
             characterController.Move(speed * Time.deltaTime * direction);
             float targetAngle = Mathf.Atan2(-direction.x, -direction.z) * Mathf.Rad2Deg;
@@ -39,4 +41,7 @@ public class CharacterMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, angle, 0);
         }
     }
+
+    public void LockMovement() => canMove = true;
+    public void UnlockMovement() => canMove = false;
 }
