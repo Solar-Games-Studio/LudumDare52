@@ -413,7 +413,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offsetFromCharacter: {x: 0, y: 7, z: -4}
-  targetOffset: {x: 0, y: 0, z: 0}
   smoothTime: 0.1
   offsetMagnitude: 0.3
 --- !u!1 &1318924019
@@ -429,7 +428,7 @@ GameObject:
   - component: {fileID: 1318924022}
   - component: {fileID: 1318924021}
   m_Layer: 0
-  m_Name: Capsule_1
+  m_Name: Pointer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -529,7 +528,7 @@ GameObject:
   - component: {fileID: 1472823290}
   - component: {fileID: 1472823291}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -630,7 +629,6 @@ MonoBehaviour:
   characterCamera: {fileID: 963194229}
   speed: 5
   turnSmoothTime: 0.1
-  turnSmoothVelocity: 0
 --- !u!143 &1472823291
 CharacterController:
   m_ObjectHideFlags: 0
