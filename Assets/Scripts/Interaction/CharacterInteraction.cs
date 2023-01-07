@@ -11,7 +11,9 @@ namespace Game.Interaction
         [Label("Settings")]
         [DynamicHelp(nameof(GetHelpText))]
         [SerializeField] Transform interactionPoint;
-        [SerializeField] Vector3 offset;
+        [SerializeField] int rayAmount = 3;
+        [SerializeField] Vector3 startPos;
+        [SerializeField] Vector3 endPos;
         [SerializeField] float interactLength = 2f;
         [SerializeField] LayerMask interactableLayer;
 
@@ -29,7 +31,18 @@ namespace Game.Interaction
 
         private void FixedUpdate()
         {
-            _didHit = Physics.Raycast(transform.position + (transform.forward * offset.z + transform.up * offset.y + transform.right * offset.x), Vector3.down, out _raycastHit, interactLength, interactableLayer);
+            _didHit = false;
+            _raycastHit = new RaycastHit();
+
+            for (int i = 0; i < rayAmount; i++)
+            {
+                Vector3 start = interactionPoint.position + CalculateOffset(Vector3.Lerp(startPos, endPos, i / Mathf.Max(1f, rayAmount - 1)));
+                if (!Physics.Raycast(start, -interactionPoint.forward, out RaycastHit hit, interactLength, interactableLayer)) continue;
+                _didHit = true;
+                _raycastHit = hit;
+                break;
+            }
+
             _hitInteractable = _raycastHit.transform?.GetComponent<IInteractable>();
             _didHit = _hitInteractable != null;
         }
@@ -42,22 +55,23 @@ namespace Game.Interaction
 
         private void OnDrawGizmos()
         {
-            const float arrowHeadLengthMultiplier = 0.2f;
-
             if (interactionPoint == null)
                 return;
 
-            float arrowHeadLength = interactLength * arrowHeadLengthMultiplier;
-
             Gizmos.color = _didHit ? Color.green : Color.red;
-            Vector3 startPos = interactionPoint.position + (transform.forward * offset.z + transform.up * offset.y + transform.right * offset.x);
-            Vector3 endPos = startPos + Vector3.down * interactLength;
-            Gizmos.DrawLine(startPos, endPos);
-            Gizmos.DrawLine(endPos, endPos + new Vector3(arrowHeadLength, arrowHeadLength, 0f));
-            Gizmos.DrawLine(endPos, endPos + new Vector3(-arrowHeadLength, arrowHeadLength, 0f));
-            Gizmos.DrawLine(endPos, endPos + new Vector3(0f, arrowHeadLength, arrowHeadLength));
-            Gizmos.DrawLine(endPos, endPos + new Vector3(0f, arrowHeadLength, -arrowHeadLength));
+
+            Gizmos.DrawLine(interactionPoint.position + startPos, interactionPoint.position + endPos);
+
+            for (int i = 0; i < rayAmount; i++)
+            {
+                Vector3 start = interactionPoint.position + CalculateOffset(Vector3.Lerp(startPos, endPos, i / Mathf.Max(1f, rayAmount - 1)));
+                Vector3 end = start - interactionPoint.forward * interactLength;  
+                Gizmos.DrawLine(start, end);
+            }
         }
+
+        Vector3 CalculateOffset(Vector3 offset) =>
+            (interactionPoint.forward * offset.z + interactionPoint.up * offset.y + interactionPoint.right * offset.x);
 
         string GetHelpText() =>
             $"Overrides count: {_overrides.Count}";
