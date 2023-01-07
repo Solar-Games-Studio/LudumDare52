@@ -44,6 +44,9 @@ namespace Game.Inventory
 
         public void HandleInteractionInput(IInteractable interactable)
         {
+            if (interactable is IItemInteractable itemInteractable && !itemInteractable.ItemInteract())
+                return;
+
             if (interactable is IItemHolder itemHolder && itemHolder.CanHold())
             {
                 PlaceItem(itemHolder);

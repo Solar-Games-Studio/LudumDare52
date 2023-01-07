@@ -5,36 +5,46 @@ using Game.Harvestables.Materials;
 
 namespace Game.Interaction
 {
-    public class CornCart : Interactable, Inventory.IItemHolder
+    public class CornCart : Interactable, Inventory.IItemInteractable
     {
         [SerializeField] string togglerName;
+        [SerializeField] HarvestableMaterial corn;
         [SerializeField] UsableMaterial[] usableMaterials;
 
         public Transform HolderTransform => null;
 
-        public bool CanHold()
+        public bool ItemInteract()
         {
             var inventory = Player.PlayerReference.Singleton.GetBehaviour<Inventory.CharacterInventory>();
 
             if (!(inventory.HeldItem is HarvestableMaterialObject materialObject))
+                return true;
+
+            if (materialObject.material == corn)
+            {
+                StaticToggler.ChangeState(togglerName, true);
+                Character.CharacterMovement.ChangeMultiplier(GetInstanceID().ToString(), 0f);
                 return false;
+            }
 
             foreach (var usableMaterial in usableMaterials)
             {
                 if (usableMaterial.material != materialObject.material) continue;
-                usableMaterial.count = Mathf.Clamp(usableMaterial.count + 1, 0, usableMaterial.limit);
+
+                if (usableMaterial.count >= usableMaterial.limit)
+                    return true;
+
+                usableMaterial.count++;
                 inventory.RemoveItem();
                 Destroy(materialObject.gameObject);
                 return false;
             }
 
-            return false;
+            return true;
         }
 
         public override void Interact()
         {          
-            StaticToggler.ChangeState(togglerName, true);
-            Character.CharacterMovement.ChangeMultiplier(GetInstanceID().ToString(), 0f);
             base.Interact();
         }
 
