@@ -1,9 +1,8 @@
 {
-    "name": "Game.Interaction",
-    "rootNamespace": "Game.Interaction",
+    "name": "Game.Commands",
+    "rootNamespace": "",
     "references": [
         "GUID:b1181113609d0ad43a27c0338145e93c",
-        "GUID:696a0953692949b40bec8730e64e1fdd",
         "GUID:b88f286bc3521304aa40880f359740d6"
     ],
     "includePlatforms": [],
