@@ -1,6 +1,6 @@
 {
-    "name": "Game.Systems",
-    "rootNamespace": "Game.Systems",
+    "name": "Game.Interaction",
+    "rootNamespace": "Game.Interaction",
     "references": [
         "GUID:b1181113609d0ad43a27c0338145e93c",
         "GUID:696a0953692949b40bec8730e64e1fdd"

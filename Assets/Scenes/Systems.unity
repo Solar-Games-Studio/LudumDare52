@@ -134,7 +134,6 @@ GameObject:
   - component: {fileID: 365327344}
   - component: {fileID: 365327343}
   - component: {fileID: 365327342}
-  - component: {fileID: 365327341}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -142,18 +141,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &365327341
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 365327340}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4df43edf8908b314b876a648b79d5f96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &365327342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -423,7 +410,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1145362780}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b67d99c8fdd9314a82dc367d7cfd6f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 9265045c5fe50a54282108da502288b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   toggleObject: {fileID: 1234278400}
@@ -432,9 +419,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   mode: 0
-  togglerTag: debug displayer
-  addToDontDestroy: 1
-  removeDuplicates: 1
   item:
     guid: f3b41dec-8c1c-45d2-b16f-ef31928764e8
 --- !u!114 &1145362782

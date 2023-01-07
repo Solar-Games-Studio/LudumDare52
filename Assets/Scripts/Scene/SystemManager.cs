@@ -9,7 +9,7 @@ namespace Game.Systems
     {
         const string SYSTEMS_SCENE_NAME = "Systems";
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
+        //[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
         static void InitializeSystems()
         {
             if (!Application.CanStreamedLevelBeLoaded(SYSTEMS_SCENE_NAME))

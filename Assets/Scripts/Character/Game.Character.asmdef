@@ -1,7 +1,9 @@
 {
     "name": "Game.Character",
-    "rootNamespace": "",
-    "references": [],
+    "rootNamespace": "Game.Character",
+    "references": [
+        "GUID:b1181113609d0ad43a27c0338145e93c"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
