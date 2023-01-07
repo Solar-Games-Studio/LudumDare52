@@ -651,6 +651,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 8785531562753097165, guid: 3b0d76748b24e5a4198112544c89c190, type: 3}
+      propertyPath: turnSmoothTime
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 8785531562753097165, guid: 3b0d76748b24e5a4198112544c89c190, type: 3}
       propertyPath: characterCamera
       value: 
       objectReference: {fileID: 963194229}
