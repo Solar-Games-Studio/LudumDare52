@@ -118,8 +118,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionPoint: {fileID: 8785531562753097166}
-  offset: {x: 0, y: 1.2, z: -1}
-  interactLength: 2
+  rayAmount: 5
+  startPos: {x: 0, y: 1.2, z: 0}
+  endPos: {x: 0, y: -0.7, z: 0}
+  interactLength: 1.3
   interactableLayer:
     serializedVersion: 2
     m_Bits: 192

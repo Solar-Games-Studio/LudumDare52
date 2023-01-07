@@ -1,55 +1,88 @@
 using UnityEngine;
 using qASIC.Input;
+using System.Collections.Generic;
 
-public class CharacterMovement : MonoBehaviour
+namespace Game.Character
 {
-    CharacterController characterController;
-    [SerializeField]
-    Animator modelAnimator;
-
-    [SerializeField]
-    CharacterCamera characterCamera;
-
-    [SerializeField] InputMapItemReference i_movement;
-
-    [SerializeField]
-    float speed = 5.0f;
-    [SerializeField]
-    float turnSmoothTime = 0.1f;
-
-    [SerializeField]
-    float animationTransitionTime = 0.3f;
-
-    
-    float turnSmoothVelocity;
-
-    bool canMove = true;
-
-    void Start()
+    public class CharacterMovement : MonoBehaviour
     {
-        characterController = GetComponent<CharacterController>();
-    }
+        CharacterController characterController;
+        [SerializeField]
+        Animator modelAnimator;
 
-    void Update()
-    {
-        //piss off
-        var movement = i_movement.GetInputValue<Vector2>();
+        [SerializeField]
+        CharacterCamera characterCamera;
 
-        Vector3 direction = new Vector3(movement.x, 0, movement.y).normalized;
-        characterCamera.UpdateTargetOffset(direction);
+        [SerializeField] InputMapItemReference i_movement;
 
-        modelAnimator.SetFloat("Speed", direction.magnitude > 0.1f ? 1.0f : 0.0f, animationTransitionTime, Time.deltaTime);
+        [SerializeField]
+        float speed = 5.0f;
+        [SerializeField]
+        float turnSmoothTime = 0.1f;
 
-        if (direction.magnitude > 0.1f && canMove)
+        [SerializeField]
+        float animationTransitionTime = 0.3f;
+
+        static Dictionary<string, float> _speedMultipliers = new Dictionary<string, float>();
+        public static float FinalSpeedMultiplier { get; private set; } = 1f;
+
+
+        float turnSmoothVelocity;
+
+        bool canMove = true;
+
+        void Start()
         {
-            characterController.Move(speed * Time.deltaTime * direction);
-            float targetAngle = Mathf.Atan2(-direction.x, -direction.z) * Mathf.Rad2Deg;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+            ResetMultiplier();
+            characterController = GetComponent<CharacterController>();
+        }
 
-            transform.rotation = Quaternion.Euler(0, angle, 0);
+        void Update()
+        {
+            //piss off
+            var movement = i_movement.GetInputValue<Vector2>();
+
+            var direction = new Vector3(movement.x, 0, movement.y).normalized;
+            characterCamera.UpdateTargetOffset(FinalSpeedMultiplier == 0f || !canMove ? Vector3.zero : direction);
+
+            modelAnimator.SetFloat("Speed", (direction.magnitude > 0.1f ? 1.0f : 0.0f) * FinalSpeedMultiplier, animationTransitionTime, Time.deltaTime);
+
+            if (direction.magnitude > 0.1f && canMove)
+            {
+                characterController.Move(speed * Time.deltaTime * direction * FinalSpeedMultiplier);
+                float targetAngle = Mathf.Atan2(-direction.x, -direction.z) * Mathf.Rad2Deg;
+                float angle = FinalSpeedMultiplier == 0f ? 
+                    transform.eulerAngles.y : 
+                    Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime / FinalSpeedMultiplier);
+
+                transform.rotation = Quaternion.Euler(0, angle, 0);
+            }
+        }
+
+        public void LockMovement() => canMove = true;
+        public void UnlockMovement() => canMove = false;
+
+        public static void ChangeMultiplier(string indentifier, float value)
+        {
+            if (_speedMultipliers.ContainsKey(indentifier))
+            {
+                _speedMultipliers[indentifier] = value;
+
+                FinalSpeedMultiplier = 1f;
+                foreach (var item in _speedMultipliers)
+                    FinalSpeedMultiplier *= item.Value;
+
+                return;
+            }
+
+            _speedMultipliers.Add(indentifier, value);
+            FinalSpeedMultiplier *= value;
+        }
+
+        public static void ResetMultiplier()
+        {
+            _speedMultipliers.Clear();
+            FinalSpeedMultiplier = 1f;
         }
     }
-
-    public void LockMovement() => canMove = true;
-    public void UnlockMovement() => canMove = false;
 }

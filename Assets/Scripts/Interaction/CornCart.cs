@@ -1,41 +1,17 @@
 using UnityEngine;
-using UnityEngine.Events;
+using qASIC.Toggling;
 
 namespace Game.Interaction
 {
-    public class CornCart : MonoBehaviour, IInteractable
+    public class CornCart : Interactable
     {
-        [SerializeField]
-        GameObject mainUI;
-        [SerializeField]
-        float cartRange;
+        [SerializeField] string togglerName;
 
-        Transform playerTransform;
-        bool hasInteracted = false;
-
-        public void Start()
-        {
-            playerTransform = GameObject.FindWithTag("Player").GetComponent<Transform>();
-        }
-
-        public void FixedUpdate()
-        {
-            if (hasInteracted && Vector3.Distance(transform.position, playerTransform.position) > cartRange)
-            {   
-                hasInteracted = false;
-                SetCartEnabled(false);
-            }
-        }
-
-        public void Interact()
-        {
-            hasInteracted = !hasInteracted;
-            SetCartEnabled(hasInteracted);
-        }
-
-        void SetCartEnabled(bool enabled)
-        {
-            mainUI.SetActive(enabled);
+        public override void Interact()
+        {          
+            StaticToggler.ChangeState(togglerName, true);
+            Character.CharacterMovement.ChangeMultiplier(GetInstanceID().ToString(), 0f);
+            base.Interact();
         }
     }
 }
