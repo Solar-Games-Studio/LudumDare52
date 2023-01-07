@@ -7,10 +7,13 @@ public class CharacterMovement : MonoBehaviour
     CharacterController characterController;
 
     [SerializeField]
+    CharacterCamera characterCamera;
+
+    [SerializeField]
     float speed = 5.0f;
     [SerializeField]
-    float turnSmoothTime;
-    [SerializeField]
+    float turnSmoothTime = 0.1f;
+    
     float turnSmoothVelocity;
 
     void Start()
@@ -25,6 +28,7 @@ public class CharacterMovement : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
 
         Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
+        characterCamera.UpdateTargetOffset(direction);
 
         if (direction.magnitude > 0.1f)
         {

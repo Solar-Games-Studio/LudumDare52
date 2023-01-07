@@ -8,9 +8,15 @@ public class CharacterCamera : MonoBehaviour
     [SerializeField]
     Vector3 offsetFromCharacter;
     [SerializeField]
-    Vector3 cameraTargetOffset;
+    float smoothTime = 0.1f;
+    [SerializeField]
+    float offsetMagnitude = 0.3f;
 
+    Vector3 cameraOffset = Vector3.zero;
+    Vector3 targetOffset;
+    Vector3 currentVelocity;
         
+
     private void Start()
     {
         characterTransform = GameObject.FindWithTag("Player").transform;
@@ -18,7 +24,11 @@ public class CharacterCamera : MonoBehaviour
 
     void Update()
     {
-        transform.position = characterTransform.position + offsetFromCharacter;
+        cameraOffset = Vector3.SmoothDamp(cameraOffset, -targetOffset * offsetMagnitude, ref currentVelocity, smoothTime);
+
+        transform.position = characterTransform.position + offsetFromCharacter + cameraOffset;
         transform.rotation = Quaternion.LookRotation(-offsetFromCharacter);
     }
+
+    public void UpdateTargetOffset(Vector3 offset) => targetOffset = offset;
 }
