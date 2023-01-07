@@ -55,7 +55,7 @@ MonoBehaviour:
         guid: fe9dc51a-4d02-4cb1-a122-5dace9f7eb8a
         keys:
         - key_gamepad/LeftStickLeft
-        - key_keyboard/D
+        - key_keyboard/A
         - key_gamepad/DPadLeft
     - rid: 7525326016482115589
       type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
@@ -64,7 +64,7 @@ MonoBehaviour:
         guid: c2d8351d-b71d-4fed-be19-f59f831988a7
         keys:
         - key_gamepad/LeftStickRight
-        - key_keyboard/A
+        - key_keyboard/D
         - key_gamepad/DPadRight
     - rid: 7525326016482115590
       type: {class: Input2DAxis, ns: qASIC.Input.Map, asm: qASIC}
