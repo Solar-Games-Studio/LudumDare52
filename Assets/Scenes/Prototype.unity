@@ -499,7 +499,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh63174
+  m_Name: pb_Mesh66532
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1914,6 +1914,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1181667835879610149
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1723921943407384570, guid: 545b4bde50d78de49b7ad02340cf8d2c, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723921943407384570, guid: 545b4bde50d78de49b7ad02340cf8d2c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723921943407384570, guid: 545b4bde50d78de49b7ad02340cf8d2c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723921943407384570, guid: 545b4bde50d78de49b7ad02340cf8d2c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723921943407384570, guid: 545b4bde50d78de49b7ad02340cf8d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723921943407384570, guid: 545b4bde50d78de49b7ad02340cf8d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1723921943407384570, guid: 545b4bde50d78de49b7ad02340cf8d2c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2064699713180667200, guid: 545b4bde50d78de49b7ad02340cf8d2c, type: 3}
+      propertyPath: m_Name
+      value: Die Katze
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 545b4bde50d78de49b7ad02340cf8d2c, type: 3}
 --- !u!1 &2673944474037210770
 GameObject:
   m_ObjectHideFlags: 0
