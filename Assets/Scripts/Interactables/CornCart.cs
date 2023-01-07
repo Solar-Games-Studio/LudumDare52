@@ -1,13 +1,14 @@
 using UnityEngine;
-using qASIC.Toggling;
 using Game.Harvestables;
 using Game.Harvestables.Materials;
+using Game.UI;
+using Game.Interaction;
 
-namespace Game.Interaction
+namespace Game.Interactables
 {
     public class CornCart : Interactable, Inventory.IItemInteractable
     {
-        [SerializeField] string togglerName;
+        [SerializeField] UIToggleCallback UI;
         [SerializeField] HarvestableMaterial corn;
         [SerializeField] UsableMaterial[] usableMaterials;
 
@@ -22,7 +23,8 @@ namespace Game.Interaction
 
             if (materialObject.material == corn)
             {
-                StaticToggler.ChangeState(togglerName, true);
+                //Open UI
+                UI.OnToggle?.Invoke(this, true);
                 Character.CharacterMovement.ChangeMultiplier(GetInstanceID().ToString(), 0f);
                 return false;
             }
@@ -41,6 +43,12 @@ namespace Game.Interaction
             }
 
             return true;
+        }
+
+        public void CloseUI()
+        {
+            Character.CharacterMovement.ChangeMultiplier(GetInstanceID().ToString(), 1f);
+            UI.OnToggle?.Invoke(this, false);
         }
 
         public override void Interact()

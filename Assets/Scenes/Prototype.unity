@@ -236,7 +236,7 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
-  togglerName: CornCart
+  UI: {fileID: 11400000, guid: b788022e0213a044cb7382bcffd79fb9, type: 2}
   corn: {fileID: 11400000, guid: 7aa3bb8c270f43c49a91eec1481ae344, type: 2}
   usableMaterials:
   - material: {fileID: 11400000, guid: b6ca9d4eae90a15478d5a8e7b30f4558, type: 2}
