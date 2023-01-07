@@ -23,6 +23,7 @@ MonoBehaviour:
     - rid: 7525326016482115589
     - rid: 7525326016482115590
     - rid: 7525326027426103296
+    - rid: 7525326027426103297
   - itemName: Debug
     guid: 58aa86f9-0300-4c91-ade9-605932074ed6
     items:
@@ -105,6 +106,15 @@ MonoBehaviour:
         itemName: Interact
         guid: de3100b5-4356-499d-b479-5aba7b046deb
         keys:
-        - key_gamepad/X
+        - key_gamepad/A
         - key_keyboard/E
+        - key_keyboard/Z
+    - rid: 7525326027426103297
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Throw
+        guid: 91d39638-7fff-4e67-9800-4a13b6d9bbb3
+        keys:
+        - key_gamepad/X
+        - key_keyboard/Q
         - key_keyboard/X
