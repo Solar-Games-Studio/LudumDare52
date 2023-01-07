@@ -37,7 +37,7 @@ namespace Game.Inventory
         public void SetFollowTarget(Transform transform) =>
             _followTarget = transform;
 
-        public void ChangeState(State state)
+        public virtual void ChangeState(State state)
         {
             switch (state)
             {
