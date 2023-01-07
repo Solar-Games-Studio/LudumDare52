@@ -4,6 +4,8 @@ using qASIC.Input;
 public class CharacterMovement : MonoBehaviour
 {
     CharacterController characterController;
+    [SerializeField]
+    Animator modelAnimator;
 
     [SerializeField]
     CharacterCamera characterCamera;
@@ -14,6 +16,10 @@ public class CharacterMovement : MonoBehaviour
     float speed = 5.0f;
     [SerializeField]
     float turnSmoothTime = 0.1f;
+
+    [SerializeField]
+    float animationTransitionTime = 0.3f;
+
     
     float turnSmoothVelocity;
 
@@ -31,6 +37,8 @@ public class CharacterMovement : MonoBehaviour
 
         Vector3 direction = new Vector3(movement.x, 0, movement.y).normalized;
         characterCamera.UpdateTargetOffset(direction);
+
+        modelAnimator.SetFloat("Speed", direction.magnitude > 0.1f ? 1.0f : 0.0f, animationTransitionTime, Time.deltaTime);
 
         if (direction.magnitude > 0.1f && canMove)
         {
