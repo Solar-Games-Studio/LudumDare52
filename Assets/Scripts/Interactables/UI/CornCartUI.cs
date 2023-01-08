@@ -1,6 +1,7 @@
 using qASIC.Toggling;
 using UnityEngine;
 using Game.UI;
+using System.Collections.Generic;
 
 namespace Game.Interactables.UI
 {
@@ -33,6 +34,11 @@ namespace Game.Interactables.UI
                     _cornCart = null;
                     break;
             }
+        }
+
+        public void MakePopcorn()
+        {
+            _cornCart.MakePopcorn(new List<int>());
         }
 
         public void Close()
