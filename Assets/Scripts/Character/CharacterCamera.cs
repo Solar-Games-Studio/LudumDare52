@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Character
@@ -17,6 +15,15 @@ namespace Game.Character
         Vector3 cameraOffset = Vector3.zero;
         Vector3 targetOffset;
         Vector3 currentVelocity;
+
+        public Camera cam;
+
+        public static CharacterCamera Singleton { get; private set; }
+
+        private void Awake()
+        {
+            Singleton = this;
+        }
 
 
         private void Start()

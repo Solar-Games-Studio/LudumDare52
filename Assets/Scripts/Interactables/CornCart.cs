@@ -5,12 +5,17 @@ using Game.UI;
 using Game.Interaction;
 using System.Collections.Generic;
 using Game.Inventory;
+using UnityEngine.UI;
 
 namespace Game.Interactables
 {
     public class CornCart : Interactable, IItemInteractable
     {
+        [Label("UI")]
         [SerializeField] UIToggleCallback UI;
+        [SerializeField] Slider timerSlider;
+
+        [Label("Materials")]
         [SerializeField] HarvestableMaterial corn;
         public UsableMaterial[] usableMaterials;
 
@@ -29,24 +34,27 @@ namespace Game.Interactables
         List<HarvestableMaterial> _popcornMaterials;
         float _startTime;
 
+        private void Awake()
+        {
+            if (timerSlider != null)
+                timerSlider.gameObject.SetActive(false);
+        }
+
+        private void Update()
+        {
+            if (!_isMakingPopcorn) return;
+
+            timerSlider.value = (Time.time - _startTime) / (prepareTime + overcoockedTime);
+        }
+
         public bool ItemInteract()
         {
             var inventory = Player.PlayerReference.Singleton.GetBehaviour<CharacterInventory>();
 
-            if (_isMakingPopcorn)
-            {
-                if (inventory.HeldItem != null)
-                    return true;
-
-                StopMakingPopcorn();
-
-                return false;
-            }
-
             if (!(inventory.HeldItem is HarvestableMaterialObject materialObject))
                 return true;
 
-            if (materialObject.material == corn)
+            if (!_isMakingPopcorn && materialObject.material == corn)
             {
                 //Open UI
                 UI.OnToggle?.Invoke(this, true);
@@ -83,6 +91,7 @@ namespace Game.Interactables
 
             _popcornMaterials = new List<HarvestableMaterial>();
             _isMakingPopcorn = true;
+            timerSlider?.gameObject.SetActive(true);
             _startTime = Time.time;
 
             foreach (var material in materials)
@@ -97,6 +106,7 @@ namespace Game.Interactables
             var inventory = Player.PlayerReference.Singleton.GetBehaviour<CharacterInventory>();
 
             _isMakingPopcorn = false;
+            timerSlider?.gameObject.SetActive(false);
             float t = Time.time - _startTime;
             if (t < prepareTime)
             {
@@ -119,8 +129,10 @@ namespace Game.Interactables
         }
 
         public override void Interact()
-        {          
+        {
             base.Interact();
+            if (_isMakingPopcorn)
+                StopMakingPopcorn();
         }
 
         [System.Serializable]
