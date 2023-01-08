@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Corn
   m_EditorClassIdentifier: 
   materialName: Corn
+  image: {fileID: 0}
+  growTime: 5

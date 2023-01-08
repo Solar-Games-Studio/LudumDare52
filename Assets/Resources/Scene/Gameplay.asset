@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetScenes:
   - Prototype
+  - Game
   staticScenes:
   - UI

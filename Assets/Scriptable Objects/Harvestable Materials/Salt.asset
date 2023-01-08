@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   materialName: Salt
   image: {fileID: 0}
+  growTime: 10
