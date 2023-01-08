@@ -105,7 +105,7 @@ namespace Game.Interactables
                 return;
             }
 
-            if (t < prepareTime - overcoockedTime)
+            if (t < prepareTime + overcoockedTime)
             {
                 var popcorn = Instantiate(popcornObject);
                 popcorn.materials = _popcornMaterials;
