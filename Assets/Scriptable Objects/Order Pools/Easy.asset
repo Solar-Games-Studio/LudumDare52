@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a226348ae25e384b8c74bc3c1676030, type: 3}
+  m_Name: Easy
+  m_EditorClassIdentifier: 
+  orderAmount: 3
+  orders:
+  - {fileID: 11400000, guid: d0cfd7ce2e827164e9c553dffb00ea3a, type: 2}
+  - {fileID: 11400000, guid: e704808c15e400541acd50f07f0a7173, type: 2}
+  - {fileID: 11400000, guid: e7b53aefdffbc5e4588d682465d07b83, type: 2}
+  oneTimeOrders: []

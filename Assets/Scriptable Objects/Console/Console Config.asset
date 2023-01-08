@@ -17,11 +17,11 @@ MonoBehaviour:
   logConfigAssigment: 1
   logScene: 1
   textTreeStyle:
-    middle: " \u251C\u2500"
-    last: " \u2514\u2500"
-    space: '   '
-    vertical: " \u2502 "
-    preset: 1
+    middle: "\u251C\u2500"
+    last: "\u2514\u2500"
+    space: '  '
+    vertical: "\u2502 "
+    preset: 0
   clearCommand: 1
   echoCommand: 1
   exitCommand: 1

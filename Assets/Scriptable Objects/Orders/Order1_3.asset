@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7aaff935756cd346b8080b64501eaf3, type: 3}
+  m_Name: Order1_3
+  m_EditorClassIdentifier: 
+  canGetMad: 0
+  satisfiedTime: 80
+  madTime: 40
+  popcorns:
+  - amount: 1
+    burnt: 0
+    materials:
+    - {fileID: 11400000, guid: d1ba4e02235002946a6deeba25179bb5, type: 2}
+  - amount: 1
+    burnt: 0
+    materials:
+    - {fileID: 11400000, guid: b6ca9d4eae90a15478d5a8e7b30f4558, type: 2}
+  enterDialogue:
+  - I'm not sure what to get
+  - I can't really decide today
+  - I think I will experiment today
+  exitDialogue:
+  - I still don't know which one is better
+  - Okay, I will never buy salt again
+  - I think I am alergic to salt, oh well
+  madDialogue: []
+  madExitDialogue: []
+  abruptExitDialogue: []

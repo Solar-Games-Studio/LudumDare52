@@ -33,4 +33,6 @@ MonoBehaviour:
     color: {r: 0, g: 1, b: 0.5254902, a: 1}
   - colorName: move
     color: {r: 0, g: 0.4528302, b: 0.043920483, a: 1}
+  - colorName: order
+    color: {r: 0, g: 0.654902, b: 1, a: 1}
   isReadOnly: 0

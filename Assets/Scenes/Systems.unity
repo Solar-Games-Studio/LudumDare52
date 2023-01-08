@@ -333,6 +333,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8893613931253783056, guid: 51d28003d788cf143995acff76edc28e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893613931347409531, guid: 51d28003d788cf143995acff76edc28e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893613931347409531, guid: 51d28003d788cf143995acff76edc28e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893613931869998501, guid: 51d28003d788cf143995acff76edc28e, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 30.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893613932130742069, guid: 51d28003d788cf143995acff76edc28e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893613932130742069, guid: 51d28003d788cf143995acff76edc28e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8893613932130742069, guid: 51d28003d788cf143995acff76edc28e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -65
+      objectReference: {fileID: 0}
     - target: {fileID: 8893613932255433448, guid: 51d28003d788cf143995acff76edc28e, type: 3}
       propertyPath: m_Name
       value: Game console
