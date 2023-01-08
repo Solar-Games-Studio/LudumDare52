@@ -64,8 +64,10 @@ namespace Game.Inventory
             EquipItem(item);
         }
 
-        void EquipItem(ItemObject item)
+        public void EquipItem(ItemObject item)
         {
+            if (HeldItem != null) return;
+
             HeldItem = item;
             HeldItem.ChangeState(ItemObject.State.PickedUp);
             HeldItem.SetFollowTarget(itemHolder);
