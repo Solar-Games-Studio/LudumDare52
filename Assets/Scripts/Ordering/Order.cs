@@ -36,6 +36,32 @@ namespace Game.Ordering
             public int amount;
             public bool burnt;
             public List<HarvestableMaterial> materials;
+
+            public int GetMaterialCount(HarvestableMaterial material)
+            {
+                int count = 0;
+                foreach (var item in materials)
+                    if (item == material)
+                        count++;
+
+                return count;
+            }
+
+            public bool CompareMaterials(List<HarvestableMaterial> toCompare)
+            {
+                var own = new List<HarvestableMaterial>(materials);
+
+                if (toCompare.Count != own.Count)
+                    return false;
+
+                foreach (var item in toCompare)
+                {
+                    if (!own.Contains(item)) return false;
+                    own.Remove(item);
+                }
+
+                return true;
+            }
         }
     }
 }

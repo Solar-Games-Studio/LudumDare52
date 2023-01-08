@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using qASIC;
 
 namespace Game.Ordering
 {
@@ -14,6 +15,7 @@ namespace Game.Ordering
         public int CurrentPool { get; private set; } = -1;
         public int CurrentPoolOrder { get; private set; } = -1;
         public Order CurrentOrder { get; private set; }
+        public int CurrentOrderItemAmount { get; private set; }
 
         Queue<Order> _orders = new Queue<Order>();
 
@@ -42,10 +44,14 @@ namespace Game.Ordering
             foreach (var item in pool.oneTimeOrders)
                 orderList.Insert(Random.Range(0, orderList.Count), item);
 
-            foreach (var item in orderList)
-                Debug.Log(item); 
-
             _orders = new Queue<Order>(orderList);
+
+            qDebug.Log($"[Order Manager] Pool finished, moved to the next pool '{pool.name}:{pool.GetInstanceID()}'", "order");
+        }
+
+        public void FinishOrder(bool wasCorrect)
+        {
+            qDebug.Log($"[Order Manager] Order finished, was correct: {wasCorrect}", "order");
         }
 
         public void NextOrder()
@@ -59,7 +65,12 @@ namespace Game.Ordering
 
             CurrentPoolOrder++;
             CurrentOrder = _orders.Dequeue();
+            CurrentOrderItemAmount = 0;
 
+            foreach (var item in CurrentOrder.popcorns)
+                CurrentOrderItemAmount += item.amount;
+
+            qDebug.Log($"[Order Manager] Moved to the next order '{CurrentOrder.name}:{CurrentOrder.GetInstanceID()}'", "order");
         }
     }
 }
