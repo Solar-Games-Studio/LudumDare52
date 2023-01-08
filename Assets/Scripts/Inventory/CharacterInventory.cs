@@ -103,6 +103,7 @@ namespace Game.Inventory
             HeldItem.ChangeState(ItemObject.State.Free);
             HeldItem.SetFollowTarget(null);
             HeldItem = null;
+            interaction.RemoveInteractionOverride(this);
             return item;
         }
     }

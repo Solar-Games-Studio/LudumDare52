@@ -132,10 +132,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionPoint: {fileID: 8785531562753097166}
-  rayAmount: 5
-  startPos: {x: 0, y: 1.2, z: 0.5}
-  endPos: {x: 0, y: -0.7, z: 0.5}
-  interactLength: 2
+  rayAmount: 6
+  startPos: {x: 0, y: 1.2, z: 0.8}
+  endPos: {x: 0, y: -0.9, z: 0.8}
+  interactLength: 2.6
   interactableLayer:
     serializedVersion: 2
     m_Bits: 192
