@@ -55,13 +55,13 @@ namespace Game.Scene
                         continue;
                     }
 
-                    _scenePresets.Add(scene, preset);
+                    _scenePresets.Add(scene.ToLower(), preset);
                 }
             }
         }
 
         public static ScenePreset GetPreset(string scene) =>
-            ScenePresets.TryGetValue(scene, out ScenePreset preset) ? preset : Data.defaultPreset;
+            ScenePresets.TryGetValue(scene.ToLower(), out ScenePreset preset) ? preset : Data.defaultPreset;
         #endregion
 
         #region Initialization
@@ -104,14 +104,14 @@ namespace Game.Scene
                 if (CurrentPreset != null)
                     foreach (var presetScene in CurrentPreset.staticScenes)
                         if (activeScenes.Contains(presetScene))
-                            UnitySceneManager.UnloadSceneAsync(presetScene, UnloadSceneOptions.None);
+                            UnitySceneManager.UnloadSceneAsync(presetScene, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
 
                 if (preset != null)
                     foreach (var presetScene in preset.staticScenes)
                         UnitySceneManager.LoadScene(presetScene, LoadSceneMode.Additive);
             }
 
-            UnitySceneManager.UnloadSceneAsync(CurrentScene, UnloadSceneOptions.None);
+            UnitySceneManager.UnloadSceneAsync(CurrentScene, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
             UnitySceneManager.LoadScene(scene, LoadSceneMode.Additive);
 
             CurrentScene = scene;

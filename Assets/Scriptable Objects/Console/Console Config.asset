@@ -31,7 +31,7 @@ MonoBehaviour:
   changeSettingCommand: 1
   settingListCommand: 1
   audioCommand: 1
-  sceneCommand: 1
+  sceneCommand: 0
   sceneListCommand: 1
   versionCommand: 1
   specsCommand: 1
