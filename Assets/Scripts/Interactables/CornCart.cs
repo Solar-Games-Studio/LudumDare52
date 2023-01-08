@@ -12,7 +12,7 @@ namespace Game.Interactables
     {
         [SerializeField] UIToggleCallback UI;
         [SerializeField] HarvestableMaterial corn;
-        [SerializeField] UsableMaterial[] usableMaterials;
+        public UsableMaterial[] usableMaterials;
 
         [Label("Prefabs")]
         [SerializeField] ItemObject cornObject;
