@@ -242,6 +242,11 @@ MonoBehaviour:
   - material: {fileID: 11400000, guid: b6ca9d4eae90a15478d5a8e7b30f4558, type: 2}
     count: 0
     limit: 2
+  cornObject: {fileID: 0}
+  popcornObject: {fileID: 0}
+  burnedObject: {fileID: 0}
+  prepareTime: 0
+  overcoockedTime: 0
 --- !u!1 &167027579
 GameObject:
   m_ObjectHideFlags: 0

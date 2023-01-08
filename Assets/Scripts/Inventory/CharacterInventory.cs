@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using Game.Interaction;
 using qASIC.Input;
-using UnityEngine.WSA;
 
 namespace Game.Inventory
 {
     public class CharacterInventory : Player.PlayerBehaviour, IInteractionOverridable
     {
         [Label("Throwing")]
+        [SerializeField] Character.CharacterMovement movement;
+        [SerializeField] float movementForceMultiplier = 6f;
         [SerializeField] Vector3 force;
         
         [Label("Components")]
@@ -39,7 +40,10 @@ namespace Game.Inventory
         {
             var item = HeldItem;
             UnEquipItem();
-            item.Throw(transform.forward * force.z + transform.up * force.y + transform.right * force.x);
+            item.Throw(transform.forward * force.z + 
+                transform.up * force.y + 
+                transform.right * force.x +
+                movement.Direction * movementForceMultiplier);
         }
 
         public void HandleInteractionInput(IInteractable interactable)

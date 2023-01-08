@@ -26,6 +26,8 @@ namespace Game.Character
         static Dictionary<string, float> _speedMultipliers = new Dictionary<string, float>();
         public static float FinalSpeedMultiplier { get; private set; } = 1f;
 
+        public Vector3 Direction { get; private set; }
+
 
         float turnSmoothVelocity;
 
@@ -42,15 +44,15 @@ namespace Game.Character
             //piss off
             var movement = i_movement.GetInputValue<Vector2>();
 
-            var direction = new Vector3(movement.x, 0, movement.y).normalized;
-            characterCamera.UpdateTargetOffset(FinalSpeedMultiplier == 0f || !canMove ? Vector3.zero : direction);
+            Direction = new Vector3(movement.x, 0, movement.y).normalized;
+            characterCamera.UpdateTargetOffset(FinalSpeedMultiplier == 0f || !canMove ? Vector3.zero : Direction);
 
-            modelAnimator.SetFloat("Speed", (direction.magnitude > 0.1f ? 1.0f : 0.0f) * FinalSpeedMultiplier, animationTransitionTime, Time.deltaTime);
+            modelAnimator.SetFloat("Speed", (Direction.magnitude > 0.1f ? 1.0f : 0.0f) * FinalSpeedMultiplier, animationTransitionTime, Time.deltaTime);
 
-            if (direction.magnitude > 0.1f && canMove)
+            if (Direction.magnitude > 0.1f && canMove)
             {
-                characterController.Move(speed * Time.deltaTime * direction * FinalSpeedMultiplier);
-                float targetAngle = Mathf.Atan2(-direction.x, -direction.z) * Mathf.Rad2Deg;
+                characterController.Move(speed * Time.deltaTime * Direction * FinalSpeedMultiplier);
+                float targetAngle = Mathf.Atan2(-Direction.x, -Direction.z) * Mathf.Rad2Deg;
                 float angle = FinalSpeedMultiplier == 0f ? 
                     transform.eulerAngles.y : 
                     Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime / FinalSpeedMultiplier);
