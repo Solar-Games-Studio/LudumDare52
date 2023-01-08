@@ -17,8 +17,8 @@ public class NPCSpawner : MonoBehaviour
     float NPCSpeedMaxDeviation = 1.0f;
 
     [SerializeField]
-    [EditorButton(nameof(SummonNPC))]
     [EditorButton(nameof(NextCustomer))]
+    [EditorButton(nameof(SummonNPC))]
     GameObject[] NPCPrefabs;
     
     Queue<NPC> customerQueue;

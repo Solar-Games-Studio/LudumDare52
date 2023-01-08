@@ -7,6 +7,9 @@ public class NPC : MonoBehaviour
     Transform targetPoint;
     Transform exitPoint;
 
+    [SerializeField]
+    Animator modelAnimator;
+
     float betweenDistance = 0.2f;
     [SerializeField]
     float speed = 2.0f;
@@ -36,6 +39,11 @@ public class NPC : MonoBehaviour
             onNewCustomerArrived.Invoke();
             hasArrived = true;
         }
+    }
+
+    private void Update()
+    {
+        modelAnimator.SetFloat("Speed", isMoving ? 1 : 0);   
     }
 
     public void GoAway()
