@@ -46,7 +46,8 @@ namespace Game.Interactables.UI
                         ingredient.gameObject.SetActive(true);
 
                         ingredient.image.sprite = item.material.image;
-                        ingredient.text.text = $"{item.material.materialName}: {item.count}/{item.limit}";
+                        ingredient.nameText.text = item.material.materialName;
+                        ingredient.countText.text = $"{item.count}/{item.limit}";
                         ingredient.toggle.isOn = false;
                         ingredient.toggle.interactable = item.count > 0;
 
