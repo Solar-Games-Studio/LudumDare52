@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staticScenes:
   - Systems
+  - UI_general
   defaultPreset: {fileID: 0}
   presets:
   - {fileID: 11400000, guid: 7f4eb4badc797354d88812035e9a60af, type: 2}

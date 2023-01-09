@@ -3,6 +3,7 @@ using qASIC.Input;
 using UnityEngine.Events;
 using System.Collections.Generic;
 using qASIC;
+using Game.Prompts;
 
 namespace Game.Interaction
 {
@@ -20,6 +21,9 @@ namespace Game.Interaction
         [Label("Input")]
         [SerializeField] InputMapItemReference i_interact;
 
+        [Label("Prompts")]
+        [SerializeField] Prompt interactPrompt;
+
         [Label("Events")]
         public UnityEvent<IInteractable> e_onInteract;
 
@@ -31,6 +35,8 @@ namespace Game.Interaction
 
         private void FixedUpdate()
         {
+            bool previousHit = _didHit;
+
             _didHit = false;
             _raycastHit = new RaycastHit();
 
@@ -45,6 +51,9 @@ namespace Game.Interaction
 
             _hitInteractable = _raycastHit.transform?.GetComponent<IInteractable>();
             _didHit = _hitInteractable != null;
+
+            if (_didHit != previousHit)
+                interactPrompt.ChangeState(_didHit);
         }
 
         private void Update()

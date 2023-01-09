@@ -2,15 +2,19 @@ using UnityEngine;
 using System.Collections.Generic;
 using qASIC;
 using UnityEngine.SceneManagement;
+using System;
 
 using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 using UnityScene = UnityEngine.SceneManagement.Scene;
-using System.Linq;
 
 namespace Game.Scene
 {
     public static class SceneManager
     {
+        #region Events
+        public static event Action<string> OnSceneLoaded;
+        #endregion
+
         #region Data
         const string ResourcesDataPath = "Scene/Scene Manager Data";
 
@@ -117,6 +121,8 @@ namespace Game.Scene
 
             CurrentScene = scene;
             CurrentPreset = preset;
+
+            OnSceneLoaded?.Invoke(scene);
         }
         #endregion
     }

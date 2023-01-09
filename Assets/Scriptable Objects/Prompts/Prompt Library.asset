@@ -1,0 +1,264 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b87ebddec20ef94f81796491931edaf, type: 3}
+  m_Name: Prompt Library
+  m_EditorClassIdentifier: 
+  emptySprite: {fileID: 21300000, guid: fd82d794176a79143a28c5b630dab8de, type: 3}
+  dictionary:
+    pairs:
+    - key: key_gamepad/none
+      value: {fileID: 0}
+    - key: key_gamepad/a
+      value: {fileID: 21300000, guid: a302da1455802084db712a3190a68923, type: 3}
+    - key: key_gamepad/b
+      value: {fileID: 21300000, guid: 0117bb85ac8c5674886b1215768fa8f0, type: 3}
+    - key: key_gamepad/x
+      value: {fileID: 21300000, guid: fa2c41cf3443491439e439874bbdb0ca, type: 3}
+    - key: key_gamepad/y
+      value: {fileID: 21300000, guid: 876ec39b4789c334491aaf8a360c1c70, type: 3}
+    - key: key_gamepad/leftbumper
+      value: {fileID: 21300000, guid: 541fc1b828c539f43a634c4f1cb3f8d4, type: 3}
+    - key: key_gamepad/rightbumper
+      value: {fileID: 21300000, guid: 6f99475b6a0f8444db183b599b2f9267, type: 3}
+    - key: key_gamepad/lefttrigger
+      value: {fileID: 21300000, guid: d25806c38efbf9c4a8f3c0d2eee3ecd2, type: 3}
+    - key: key_gamepad/righttrigger
+      value: {fileID: 21300000, guid: 71a207143c8d4834185a60c707ed7a6a, type: 3}
+    - key: key_gamepad/leftstickbutton
+      value: {fileID: 21300000, guid: 556d094488249ed47840d712791d3076, type: 3}
+    - key: key_gamepad/rightstickbutton
+      value: {fileID: 21300000, guid: df794d57cf94a634cb022b4a94c7005e, type: 3}
+    - key: key_gamepad/leftstickup
+      value: {fileID: 21300000, guid: fac41b30c88beda43aaa98f58ad15733, type: 3}
+    - key: key_gamepad/leftstickright
+      value: {fileID: 21300000, guid: fac41b30c88beda43aaa98f58ad15733, type: 3}
+    - key: key_gamepad/leftstickdown
+      value: {fileID: 21300000, guid: fac41b30c88beda43aaa98f58ad15733, type: 3}
+    - key: key_gamepad/leftstickleft
+      value: {fileID: 21300000, guid: fac41b30c88beda43aaa98f58ad15733, type: 3}
+    - key: key_gamepad/rightstickup
+      value: {fileID: 21300000, guid: 4ad83865d4c54e745b19f6db46d6b18a, type: 3}
+    - key: key_gamepad/rightstickright
+      value: {fileID: 21300000, guid: 4ad83865d4c54e745b19f6db46d6b18a, type: 3}
+    - key: key_gamepad/rightstickdown
+      value: {fileID: 21300000, guid: 4ad83865d4c54e745b19f6db46d6b18a, type: 3}
+    - key: key_gamepad/rightstickleft
+      value: {fileID: 21300000, guid: 4ad83865d4c54e745b19f6db46d6b18a, type: 3}
+    - key: key_gamepad/dpadup
+      value: {fileID: 21300000, guid: 63720733b64e4d54a8a4d414cd48fc85, type: 3}
+    - key: key_gamepad/dpadright
+      value: {fileID: 21300000, guid: f7bbb161ea0216341812a0fd759628f8, type: 3}
+    - key: key_gamepad/dpaddown
+      value: {fileID: 21300000, guid: f0f7ee006f4c08241b2f2b88b1aecd4e, type: 3}
+    - key: key_gamepad/dpadleft
+      value: {fileID: 21300000, guid: a1a7750463375cd46a2a7acfd37f31fb, type: 3}
+    - key: key_gamepad/back
+      value: {fileID: 21300000, guid: 1e748be0b90f78c409f76f1ae10aa2c0, type: 3}
+    - key: key_gamepad/start
+      value: {fileID: 21300000, guid: c969e0791806b5041a1903f6baefba1c, type: 3}
+    - key: key_keyboard/0
+      value: {fileID: 21300000, guid: fd222c4ab111b6a40aa89a0b4a505f20, type: 3}
+    - key: key_keyboard/1
+      value: {fileID: 21300000, guid: cc20d7bb3df6cc042a1070a7db7de11c, type: 3}
+    - key: key_keyboard/2
+      value: {fileID: 21300000, guid: d569930df60c3ae4b8c6210ac657861c, type: 3}
+    - key: key_keyboard/3
+      value: {fileID: 21300000, guid: 0b477f6a2c846cc479edf977a8a5768c, type: 3}
+    - key: key_keyboard/4
+      value: {fileID: 21300000, guid: 9dea7523d7f7a454ab145de08c4c64f7, type: 3}
+    - key: key_keyboard/5
+      value: {fileID: 21300000, guid: a5f4526a62bfe2c40b90aa845d8203c3, type: 3}
+    - key: key_keyboard/6
+      value: {fileID: 21300000, guid: 866107a51559a1a448db6d36997001aa, type: 3}
+    - key: key_keyboard/7
+      value: {fileID: 21300000, guid: bdaaf0ac1bc26164fbc15d6afb811b9b, type: 3}
+    - key: key_keyboard/8
+      value: {fileID: 21300000, guid: 41e8c2963175e6440a131ae7cc5c96b5, type: 3}
+    - key: key_keyboard/9
+      value: {fileID: 21300000, guid: 947a57af396da7c46aabe5b11fa08f6c, type: 3}
+    - key: key_keyboard/f1
+      value: {fileID: 21300000, guid: c37cdc036bb2edf4e85346132913ac80, type: 3}
+    - key: key_keyboard/f2
+      value: {fileID: 21300000, guid: ac97b75aea4cec944b2ec844bf9025e2, type: 3}
+    - key: key_keyboard/f3
+      value: {fileID: 21300000, guid: 31ec2b7fd2d19ec44888fa1f38ab3935, type: 3}
+    - key: key_keyboard/f4
+      value: {fileID: 21300000, guid: cc8bcf200154e36458403ba0b5c9c044, type: 3}
+    - key: key_keyboard/f5
+      value: {fileID: 21300000, guid: 5d46c6f89994c974f87435d632fba9dd, type: 3}
+    - key: key_keyboard/f6
+      value: {fileID: 21300000, guid: 78f26d04e59eb5d41a1de1bf2a5c5a8f, type: 3}
+    - key: key_keyboard/f7
+      value: {fileID: 21300000, guid: c2e7ea4d7d4d0ea449f61499a7fb143e, type: 3}
+    - key: key_keyboard/f8
+      value: {fileID: 21300000, guid: 64dac0083f6d29c42b665169d2644760, type: 3}
+    - key: key_keyboard/f9
+      value: {fileID: 21300000, guid: 04df8fd3e8857714f8bb6398baccc578, type: 3}
+    - key: key_keyboard/f10
+      value: {fileID: 21300000, guid: a234c1427c7fe014f9d5623dd8affd2e, type: 3}
+    - key: key_keyboard/f11
+      value: {fileID: 21300000, guid: 3d1b15c35ef039e45a38c3f1941b1083, type: 3}
+    - key: key_keyboard/f12
+      value: {fileID: 21300000, guid: e967eaad3502b6940a8a858121412c95, type: 3}
+    - key: key_keyboard/a
+      value: {fileID: 21300000, guid: ef0fb4728d3fccc48814e5bbb1c47173, type: 3}
+    - key: key_keyboard/b
+      value: {fileID: 21300000, guid: a0113b1392b96b4488892f2188bebaf0, type: 3}
+    - key: key_keyboard/c
+      value: {fileID: 21300000, guid: 73ee08343dc7d9846893bdb4c9956431, type: 3}
+    - key: key_keyboard/d
+      value: {fileID: 21300000, guid: 6f1a51b749e05e342a658cca377ec181, type: 3}
+    - key: key_keyboard/e
+      value: {fileID: 21300000, guid: 52421af107f94a6429c0d53d9018b69f, type: 3}
+    - key: key_keyboard/f
+      value: {fileID: 21300000, guid: 91422a4299a53f34180786ef365de2d9, type: 3}
+    - key: key_keyboard/g
+      value: {fileID: 21300000, guid: 25e1b1411e32b27449ceb2a023dfdc90, type: 3}
+    - key: key_keyboard/h
+      value: {fileID: 21300000, guid: 773c43038f6d03d4f85fa9a0353aabf9, type: 3}
+    - key: key_keyboard/i
+      value: {fileID: 21300000, guid: 13acc49ae980c04408485bb9be7227b6, type: 3}
+    - key: key_keyboard/j
+      value: {fileID: 21300000, guid: ae8b5964dfebe744bb5198ec2e39fee1, type: 3}
+    - key: key_keyboard/k
+      value: {fileID: 21300000, guid: 53f1f243b088a4942affb9dc923bbfcf, type: 3}
+    - key: key_keyboard/l
+      value: {fileID: 21300000, guid: 90880e29ffa32804cb59242ff7e34132, type: 3}
+    - key: key_keyboard/m
+      value: {fileID: 21300000, guid: 6b97cfc1363f8a347ad9431954b59a60, type: 3}
+    - key: key_keyboard/n
+      value: {fileID: 21300000, guid: 27cdeee9e50cd6648a88f900b7027b75, type: 3}
+    - key: key_keyboard/o
+      value: {fileID: 21300000, guid: 615d793f6fcc873468edc474de5dc952, type: 3}
+    - key: key_keyboard/p
+      value: {fileID: 21300000, guid: 572d5af8018e56a4bb9bc5157f2485c3, type: 3}
+    - key: key_keyboard/q
+      value: {fileID: 21300000, guid: 1bd9a6105b7f00741a2c25e4cf2acf6a, type: 3}
+    - key: key_keyboard/r
+      value: {fileID: 21300000, guid: 7f409a5957ca8734a96269b59f2236c2, type: 3}
+    - key: key_keyboard/s
+      value: {fileID: 21300000, guid: 23722f1d7c323a14eaf3dad209524520, type: 3}
+    - key: key_keyboard/t
+      value: {fileID: 21300000, guid: 0e902d2e88d13e240be9fc9caafb2a06, type: 3}
+    - key: key_keyboard/u
+      value: {fileID: 21300000, guid: c165f91d28b017440b63f87575e5a6b1, type: 3}
+    - key: key_keyboard/v
+      value: {fileID: 21300000, guid: 02005c34998642940afc9e62e7ad519f, type: 3}
+    - key: key_keyboard/w
+      value: {fileID: 21300000, guid: 8bf7b36711b71ea4da67c79e31ac5aeb, type: 3}
+    - key: key_keyboard/x
+      value: {fileID: 21300000, guid: a927b20ae23699142b9b1042e867b415, type: 3}
+    - key: key_keyboard/y
+      value: {fileID: 21300000, guid: 30b471328c7f9644fa0a18b8ce4ad3ba, type: 3}
+    - key: key_keyboard/z
+      value: {fileID: 21300000, guid: 85b0d09352fd036419f804b62a736ec7, type: 3}
+    - key: key_keyboard/uparrow
+      value: {fileID: 21300000, guid: 210e431a8f5c9f14eb77f4012e3e7e8a, type: 3}
+    - key: key_keyboard/downarrow
+      value: {fileID: 21300000, guid: ef70daca320c60e43a140d8d555b916d, type: 3}
+    - key: key_keyboard/leftarrow
+      value: {fileID: 21300000, guid: 7bbe76a4bb54e324f82d60fee4fb9a01, type: 3}
+    - key: key_keyboard/rightarrow
+      value: {fileID: 21300000, guid: d8e5c98446d507f439539a1a1e3f51ad, type: 3}
+    - key: key_keyboard/asterisk
+      value: {fileID: 21300000, guid: ca416e476620c3746aa4b97d8d158772, type: 3}
+    - key: key_keyboard/leftalt
+      value: {fileID: 21300000, guid: 77f450f5611e8a24eb52f707a0e176a5, type: 3}
+    - key: key_keyboard/rightalt
+      value: {fileID: 21300000, guid: 77f450f5611e8a24eb52f707a0e176a5, type: 3}
+    - key: key_keyboard/altgr
+      value: {fileID: 21300000, guid: 77f450f5611e8a24eb52f707a0e176a5, type: 3}
+    - key: key_keyboard/backspace
+      value: {fileID: 21300000, guid: d0abaab992d5d7045bb22de9e2822111, type: 3}
+    - key: key_keyboard/leftbracket
+      value: {fileID: 21300000, guid: 956e78f0f0ea7ec459c92b44f7f4bfb4, type: 3}
+    - key: key_keyboard/rightbracket
+      value: {fileID: 21300000, guid: 9cb320760693824408dc73a2f088630a, type: 3}
+    - key: key_keyboard/capslock
+      value: {fileID: 21300000, guid: ed58edcffe2fdf641afe2a6574444487, type: 3}
+    - key: key_keyboard/leftcommand
+      value: {fileID: 21300000, guid: cfa57e5d34bc2fb488ea20c539f8a5d1, type: 3}
+    - key: key_keyboard/rightcommand
+      value: {fileID: 21300000, guid: cfa57e5d34bc2fb488ea20c539f8a5d1, type: 3}
+    - key: key_keyboard/leftcontrol
+      value: {fileID: 21300000, guid: d6a39e2e0ae68d342a648fecd928afe8, type: 3}
+    - key: key_keyboard/delete
+      value: {fileID: 21300000, guid: 3a7f685998822ec4fbe1a83528be462e, type: 3}
+    - key: key_keyboard/end
+      value: {fileID: 21300000, guid: e9f607b126d3ea34491a4c891d7f4068, type: 3}
+    - key: key_keyboard/return
+      value: {fileID: 21300000, guid: c1f97dcf5ee6d7f4fb7d0adeff64e375, type: 3}
+    - key: key_keyboard/keypadenter
+      value: {fileID: 21300000, guid: 7e3b42552c9447e419f18ca6875267ec, type: 3}
+    - key: key_keyboard/escape
+      value: {fileID: 21300000, guid: db150f257ed0afd4a897ab91470a3578, type: 3}
+    - key: key_keyboard/home
+      value: {fileID: 21300000, guid: 74d57a12dd7beba4b965f06999cc6552, type: 3}
+    - key: key_keyboard/insert
+      value: {fileID: 21300000, guid: 01b43a24de3fd064da6b79bc4f60a951, type: 3}
+    - key: key_keyboard/less
+      value: {fileID: 21300000, guid: b4a0e9a481b251b40b36044a8ee13e31, type: 3}
+    - key: key_keyboard/greater
+      value: {fileID: 21300000, guid: 8fe1ff7805680434c93b072d4e29c4e3, type: 3}
+    - key: key_keyboard/minus
+      value: {fileID: 21300000, guid: 407ec28722f36cb4091f3dcb6dd9e718, type: 3}
+    - key: key_keyboard/mouse2
+      value: {fileID: 21300000, guid: 8cb903f6e7ecc4649baf7a4267299fb5, type: 3}
+    - key: key_keyboard/numlock
+      value: {fileID: 21300000, guid: e5dbad51201709344868869740f1dde1, type: 3}
+    - key: key_keyboard/pageup
+      value: {fileID: 21300000, guid: be57150f82167c543b93cc05e4cffd6b, type: 3}
+    - key: key_keyboard/pagedown
+      value: {fileID: 21300000, guid: 72446b62330eea44fa02ca4a57b5323c, type: 3}
+    - key: key_keyboard/plus
+      value: {fileID: 21300000, guid: 65323d328c8737944a751087e6958871, type: 3}
+    - key: key_keyboard/keypadplus
+      value: {fileID: 21300000, guid: 36cd9250a7c5232479e7e284f4d0a5a8, type: 3}
+    - key: key_keyboard/question
+      value: {fileID: 21300000, guid: a9b50ca2dfc2c3146847570e6541f9c1, type: 3}
+    - key: key_keyboard/quote
+      value: {fileID: 21300000, guid: 1ced560091bdb9a4db5c1ff61da31af3, type: 3}
+    - key: key_keyboard/semicolon
+      value: {fileID: 21300000, guid: 3d9f705010248aa4c86e95e5cecab67f, type: 3}
+    - key: key_keyboard/shift
+      value: {fileID: 21300000, guid: fe53078d41a1fee4690ef81a3964e98f, type: 3}
+    - key: key_keyboard/slash
+      value: {fileID: 21300000, guid: 04a7910713712274ba22052d8d8f5d6a, type: 3}
+    - key: key_keyboard/space
+      value: {fileID: 21300000, guid: 7413a5f8f2e47cc4abeaf78b0289453d, type: 3}
+    - key: key_keyboard/tab
+      value: {fileID: 21300000, guid: bac6c4847fc4614458192b3410233532, type: 3}
+    - key: key_keyboard/tilde
+      value: {fileID: 21300000, guid: dc8946f09df62714b978d0dd521b276e, type: 3}
+    - key: key_keyboard/Backquote
+      value: {fileID: 21300000, guid: dc8946f09df62714b978d0dd521b276e, type: 3}
+    error: 0
+  axisDictionary:
+    pairs:
+    - key: key_gamepad/dpadup
+      value: {fileID: 21300000, guid: 5bcf80b48ca3d7b4d8d2b9cb90eeb4b3, type: 3}
+    - key: key_gamepad/dpaddown
+      value: {fileID: 21300000, guid: 5bcf80b48ca3d7b4d8d2b9cb90eeb4b3, type: 3}
+    - key: key_gamepad/dpadleft
+      value: {fileID: 21300000, guid: 5bcf80b48ca3d7b4d8d2b9cb90eeb4b3, type: 3}
+    - key: key_gamepad/dpadright
+      value: {fileID: 21300000, guid: 5bcf80b48ca3d7b4d8d2b9cb90eeb4b3, type: 3}
+    error: 0
+  defaultKeyPath: key_keyboard
+  deviceKeyPath:
+    pairs:
+    - key: UIMKeyboardDevice
+      value: key_keyboard
+    - key: XInputGamepad
+      value: key_gamepad
+    error: 0
+  providerPath: key_gamepad
