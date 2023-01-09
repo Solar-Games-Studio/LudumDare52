@@ -25,7 +25,7 @@ namespace Game.Inventory
         private void Reset()
         {
             rb = GetComponent<Rigidbody>();
-            coll = GetComponent<Collider>();
+            //coll = GetComponent<Collider>();
         }
 
         private void LateUpdate()

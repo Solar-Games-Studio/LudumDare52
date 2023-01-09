@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Game.Character
 {
+    [ExecuteAlways]
     public class CharacterCamera : Player.PlayerBehaviour
     {
         Transform characterTransform;
@@ -24,7 +25,6 @@ namespace Game.Character
         {
             Singleton = this;
         }
-
 
         private void Start()
         {
