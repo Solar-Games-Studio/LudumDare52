@@ -11,6 +11,9 @@ namespace Game.Character
         Animator modelAnimator;
 
         [SerializeField]
+        CharacterAnimation characterAnimation;
+
+        [SerializeField]
         CharacterCamera characterCamera;
 
         [SerializeField] InputMapItemReference i_movement;
@@ -41,9 +44,6 @@ namespace Game.Character
             characterController = GetComponent<CharacterController>();
         }
 
-        void FixedUpdate()
-        {
-        }
 
         void Update()
         {
@@ -53,10 +53,10 @@ namespace Game.Character
             Direction = new Vector3(movement.x, 0, movement.y).normalized;
             characterCamera.UpdateTargetOffset(FinalSpeedMultiplier == 0f || !canMove ? Vector3.zero : Direction);
 
-            modelAnimator.SetFloat("Speed", (Direction.magnitude > 0.1f ? 1.0f : 0.0f) * FinalSpeedMultiplier, animationTransitionTime, Time.deltaTime);
             Debug.Log(characterController.isGrounded);
             if (!characterController.isGrounded)
                 characterController.Move(gravity * Time.deltaTime * Vector3.down);
+            characterAnimation.SetMovingState(false);
 
             if (Direction.magnitude > 0.1f && canMove)
             {
@@ -66,6 +66,7 @@ namespace Game.Character
                     transform.eulerAngles.y : 
                     Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime / FinalSpeedMultiplier);
 
+                characterAnimation.SetMovingState(true);
                 transform.rotation = Quaternion.Euler(0, angle, 0);
             }
         }

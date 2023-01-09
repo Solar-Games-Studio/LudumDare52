@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Game.Interaction;
+using Game.Character;
 using qASIC.Input;
 
 namespace Game.Inventory
@@ -14,6 +15,7 @@ namespace Game.Inventory
         [Label("Components")]
         [SerializeField] CharacterInteraction interaction;
         [SerializeField] Transform itemHolder;
+        [SerializeField] CharacterAnimation characterAnimation;
 
         [Label("Input")]
         [SerializeField] InputMapItemReference i_throw;
@@ -72,6 +74,7 @@ namespace Game.Inventory
         {
             if (HeldItem != null) return;
 
+            characterAnimation.SetHoldingState(true);
             HeldItem = item;
             HeldItem.ChangeState(ItemObject.State.PickedUp);
             HeldItem.SetFollowTarget(itemHolder);
@@ -81,6 +84,7 @@ namespace Game.Inventory
         void UnEquipItem()
         {
             interaction.RemoveInteractionOverride(this);
+            characterAnimation.SetHoldingState(false);
             RemoveItem();
         }
 
@@ -90,6 +94,7 @@ namespace Game.Inventory
 
             HeldItem.ChangeState(ItemObject.State.Placed);
             HeldItem.SetFollowTarget(holder.HolderTransform);
+            characterAnimation.SetHoldingState(false);
             HeldItem = null;
 
             interaction.RemoveInteractionOverride(this);
@@ -102,6 +107,7 @@ namespace Game.Inventory
             var item = HeldItem;
             HeldItem.ChangeState(ItemObject.State.Free);
             HeldItem.SetFollowTarget(null);
+            characterAnimation.SetHoldingState(false);
             HeldItem = null;
             interaction.RemoveInteractionOverride(this);
             return item;
