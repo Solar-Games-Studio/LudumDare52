@@ -7,8 +7,6 @@ namespace Game.Character
     public class CharacterMovement : Player.PlayerBehaviour
     {
         CharacterController characterController;
-        [SerializeField]
-        Animator modelAnimator;
 
         [SerializeField]
         CharacterAnimation characterAnimation;

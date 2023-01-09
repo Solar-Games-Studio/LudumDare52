@@ -34,16 +34,20 @@ public class NPC : MonoBehaviour
                 Destroy(gameObject);
         }
 
-        if (!hasArrived && targetPoint == sellPoint)
+        if (targetPoint == sellPoint)
         {
-            onNewCustomerArrived.Invoke();
-            hasArrived = true;
+            betweenDistance = 0.1f;
+            if (!hasArrived)
+            {
+                onNewCustomerArrived.Invoke();
+                hasArrived = true;
+            }
         }
     }
 
     private void Update()
     {
-        modelAnimator.SetFloat("Speed", isMoving ? 1 : 0);   
+        modelAnimator.SetFloat("Blend", isMoving ? 1 : 0);
     }
 
     public void GoAway()

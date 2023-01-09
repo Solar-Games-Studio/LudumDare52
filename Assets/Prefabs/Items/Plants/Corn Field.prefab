@@ -58,6 +58,7 @@ MonoBehaviour:
     finalProduct: {fileID: 8940849585380061514, guid: d8d523d3f1ddf12459f2539a5d9d6876, type: 3}
     plantedModel: {fileID: 935473081920770221}
     grownModel: {fileID: 935473081551631578}
+  harvestingTime: 1
 --- !u!65 &935473080884948344
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -334,6 +335,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -6205024957097937269, guid: afcd68a34c4c74f4aa086bd2d5a297ec, type: 3}
     - target: {fileID: 919132149155446097, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
       propertyPath: m_Name
       value: ground_divider_3
@@ -652,6 +657,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -6205024957097937269, guid: afcd68a34c4c74f4aa086bd2d5a297ec, type: 3}
     - target: {fileID: 919132149155446097, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
       propertyPath: m_Name
       value: ground_divider_5
@@ -966,6 +975,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -6205024957097937269, guid: afcd68a34c4c74f4aa086bd2d5a297ec, type: 3}
     - target: {fileID: 919132149155446097, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
       propertyPath: m_Name
       value: ground_divider_2
@@ -1362,6 +1375,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -6205024957097937269, guid: afcd68a34c4c74f4aa086bd2d5a297ec, type: 3}
     - target: {fileID: 919132149155446097, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
       propertyPath: m_Name
       value: ground_divider
@@ -1424,6 +1441,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -6205024957097937269, guid: afcd68a34c4c74f4aa086bd2d5a297ec, type: 3}
     - target: {fileID: 919132149155446097, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
       propertyPath: m_Name
       value: ground_divider_7
@@ -1486,6 +1507,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -6205024957097937269, guid: afcd68a34c4c74f4aa086bd2d5a297ec, type: 3}
     - target: {fileID: 919132149155446097, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
       propertyPath: m_Name
       value: ground_divider_6
@@ -1548,6 +1573,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -6205024957097937269, guid: afcd68a34c4c74f4aa086bd2d5a297ec, type: 3}
     - target: {fileID: 919132149155446097, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
       propertyPath: m_Name
       value: ground_divider_1
@@ -1610,6 +1639,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -6205024957097937269, guid: afcd68a34c4c74f4aa086bd2d5a297ec, type: 3}
     - target: {fileID: 919132149155446097, guid: a949c2f2601d66c4ca9db3f176b6b2ad, type: 3}
       propertyPath: m_Name
       value: ground_divider_4
