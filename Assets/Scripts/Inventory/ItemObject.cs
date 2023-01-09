@@ -20,12 +20,22 @@ namespace Game.Inventory
         [SerializeField] Rigidbody rb;
         [SerializeField] Collider coll;
 
+        [Label("Layers")]
+        [SerializeField] [Layer] int pickedUpLayer = 0;
+
+        int _defaultLayer;
+
         Transform _followTarget;
 
         private void Reset()
         {
             rb = GetComponent<Rigidbody>();
-            //coll = GetComponent<Collider>();
+            coll = GetComponent<Collider>();
+        }
+
+        private void Awake()
+        {
+            _defaultLayer = gameObject.layer;
         }
 
         private void LateUpdate()
@@ -45,6 +55,7 @@ namespace Game.Inventory
             switch (state)
             {
                 case State.Free:
+                    ChangeLayer(gameObject, _defaultLayer);
                     CharacterMovement.ChangeMultiplier(MOVEMENT_MULTIPLIER_IDENTIFIER, 1f);
                     if (rb != null)
                         rb.isKinematic = false;
@@ -56,6 +67,7 @@ namespace Game.Inventory
                     }
                     break;
                 case State.PickedUp:
+                    ChangeLayer(gameObject, pickedUpLayer);
                     CharacterMovement.ChangeMultiplier(MOVEMENT_MULTIPLIER_IDENTIFIER, movementMultiplier);
                     if (rb != null)
                         rb.isKinematic = true;
@@ -67,6 +79,7 @@ namespace Game.Inventory
                     }
                     break;
                 case State.Placed:
+                    ChangeLayer(gameObject, _defaultLayer);
                     CharacterMovement.ChangeMultiplier(MOVEMENT_MULTIPLIER_IDENTIFIER, 1f);
                     if (rb != null)
                         rb.isKinematic = true;
@@ -78,6 +91,13 @@ namespace Game.Inventory
                     }
                     break;
             }
+        }
+
+        void ChangeLayer(GameObject g, int layer)
+        {
+            g.layer = layer;
+            for (int i = 0; i < g.transform.childCount; i++)
+                ChangeLayer(g.transform.GetChild(i).gameObject, layer);
         }
 
         public void Throw(Vector3 force)

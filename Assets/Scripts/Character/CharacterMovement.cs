@@ -53,10 +53,9 @@ namespace Game.Character
             Direction = new Vector3(movement.x, 0, movement.y).normalized;
             characterCamera.UpdateTargetOffset(FinalSpeedMultiplier == 0f || !canMove ? Vector3.zero : Direction);
 
-            Debug.Log(characterController.isGrounded);
             if (!characterController.isGrounded)
                 characterController.Move(gravity * Time.deltaTime * Vector3.down);
-            characterAnimation.SetMovingState(false);
+            characterAnimation?.SetMovingState(false);
 
             if (Direction.magnitude > 0.1f && canMove)
             {
@@ -66,7 +65,7 @@ namespace Game.Character
                     transform.eulerAngles.y : 
                     Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime / FinalSpeedMultiplier);
 
-                characterAnimation.SetMovingState(true);
+                characterAnimation?.SetMovingState(true);
                 transform.rotation = Quaternion.Euler(0, angle, 0);
             }
         }

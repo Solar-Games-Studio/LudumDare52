@@ -74,7 +74,7 @@ namespace Game.Inventory
         {
             if (HeldItem != null) return;
 
-            characterAnimation.SetHoldingState(true);
+            characterAnimation?.SetHoldingState(true);
             HeldItem = item;
             HeldItem.ChangeState(ItemObject.State.PickedUp);
             HeldItem.SetFollowTarget(itemHolder);
@@ -84,7 +84,7 @@ namespace Game.Inventory
         void UnEquipItem()
         {
             interaction.RemoveInteractionOverride(this);
-            characterAnimation.SetHoldingState(false);
+            characterAnimation?.SetHoldingState(false);
             RemoveItem();
         }
 
@@ -94,7 +94,7 @@ namespace Game.Inventory
 
             HeldItem.ChangeState(ItemObject.State.Placed);
             HeldItem.SetFollowTarget(holder.HolderTransform);
-            characterAnimation.SetHoldingState(false);
+            characterAnimation?.SetHoldingState(false);
             HeldItem = null;
 
             interaction.RemoveInteractionOverride(this);
@@ -107,7 +107,7 @@ namespace Game.Inventory
             var item = HeldItem;
             HeldItem.ChangeState(ItemObject.State.Free);
             HeldItem.SetFollowTarget(null);
-            characterAnimation.SetHoldingState(false);
+            characterAnimation?.SetHoldingState(false);
             HeldItem = null;
             interaction.RemoveInteractionOverride(this);
             return item;

@@ -6,6 +6,8 @@ namespace Game.Ordering
 {
     public class OrderManager : MonoBehaviour
     {
+        public enum OrderState { None, Waiting, Mad }
+
         [EditorButton(nameof(NextOrder))]
         [EditorButton(nameof(NextPool))]
         public OrderPool[] poolTimeline;
@@ -16,12 +18,29 @@ namespace Game.Ordering
         public int CurrentPoolOrder { get; private set; } = -1;
         public Order CurrentOrder { get; private set; }
         public int CurrentOrderItemAmount { get; private set; }
+        public float OrderStartTime { get; private set; }
+        public OrderState State { get; private set; }
 
         Queue<Order> _orders = new Queue<Order>();
 
         private void Awake()
         {
             Singleton = this;
+        }
+
+        private void FixedUpdate()
+        {
+            switch (State)
+            {
+                case OrderState.Waiting:
+                    if (CurrentOrder.canGetMad && Time.time - OrderStartTime >= CurrentOrder.satisfiedTime)
+                        GetMad();
+                    break;
+                case OrderState.Mad:
+                    if (CurrentOrder.canLeaveAbruptly && Time.time - OrderStartTime >= CurrentOrder.satisfiedTime + CurrentOrder.madTime)
+                        LeaveAbruptly();
+                    break;
+            }
         }
 
         public void NextPool()
@@ -52,6 +71,19 @@ namespace Game.Ordering
         public void FinishOrder(bool wasCorrect)
         {
             qDebug.Log($"[Order Manager] Order finished, was correct: {wasCorrect}", "order");
+            State = OrderState.None;
+        }
+
+        void GetMad()
+        {
+            qDebug.Log($"[Order Manager] Order state has been changed to mad", "order");
+            State = OrderState.Mad;
+        }
+
+        public void LeaveAbruptly()
+        {
+            qDebug.Log($"[Order Manager] Order has been ended abruptly", "order");
+            State = OrderState.None;
         }
 
         public void NextOrder()
@@ -66,6 +98,7 @@ namespace Game.Ordering
             CurrentPoolOrder++;
             CurrentOrder = _orders.Dequeue();
             CurrentOrderItemAmount = 0;
+            OrderStartTime = Time.time;
 
             foreach (var item in CurrentOrder.popcorns)
                 CurrentOrderItemAmount += item.amount;
