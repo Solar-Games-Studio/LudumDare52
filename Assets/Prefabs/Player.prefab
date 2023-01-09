@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1461260684416618753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.25, z: -0.7}
+  m_LocalPosition: {x: 0, y: -0.4, z: -0.617}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8785531562753097165}
   - component: {fileID: 8785531562753097163}
   - component: {fileID: 2336807348458042789}
-  - component: {fileID: 7454095658417185501}
+  - component: {fileID: 548769033}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -62,8 +62,8 @@ Transform:
   m_GameObject: {fileID: 8785531562753097154}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.67, y: 0.67, z: 0.67}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5932413236670470569}
   - {fileID: 6311275911514573991}
@@ -94,7 +94,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 1.95
-  m_Radius: 0.6
+  m_Radius: 0.37
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -113,8 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerReference: {fileID: 0}
-  modelAnimator: {fileID: 1502644956}
-  characterAnimation: {fileID: 7454095658417185501}
+  characterAnimation: {fileID: 548769033}
   characterCamera: {fileID: 0}
   i_movement:
     guid: b21fcd37-3227-47de-89b4-35142a65130a
@@ -165,10 +164,10 @@ MonoBehaviour:
   force: {x: 0, y: 2, z: -2.5}
   interaction: {fileID: 8785531562753097163}
   itemHolder: {fileID: 6311275911514573991}
-  characterAnimation: {fileID: 7454095658417185501}
+  characterAnimation: {fileID: 548769033}
   i_throw:
     guid: 91d39638-7fff-4e67-9800-4a13b6d9bbb3
---- !u!114 &7454095658417185501
+--- !u!114 &548769033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -200,7 +199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 25c6baec7e9ddc747952c695d31a9be5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.059
+      value: -1.084
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 25c6baec7e9ddc747952c695d31a9be5, type: 3}
       propertyPath: m_LocalPosition.z

@@ -40,6 +40,7 @@ public class NPC : MonoBehaviour
             if (!hasArrived)
             {
                 onNewCustomerArrived.Invoke();
+                transform.Rotate(new Vector3(0, -90, 0));
                 hasArrived = true;
             }
         }
