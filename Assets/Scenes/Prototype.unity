@@ -388,6 +388,11 @@ Transform:
   m_Father: {fileID: 743816290}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &46700239 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1502644956, guid: 3b0d76748b24e5a4198112544c89c190, type: 3}
+  m_PrefabInstance: {fileID: 8785531563663688247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &63963060
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1657,6 +1662,26 @@ Transform:
   m_Father: {fileID: 1449139708}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &548769026 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8785531562753097154, guid: 3b0d76748b24e5a4198112544c89c190, type: 3}
+  m_PrefabInstance: {fileID: 8785531563663688247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &548769033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548769026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f360b424dfdfa4383fac2ffa2342d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerReference: {fileID: 0}
+  modelAnimator: {fileID: 46700239}
+  animationTransitionTime: 0.1
 --- !u!1 &563192846
 GameObject:
   m_ObjectHideFlags: 0
@@ -5693,6 +5718,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2336807348458042789, guid: 3b0d76748b24e5a4198112544c89c190, type: 3}
+      propertyPath: characterAnimation
+      value: 
+      objectReference: {fileID: 548769033}
     - target: {fileID: 5932413236670470569, guid: 3b0d76748b24e5a4198112544c89c190, type: 3}
       propertyPath: m_LocalPosition.y
       value: -1.084
@@ -5717,6 +5746,10 @@ PrefabInstance:
       propertyPath: characterCamera
       value: 
       objectReference: {fileID: 963194229}
+    - target: {fileID: 8785531562753097165, guid: 3b0d76748b24e5a4198112544c89c190, type: 3}
+      propertyPath: characterAnimation
+      value: 
+      objectReference: {fileID: 548769033}
     - target: {fileID: 8785531562753097166, guid: 3b0d76748b24e5a4198112544c89c190, type: 3}
       propertyPath: m_RootOrder
       value: 3

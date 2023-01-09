@@ -3,6 +3,8 @@ using Game.Harvestables.Materials;
 using Game.Inventory;
 using UnityEngine;
 using Game.Interaction;
+using System.Collections;
+using Game.Character;
 
 namespace Game.Harvestables
 {
@@ -10,6 +12,7 @@ namespace Game.Harvestables
     {
         [SerializeField] GameObject emptyModel;
         [SerializeField] PlantableMaterials[] _plantableMaterials;
+        [SerializeField] float harvestingTime = 1.0f;
 
         bool _isPlanted;
         bool _isGrowing;
@@ -67,15 +70,7 @@ namespace Game.Harvestables
         {
             base.Interact();
             if (!_isPlanted || _isGrowing) return;
-
-            var inventory = Player.PlayerReference.Singleton.GetBehaviour<CharacterInventory>();
-
-            var seed = _plantableMaterials[_materialIndex];
-            var seedObject = Instantiate(seed.finalProduct);
-            _isPlanted = false;
-
-            ChangeModel(emptyModel);
-            inventory.EquipItem(seedObject);
+            StartCoroutine(StartHarvesting());
         }
 
         void ChangeModel(GameObject newModel)
@@ -89,6 +84,32 @@ namespace Game.Harvestables
         {
             if (_model != null)
                 _model.SetActive(value);
+        }
+        IEnumerator StartHarvesting()
+        {
+            var playerReference = Player.PlayerReference.Singleton;
+
+            _isPlanted = false;
+            playerReference.GetBehaviour<CharacterAnimation>().SetHarvestingState(true);
+            playerReference.GetBehaviour<CharacterMovement>().LockMovement();
+
+            yield return new WaitForSeconds(harvestingTime);
+            
+            Harvest();
+        }
+        void Harvest()
+        {
+            var playerReference = Player.PlayerReference.Singleton;
+
+            playerReference.GetBehaviour<CharacterAnimation>().SetHarvestingState(false);
+            playerReference.GetBehaviour<CharacterMovement>().UnlockMovement();
+            var inventory = playerReference.GetBehaviour<CharacterInventory>();
+
+            var seed = _plantableMaterials[_materialIndex];
+            var seedObject = Instantiate(seed.finalProduct);
+
+            ChangeModel(emptyModel);
+            inventory.EquipItem(seedObject);
         }
 
         [System.Serializable]

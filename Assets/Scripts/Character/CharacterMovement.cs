@@ -71,8 +71,8 @@ namespace Game.Character
             }
         }
 
-        public void LockMovement() => canMove = true;
-        public void UnlockMovement() => canMove = false;
+        public void LockMovement() => canMove = false;
+        public void UnlockMovement() => canMove = true;
 
         public static void ChangeMultiplier(string indentifier, float value)
         {

@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 8785531562753097165}
   - component: {fileID: 8785531562753097163}
   - component: {fileID: 2336807348458042789}
+  - component: {fileID: 7454095658417185501}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -113,11 +114,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerReference: {fileID: 0}
   modelAnimator: {fileID: 1502644956}
+  characterAnimation: {fileID: 7454095658417185501}
   characterCamera: {fileID: 0}
   i_movement:
     guid: b21fcd37-3227-47de-89b4-35142a65130a
   speed: 5
   turnSmoothTime: 0.05
+  gravity: 2
   animationTransitionTime: 0
 --- !u!114 &8785531562753097163
 MonoBehaviour:
@@ -162,8 +165,24 @@ MonoBehaviour:
   force: {x: 0, y: 2, z: -2.5}
   interaction: {fileID: 8785531562753097163}
   itemHolder: {fileID: 6311275911514573991}
+  characterAnimation: {fileID: 7454095658417185501}
   i_throw:
     guid: 91d39638-7fff-4e67-9800-4a13b6d9bbb3
+--- !u!114 &7454095658417185501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8785531562753097154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f360b424dfdfa4383fac2ffa2342d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerReference: {fileID: 0}
+  modelAnimator: {fileID: 1502644956}
+  animationTransitionTime: 0.1
 --- !u!1001 &6187544657231937090
 PrefabInstance:
   m_ObjectHideFlags: 0

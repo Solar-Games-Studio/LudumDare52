@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Character
 {
-
-
-    public class CharacterAnimation : MonoBehaviour
+    public class CharacterAnimation : Player.PlayerBehaviour
     { 
         [SerializeField]
         Animator modelAnimator;
