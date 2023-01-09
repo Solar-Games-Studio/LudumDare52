@@ -79,8 +79,9 @@ namespace Game.Scene
                 UnitySceneManager.LoadScene(staticScene, LoadSceneMode.Additive);
 
             CurrentPreset = GetPreset(CurrentScene);
-            foreach (var scene in CurrentPreset.staticScenes)
-                UnitySceneManager.LoadScene(scene, LoadSceneMode.Additive);
+            if (CurrentPreset != null)
+                foreach (var scene in CurrentPreset.staticScenes)
+                    UnitySceneManager.LoadScene(scene, LoadSceneMode.Additive);
         }
         #endregion
 
