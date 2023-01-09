@@ -19,6 +19,8 @@ namespace Game.Character
         float speed = 5.0f;
         [SerializeField]
         float turnSmoothTime = 0.1f;
+        [SerializeField]
+        float gravity = 2.0f;
 
         [SerializeField]
         float animationTransitionTime = 0.3f;
@@ -39,6 +41,10 @@ namespace Game.Character
             characterController = GetComponent<CharacterController>();
         }
 
+        void FixedUpdate()
+        {
+        }
+
         void Update()
         {
             //piss off
@@ -48,6 +54,9 @@ namespace Game.Character
             characterCamera.UpdateTargetOffset(FinalSpeedMultiplier == 0f || !canMove ? Vector3.zero : Direction);
 
             modelAnimator.SetFloat("Speed", (Direction.magnitude > 0.1f ? 1.0f : 0.0f) * FinalSpeedMultiplier, animationTransitionTime, Time.deltaTime);
+            Debug.Log(characterController.isGrounded);
+            if (!characterController.isGrounded)
+                characterController.Move(gravity * Time.deltaTime * Vector3.down);
 
             if (Direction.magnitude > 0.1f && canMove)
             {
