@@ -1,13 +1,21 @@
 using UnityEngine;
 using System.Collections.Generic;
 using qASIC;
+using Game.NPCs;
 
 namespace Game.Ordering
 {
     public class OrderManager : MonoBehaviour
     {
-        public enum OrderState { None, Waiting, Mad }
+        public enum OrderState { None, Waiting, Mad, }
+        public enum FinishState { Correct, Left, }
 
+        [Label("Visual")]
+        [SerializeField] NPC defaultNpcModel;
+        [SerializeField] NPCSpawner npcSpawner;
+        [SerializeField] float dialogueTimeLength;
+
+        [Label("Ordering")]
         [EditorButton(nameof(NextOrder))]
         [EditorButton(nameof(NextPool))]
         public OrderPool[] poolTimeline;
@@ -22,6 +30,10 @@ namespace Game.Ordering
         public OrderState State { get; private set; }
 
         List<Order> _orders = new List<Order>();
+
+        NPC _npc;
+        int _npcCount;
+
 
         private void Awake()
         {
@@ -66,9 +78,27 @@ namespace Game.Ordering
             qDebug.Log($"[Order Manager] Pool finished, moved to the next pool '{pool.name}:{pool.GetInstanceID()}'", "order");
         }
 
-        public void FinishOrder(bool wasCorrect)
+        public void FinishOrder(FinishState finishState = FinishState.Correct)
         {
-            qDebug.Log($"[Order Manager] Order finished, was correct: {wasCorrect}", "order");
+            qDebug.Log($"[Order Manager] Order finished, finish state: {finishState}", "order");
+
+            if (_npc != null)
+            {
+                string[] dialogueoptions = finishState switch
+                {
+                    FinishState.Correct => State == OrderState.Mad ? CurrentOrder.madDialogue : CurrentOrder.exitDialogue,
+                    FinishState.Left => CurrentOrder.abruptExitDialogue,
+                    _ => new string[0],
+                };
+
+                string dialogue = dialogueoptions.Length == 0 ?
+                    "[Order] There was an error retrieving the correct dialogue set" :
+                    dialogueoptions[Random.Range(0, dialogueoptions.Length)];
+
+                _npc.DisplayDialogue(dialogue, dialogueTimeLength);
+                _npcCount--;
+            }
+
             State = OrderState.None;
         }
 
@@ -82,6 +112,7 @@ namespace Game.Ordering
         {
             qDebug.Log($"[Order Manager] Order has been ended abruptly", "order");
             State = OrderState.None;
+            FinishOrder(FinishState.Left);
         }
 
         public void NextOrder()
@@ -105,6 +136,11 @@ namespace Game.Ordering
                 CurrentOrderItemAmount += item.amount;
 
             qDebug.Log($"[Order Manager] Moved to the next order '{CurrentOrder.name}:{CurrentOrder.GetInstanceID()}'", "order");
+        }
+
+        void SpawnNpc()
+        {
+            
         }
     }
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-namespace Game.NPC
+namespace Game.NPCs
 {
     public class NPCSpawner : MonoBehaviour
     {
@@ -31,7 +31,7 @@ namespace Game.NPC
             customerQueue = new Queue<NPC>();
         }
 
-        void SummonNPC()
+        public void SummonNPC()
         {
             var spawnedNPCObject = Instantiate(DrawNPCPrefab());
             var spawnedNPC = spawnedNPCObject.GetComponent<NPC>();
@@ -54,6 +54,14 @@ namespace Game.NPC
 
             customerQueue.Enqueue(spawnedNPC);
             lastCustomer = spawnedNPC;
+        }
+
+        /// <returns>Returns the spawned SCP</returns>
+        public NPC SummonNPC(NPC prefab)
+        {
+            Debug.LogError("Jakubie zaprogramój to");
+            SummonNPC();
+            return lastCustomer;
         }
 
         void NextCustomer()

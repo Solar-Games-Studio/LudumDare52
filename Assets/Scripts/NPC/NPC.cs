@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Game.NPC
+namespace Game.NPCs
 {
     public class NPC : MonoBehaviour
     {
@@ -58,10 +58,15 @@ namespace Game.NPC
             targetPoint = exitPoint;
         }
 
-        public void SetSpeed(float speed) => this.speed = speed;
-        public void SetBetweenDistance(float betweenDistance) => this.betweenDistance = betweenDistance;
-        public void SetSellPoint(Transform sellPoint) => this.sellPoint = sellPoint;
-        public void SetExitPoint(Transform exitPoint) => this.exitPoint = exitPoint;
-        public void SetTarget(Transform targetPoint) => this.targetPoint = targetPoint;
+        internal void SetSpeed(float speed) => this.speed = speed;
+        internal void SetBetweenDistance(float betweenDistance) => this.betweenDistance = betweenDistance;
+        internal void SetSellPoint(Transform sellPoint) => this.sellPoint = sellPoint;
+        internal void SetExitPoint(Transform exitPoint) => this.exitPoint = exitPoint;
+        internal void SetTarget(Transform targetPoint) => this.targetPoint = targetPoint;
+
+        public void DisplayDialogue(string text, float time)
+        {
+            Debug.LogError("Jakubie to te? napraw");
+        }
     }
 }
