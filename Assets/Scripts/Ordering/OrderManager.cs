@@ -21,7 +21,7 @@ namespace Game.Ordering
         public float OrderStartTime { get; private set; }
         public OrderState State { get; private set; }
 
-        Queue<Order> _orders = new Queue<Order>();
+        List<Order> _orders = new List<Order>();
 
         private void Awake()
         {
@@ -53,17 +53,15 @@ namespace Game.Ordering
 
             CurrentPoolOrder = -1;
 
-            var orderList = new List<Order>();
+            _orders.Clear();
 
             int randomOrderCount = pool.orderAmount - pool.oneTimeOrders.Length;
 
             for (int i = 0; i < randomOrderCount; i++)
-                orderList.Add(pool.orders[Random.Range(0, pool.orders.Length)]);
+                _orders.Add(pool.orders[Random.Range(0, pool.orders.Length)]);
 
             foreach (var item in pool.oneTimeOrders)
-                orderList.Insert(Random.Range(0, orderList.Count), item);
-
-            _orders = new Queue<Order>(orderList);
+                _orders.Insert(Random.Range(0, _orders.Count), item);
 
             qDebug.Log($"[Order Manager] Pool finished, moved to the next pool '{pool.name}:{pool.GetInstanceID()}'", "order");
         }
@@ -96,7 +94,10 @@ namespace Game.Ordering
             }
 
             CurrentPoolOrder++;
-            CurrentOrder = _orders.Dequeue();
+
+            CurrentOrder = _orders[0];
+            _orders.RemoveAt(0);
+
             CurrentOrderItemAmount = 0;
             OrderStartTime = Time.time;
 
