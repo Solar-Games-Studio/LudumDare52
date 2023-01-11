@@ -18,7 +18,8 @@ namespace Game.NPCs
         bool isMoving = true;
         bool hasArrived = false;
 
-        public UnityEvent onNewCustomerArrived;
+        public UnityEvent OnNewCustomerArrived;
+        public UnityEvent<NPC> OnExit;
 
         private void FixedUpdate()
         {
@@ -33,7 +34,10 @@ namespace Game.NPCs
             {
                 isMoving = false;
                 if (targetPoint == exitPoint)
+                {
+                    OnExit.Invoke(this);
                     Destroy(gameObject);
+                }
             }
 
             if (targetPoint == sellPoint)
@@ -41,7 +45,7 @@ namespace Game.NPCs
                 betweenDistance = 0.1f;
                 if (!hasArrived)
                 {
-                    onNewCustomerArrived.Invoke();
+                    OnNewCustomerArrived.Invoke();
                     transform.Rotate(new Vector3(0, -90, 0));
                     hasArrived = true;
                 }

@@ -16,6 +16,8 @@ namespace Game.Ordering
         [SerializeField] float dialogueTimeLength;
 
         [Label("Ordering")]
+        [EditorButton(nameof(SpawnNpc))]
+        [EditorButton(nameof(FinishOrder))]
         [EditorButton(nameof(NextOrder))]
         [EditorButton(nameof(NextPool))]
         public OrderPool[] poolTimeline;
@@ -31,13 +33,13 @@ namespace Game.Ordering
 
         List<Order> _orders = new List<Order>();
 
-        NPC _npc;
-        int _npcCount;
+        List<NPC> _npcs = new List<NPC>();
 
 
         private void Awake()
         {
             Singleton = this;
+            NextPool();
         }
 
         private void FixedUpdate()
@@ -80,9 +82,12 @@ namespace Game.Ordering
 
         public void FinishOrder(FinishState finishState = FinishState.Correct)
         {
+            if (CurrentOrder == null)
+                return;
+
             qDebug.Log($"[Order Manager] Order finished, finish state: {finishState}", "order");
 
-            if (_npc != null)
+            if (_npcs.Count > 0)
             {
                 string[] dialogueoptions = finishState switch
                 {
@@ -95,8 +100,9 @@ namespace Game.Ordering
                     "[Order] There was an error retrieving the correct dialogue set" :
                     dialogueoptions[Random.Range(0, dialogueoptions.Length)];
 
-                _npc.DisplayDialogue(dialogue, dialogueTimeLength);
-                _npcCount--;
+                _npcs[0].DisplayDialogue(dialogue, dialogueTimeLength);
+                _npcs[0].GoAway();
+                _npcs.RemoveAt(0);
             }
 
             State = OrderState.None;
@@ -110,7 +116,6 @@ namespace Game.Ordering
 
         public void LeaveAbruptly()
         {
-            qDebug.Log($"[Order Manager] Order has been ended abruptly", "order");
             State = OrderState.None;
             FinishOrder(FinishState.Left);
         }
@@ -138,9 +143,27 @@ namespace Game.Ordering
             qDebug.Log($"[Order Manager] Moved to the next order '{CurrentOrder.name}:{CurrentOrder.GetInstanceID()}'", "order");
         }
 
-        void SpawnNpc()
+        public void SpawnNpc()
         {
-            
+            if (_orders.Count < _npcs.Count)
+                return;
+
+            var order = _orders[_npcs.Count];
+            var npc = npcSpawner.SummonNPC(order.model ?? defaultNpcModel);
+            npc.OnExit.AddListener(NPC_OnExit);
+            npc.OnNewCustomerArrived.AddListener(NPC_OnNewCustomerArrived);
+
+            _npcs.Add(npc);
+        }
+
+        void NPC_OnExit(NPC npc)
+        {
+            _npcs.Remove(npc);
+        }
+
+        void NPC_OnNewCustomerArrived()
+        {
+            NextOrder();
         }
     }
 }
