@@ -1,0 +1,17 @@
+{
+    "name": "Game.Camera",
+    "rootNamespace": "Game.Camera",
+    "references": [
+        "GUID:b1181113609d0ad43a27c0338145e93c",
+        "GUID:696a0953692949b40bec8730e64e1fdd"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
