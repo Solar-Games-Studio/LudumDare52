@@ -2903,6 +2903,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 963194227}
+  scpslModeTargetFramerate: 15
 --- !u!1 &964912773
 GameObject:
   m_ObjectHideFlags: 0
