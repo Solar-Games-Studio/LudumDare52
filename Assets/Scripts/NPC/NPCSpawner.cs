@@ -1,70 +1,81 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class NPCSpawner : MonoBehaviour
+namespace Game.NPCs
 {
-    [SerializeField]
-    Transform sellPoint;
-    [SerializeField]
-    Transform exitPoint;
-    [SerializeField]
-    float betweenDistance = 0.2f;
-    [SerializeField]
-    float betweenDistanceMaxDeviation = 0.3f;
-    [SerializeField]
-    float NPCSpeed = 3.0f;
-    [SerializeField]
-    float NPCSpeedMaxDeviation = 1.0f;
-
-    [SerializeField]
-    [EditorButton(nameof(NextCustomer))]
-    [EditorButton(nameof(SummonNPC))]
-    GameObject[] NPCPrefabs;
-    
-    Queue<NPC> customerQueue;
-    NPC lastCustomer;
-
-    private void Start()
+    public class NPCSpawner : MonoBehaviour
     {
-        customerQueue = new Queue<NPC>();
-    }
+        [SerializeField]
+        Transform sellPoint;
+        [SerializeField]
+        Transform exitPoint;
+        [SerializeField]
+        float betweenDistance = 0.2f;
+        [SerializeField]
+        float betweenDistanceMaxDeviation = 0.3f;
+        [SerializeField]
+        float NPCSpeed = 3.0f;
+        [SerializeField]
+        float NPCSpeedMaxDeviation = 1.0f;
 
-    void SummonNPC()
-    {
-        GameObject spawnedNPCObject = Instantiate(DrawNPCPrefab());
-        NPC spawnedNPC = spawnedNPCObject.GetComponent<NPC>();
-        spawnedNPC.transform.position = 
-            new Vector3(transform.position.x, 
-                        spawnedNPC.transform.position.y, 
-                        transform.position.z);
-        spawnedNPC.SetBetweenDistance(betweenDistance + Random.Range(-betweenDistanceMaxDeviation, betweenDistanceMaxDeviation));
-        spawnedNPC.SetSpeed(NPCSpeed + Random.Range(-NPCSpeedMaxDeviation, NPCSpeedMaxDeviation));
-        spawnedNPC.SetSellPoint(sellPoint);
-        spawnedNPC.SetExitPoint(exitPoint);
+        [SerializeField]
+        [EditorButton(nameof(NextCustomer))]
+        [EditorButton(nameof(SummonNPC))]
+        GameObject[] NPCPrefabs;
 
-        if (customerQueue.Count > 0)
-            spawnedNPC.SetTarget(lastCustomer.transform);
-        else
+        Queue<NPC> customerQueue;
+        NPC lastCustomer;
+
+        private void Start()
         {
-            spawnedNPC.SetTarget(sellPoint);
-            spawnedNPC.SetBetweenDistance(betweenDistance);
+            customerQueue = new Queue<NPC>();
         }
 
-        customerQueue.Enqueue(spawnedNPC);
-        lastCustomer = spawnedNPC;
-    }
+        public void SummonNPC()
+        {
+            var spawnedNPCObject = Instantiate(DrawNPCPrefab());
+            var spawnedNPC = spawnedNPCObject.GetComponent<NPC>();
+            spawnedNPC.transform.position =
+                new Vector3(transform.position.x,
+                            spawnedNPC.transform.position.y,
+                            transform.position.z);
+            spawnedNPC.SetBetweenDistance(betweenDistance + Random.Range(-betweenDistanceMaxDeviation, betweenDistanceMaxDeviation));
+            spawnedNPC.SetSpeed(NPCSpeed + Random.Range(-NPCSpeedMaxDeviation, NPCSpeedMaxDeviation));
+            spawnedNPC.SetSellPoint(sellPoint);
+            spawnedNPC.SetExitPoint(exitPoint);
 
-    void NextCustomer()
-    {
-        customerQueue.Dequeue().GoAway();
-        if (customerQueue.Count > 0)
-            customerQueue.Peek().SetTarget(sellPoint);
-    }
+            if (customerQueue.Count > 0)
+                spawnedNPC.SetTarget(lastCustomer.transform);
+            else
+            {
+                spawnedNPC.SetTarget(sellPoint);
+                spawnedNPC.SetBetweenDistance(betweenDistance);
+            }
 
-    GameObject DrawNPCPrefab()
-    {
-        int index = Random.Range(0, NPCPrefabs.Length);
-        return NPCPrefabs[index];
-    }
+            customerQueue.Enqueue(spawnedNPC);
+            lastCustomer = spawnedNPC;
+        }
 
+        /// <returns>Returns the spawned SCP</returns>
+        public NPC SummonNPC(NPC prefab)
+        {
+            Debug.LogError("Jakubie zaprogramój to");
+            SummonNPC();
+            return lastCustomer;
+        }
+
+        void NextCustomer()
+        {
+            customerQueue.Dequeue().GoAway();
+            if (customerQueue.Count > 0)
+                customerQueue.Peek().SetTarget(sellPoint);
+        }
+
+        GameObject DrawNPCPrefab()
+        {
+            int index = Random.Range(0, NPCPrefabs.Length);
+            return NPCPrefabs[index];
+        }
+
+    }
 }

@@ -135,14 +135,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionPoint: {fileID: 8785531562753097166}
   rayAmount: 8
-  startPos: {x: 0, y: 0.8, z: 0.8}
-  endPos: {x: 0, y: -0.9, z: 0.8}
-  interactLength: 2.6
+  additionalPos: {x: 0, y: 0, z: 0}
+  additionalInteractLength: 1.2
+  startPos: {x: 0, y: 1.4, z: 0.1}
+  endPos: {x: 0, y: 1.4, z: -1.2}
+  interactLength: 2.2
   interactableLayer:
     serializedVersion: 2
     m_Bits: 192
   i_interact:
     guid: de3100b5-4356-499d-b479-5aba7b046deb
+  interactPrompt: {fileID: 11400000, guid: 07dedbe93258a224e8bf566824473979, type: 2}
   e_onInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -167,6 +170,8 @@ MonoBehaviour:
   characterAnimation: {fileID: 548769033}
   i_throw:
     guid: 91d39638-7fff-4e67-9800-4a13b6d9bbb3
+  prompt_drop: {fileID: 11400000, guid: 5e93d8c7d2beb744e8ec9324e9c8036e, type: 2}
+  prompt_throw: {fileID: 11400000, guid: 854a97846c99b0f4c8b5cbba56b6e497, type: 2}
 --- !u!114 &548769033
 MonoBehaviour:
   m_ObjectHideFlags: 0

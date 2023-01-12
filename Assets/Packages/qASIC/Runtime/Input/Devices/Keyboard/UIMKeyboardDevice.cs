@@ -81,6 +81,8 @@ namespace qASIC.Input.Devices
                 if (_avaliableKeys == null)
                     _avaliableKeys = UIMKeyboardProvider.AllKeyCodes
                         .Where(x => !KeysToIgnore.Contains(x))
+                        //Exclude gamepads
+                        .Where(x => (int)x < 330 || (int)x > 449)
                         .ToArray();
 
                 return _avaliableKeys;

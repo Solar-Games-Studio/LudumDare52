@@ -9,37 +9,37 @@ namespace Game.UI
     public class OptionsPopup : MenuOption
     {
         public string[] values = new string[] { "false", "true", };
-        int _index;
+        protected int index;
 
-        const char valueSplit = '|';
+        protected const char valueSplit = '|';
 
         public void Next()
         {
-            _index++;
+            index++;
 
-            if (_index >= values.Length)
-                _index = 0;
+            if (index >= values.Length)
+                index = 0;
 
             UpdateSetting();
         }
 
         public void Previous()
         {
-            _index--;
+            index--;
 
-            if (_index < 0)
-                _index = values.Length - 1;
+            if (index < 0)
+                index = values.Length - 1;
 
             UpdateSetting();
         }
 
-        void UpdateSetting()
+        protected virtual void UpdateSetting()
         {
-            OptionsController.ChangeOption(optionName, values[_index].Split(valueSplit).First(), save: save);
+            SetValue(values[index].Split(valueSplit).First(), true);
         }
 
         public override string GetLabel() =>
-            $"{optionLabelName}{values[_index].Split(valueSplit).Last()}";
+            $"{optionLabelName}{values[index].Split(valueSplit).Last()}";
 
         public override void LoadOption()
         {
@@ -52,7 +52,7 @@ namespace Game.UI
                 .ToArray();
 
             if (!s.Contains(valueString)) return;
-            _index = Array.IndexOf(s, valueString);
+            index = Array.IndexOf(s, valueString);
         }
     }
 }

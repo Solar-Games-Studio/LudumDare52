@@ -10,6 +10,7 @@ namespace Game.Ordering
         public float weight = 1f;
 
         [Label("NPC")]
+        public NPCs.NPC model;
         public bool canGetMad;
         public bool canLeaveAbruptly;
 

@@ -1,6 +1,6 @@
 {
     "name": "Game.NPC",
-    "rootNamespace": "",
+    "rootNamespace": "Game.NPC",
     "references": [
         "GUID:696a0953692949b40bec8730e64e1fdd"
     ],

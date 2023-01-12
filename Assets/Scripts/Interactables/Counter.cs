@@ -48,7 +48,7 @@ namespace Game.Interactables
 
             bool isOrderCorrect = IsOrderCorrect();
 
-            OrderManager.Singleton.FinishOrder(isOrderCorrect);
+            OrderManager.Singleton.FinishOrder();
             OrderManager.Singleton.NextOrder();
         }
 

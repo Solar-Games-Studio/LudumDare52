@@ -3,6 +3,7 @@ using qASIC.Input;
 using UnityEngine.Events;
 using System.Collections.Generic;
 using qASIC;
+using Game.Prompts;
 
 namespace Game.Interaction
 {
@@ -12,6 +13,12 @@ namespace Game.Interaction
         [DynamicHelp(nameof(GetHelpText))]
         [SerializeField] Transform interactionPoint;
         [SerializeField] int rayAmount = 3;
+
+        [Space]
+        [SerializeField] Vector3 additionalPos;
+        [SerializeField] float additionalInteractLength;
+
+        [Space]
         [SerializeField] Vector3 startPos;
         [SerializeField] Vector3 endPos;
         [SerializeField] float interactLength = 2f;
@@ -19,6 +26,9 @@ namespace Game.Interaction
 
         [Label("Input")]
         [SerializeField] InputMapItemReference i_interact;
+
+        [Label("Prompts")]
+        [SerializeField] Prompt interactPrompt;
 
         [Label("Events")]
         public UnityEvent<IInteractable> e_onInteract;
@@ -31,20 +41,42 @@ namespace Game.Interaction
 
         private void FixedUpdate()
         {
-            _didHit = false;
-            _raycastHit = new RaycastHit();
+            bool previousHit = _didHit;
 
-            for (int i = 0; i < rayAmount; i++)
+            _didHit = Physics.Raycast(interactionPoint.position + CalculateOffset(additionalPos), 
+                -interactionPoint.forward, 
+                out _raycastHit, 
+                additionalInteractLength, 
+                interactableLayer);
+
+            if (!_didHit)
             {
-                Vector3 start = interactionPoint.position + CalculateOffset(Vector3.Lerp(startPos, endPos, i / Mathf.Max(1f, rayAmount - 1)));
-                if (!Physics.Raycast(start, -interactionPoint.forward, out RaycastHit hit, interactLength, interactableLayer)) continue;
-                _didHit = true;
-                _raycastHit = hit;
-                break;
+                for (int i = 0; i < rayAmount; i++)
+                {
+                    Vector3 start = interactionPoint.position + 
+                        CalculateOffset(Vector3.Lerp(startPos, endPos, i / Mathf.Max(1f, rayAmount - 1)));
+
+                    if (!Physics.Raycast(start, 
+                        -interactionPoint.up, 
+                        out RaycastHit hit, 
+                        interactLength, 
+                        interactableLayer)) continue;
+
+                    _didHit = true;
+                    _raycastHit = hit;
+                    break;
+                }
             }
+
+            qDebug.DisplayValue("_didHitObject", _didHit);
 
             _hitInteractable = _raycastHit.transform?.GetComponent<IInteractable>();
             _didHit = _hitInteractable != null;
+
+            qDebug.DisplayValue("_didHitInteractable", _didHit);
+
+            if (_didHit != previousHit)
+                interactPrompt.ChangeState(_didHit);
         }
 
         private void Update()
@@ -60,14 +92,20 @@ namespace Game.Interaction
 
             Gizmos.color = _didHit ? Color.green : Color.red;
 
-            Gizmos.DrawLine(interactionPoint.position + startPos, interactionPoint.position + endPos);
+            Gizmos.DrawLine(interactionPoint.position + CalculateOffset(startPos), interactionPoint.position + CalculateOffset(endPos));
 
             for (int i = 0; i < rayAmount; i++)
             {
-                Vector3 start = interactionPoint.position + CalculateOffset(Vector3.Lerp(startPos, endPos, i / Mathf.Max(1f, rayAmount - 1)));
-                Vector3 end = start - interactionPoint.forward * interactLength;  
+                Vector3 start = interactionPoint.position + 
+                    CalculateOffset(Vector3.Lerp(startPos, endPos, i / Mathf.Max(1f, rayAmount - 1)));
+
+                Vector3 end = start - interactionPoint.up * interactLength;  
                 Gizmos.DrawLine(start, end);
             }
+
+            Gizmos.color = Color.yellow;
+            Vector3 additionalStart = interactionPoint.position + CalculateOffset(additionalPos);
+            Gizmos.DrawLine(additionalStart, additionalStart - interactionPoint.forward * additionalInteractLength);
         }
 
         Vector3 CalculateOffset(Vector3 offset) =>

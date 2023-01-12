@@ -2,6 +2,7 @@
 using Game.Interaction;
 using Game.Character;
 using qASIC.Input;
+using Game.Prompts;
 
 namespace Game.Inventory
 {
@@ -19,6 +20,10 @@ namespace Game.Inventory
 
         [Label("Input")]
         [SerializeField] InputMapItemReference i_throw;
+
+        [Label("Prompts")]
+        [SerializeField] Prompt prompt_drop;
+        [SerializeField] Prompt prompt_throw;
 
         public ItemObject HeldItem { get; private set; }
 
@@ -49,7 +54,7 @@ namespace Game.Inventory
         }
 
         public void HandleInteractionInput(IInteractable interactable)
-        {
+        {     
             if (interactable is IItemInteractable itemInteractable && !itemInteractable.ItemInteract())
                 return;
 
@@ -79,6 +84,9 @@ namespace Game.Inventory
             HeldItem.ChangeState(ItemObject.State.PickedUp);
             HeldItem.SetFollowTarget(itemHolder);
             interaction.OverrideInteraction(this);
+
+            prompt_drop.ChangeState(true);
+            prompt_throw.ChangeState(true);
         }
 
         void UnEquipItem()
@@ -97,6 +105,9 @@ namespace Game.Inventory
             characterAnimation?.SetHoldingState(false);
             HeldItem = null;
 
+            prompt_drop.ChangeState(false);
+            prompt_throw.ChangeState(false);
+
             interaction.RemoveInteractionOverride(this);
         }
 
@@ -110,6 +121,9 @@ namespace Game.Inventory
             characterAnimation?.SetHoldingState(false);
             HeldItem = null;
             interaction.RemoveInteractionOverride(this);
+
+            prompt_drop.ChangeState(false);
+            prompt_throw.ChangeState(false);
             return item;
         }
     }

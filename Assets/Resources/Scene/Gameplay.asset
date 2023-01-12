@@ -16,4 +16,4 @@ MonoBehaviour:
   - Prototype
   - Game
   staticScenes:
-  - UI
+  - UI_gameplay
