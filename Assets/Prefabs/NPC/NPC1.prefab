@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: -6705574613306004130}
   - component: {fileID: 8346678430630433994}
   m_Layer: 0
-  m_Name: npcANIM
+  m_Name: NPC1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

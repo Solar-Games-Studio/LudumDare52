@@ -23,9 +23,6 @@ namespace Game.Character
         [SerializeField]
         float gravity = 2.0f;
 
-        [SerializeField]
-        float animationTransitionTime = 0.3f;
-
         static Dictionary<string, float> _speedMultipliers = new Dictionary<string, float>();
         public static float FinalSpeedMultiplier { get; private set; } = 1f;
 
