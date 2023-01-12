@@ -603,7 +603,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d217c23fb3994ee40bf7c09ea27d0cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultNpcModel: {fileID: 608477925869868482, guid: 21e1c7353e4cbca40bdbf51a90a2a753, type: 3}
+  defaultNpcModel: {fileID: -6705574613306004130, guid: 70ab69cdf861d3944baaa2af1cbb6979, type: 3}
   npcSpawner: {fileID: 1019885453}
   dialogueTimeLength: 0
   poolTimeline:
