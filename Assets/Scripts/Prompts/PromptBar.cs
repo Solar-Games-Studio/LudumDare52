@@ -92,17 +92,18 @@ namespace Game.Prompts
 
         PromptBarItem CreateItem()
         {
-            var item = Instantiate(promptPrefab);
-            item.transform.SetParent(parent);
-            item.transform.SetSiblingIndex(0);
+            var item = Instantiate(promptPrefab, parent);
             return item;
         }
 
         void ReturnItemToPool(PromptBarItem item) =>
             item.gameObject.SetActive(false);
 
-        void TakeItemFromPool(PromptBarItem item) =>
+        void TakeItemFromPool(PromptBarItem item)
+        {
             item.gameObject.SetActive(true);
+            item.transform.SetSiblingIndex(0);
+        }
 
         void DestroyItem(PromptBarItem item) =>
             Destroy(item);
