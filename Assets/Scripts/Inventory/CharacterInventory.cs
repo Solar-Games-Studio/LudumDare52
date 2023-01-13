@@ -43,6 +43,13 @@ namespace Game.Inventory
                 Throw();
         }
 
+        private void FixedUpdate()
+        {
+            bool isHolding = HeldItem != null;
+            prompt_drop.ChangeState(isHolding);
+            prompt_throw.ChangeState(isHolding);
+        }
+
         public void Throw()
         {
             var item = HeldItem;
@@ -84,9 +91,6 @@ namespace Game.Inventory
             HeldItem.ChangeState(ItemObject.State.PickedUp);
             HeldItem.SetFollowTarget(itemHolder);
             interaction.OverrideInteraction(this);
-
-            prompt_drop.ChangeState(true);
-            prompt_throw.ChangeState(true);
         }
 
         void UnEquipItem()
@@ -105,9 +109,6 @@ namespace Game.Inventory
             characterAnimation?.SetHoldingState(false);
             HeldItem = null;
 
-            prompt_drop.ChangeState(false);
-            prompt_throw.ChangeState(false);
-
             interaction.RemoveInteractionOverride(this);
         }
 
@@ -122,8 +123,6 @@ namespace Game.Inventory
             HeldItem = null;
             interaction.RemoveInteractionOverride(this);
 
-            prompt_drop.ChangeState(false);
-            prompt_throw.ChangeState(false);
             return item;
         }
     }

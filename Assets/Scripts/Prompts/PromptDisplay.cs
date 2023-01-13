@@ -42,6 +42,11 @@ namespace Game.Prompts
 
         private void FixedUpdate()
         {
+            ForceRefresh();
+        }
+
+        public void ForceRefresh()
+        {
             if (image == null || _binding == null) return;
 
             CheckIndex();

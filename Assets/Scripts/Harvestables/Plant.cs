@@ -1,10 +1,11 @@
-﻿using Codice.CM.Common;
+﻿using System.Linq;
 using Game.Harvestables.Materials;
 using Game.Inventory;
 using UnityEngine;
 using Game.Interaction;
 using System.Collections;
 using Game.Character;
+using System.Collections.Generic;
 
 namespace Game.Harvestables
 {
@@ -13,6 +14,8 @@ namespace Game.Harvestables
         [SerializeField] GameObject emptyModel;
         [SerializeField] PlantableMaterials[] _plantableMaterials;
         [SerializeField] float harvestingTime = 1.0f;
+
+        List<HarvestableMaterial> _materials = new List<HarvestableMaterial>();
 
         bool _isPlanted;
         bool _isGrowing;
@@ -24,6 +27,9 @@ namespace Game.Harvestables
         private void Awake()
         {
             _model = emptyModel;
+            _materials = _plantableMaterials
+                .Select(x => x.seed)
+                .ToList();
         }
 
         private void FixedUpdate()
@@ -71,6 +77,22 @@ namespace Game.Harvestables
             base.Interact();
             if (!_isPlanted || _isGrowing) return;
             StartCoroutine(StartHarvesting());
+        }
+
+        public override bool CanInteract()
+        {
+            if (_isGrowing)
+                return false;
+
+            var inventory = Player.PlayerReference.Singleton.GetBehaviour<CharacterInventory>();
+
+            if (_isPlanted && inventory.HeldItem == null)
+                return true;
+
+            if (inventory.HeldItem is not SeedObject seedObject)
+                return false;
+
+            return _materials.Contains(seedObject.material);
         }
 
         void ChangeModel(GameObject newModel)

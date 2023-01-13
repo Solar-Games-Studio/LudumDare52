@@ -25,6 +25,7 @@ namespace Game.Interaction
         [SerializeField] LayerMask interactableLayer;
 
         [Label("Input")]
+        [EditorButton(nameof(ForceClick))]
         [SerializeField] InputMapItemReference i_interact;
 
         [Label("Prompts")]
@@ -43,46 +44,65 @@ namespace Game.Interaction
         {
             bool previousHit = _didHit;
 
-            _didHit = Physics.Raycast(interactionPoint.position + CalculateOffset(additionalPos), 
-                -interactionPoint.forward, 
-                out _raycastHit, 
-                additionalInteractLength, 
-                interactableLayer);
-
-            if (!_didHit)
-            {
-                for (int i = 0; i < rayAmount; i++)
-                {
-                    Vector3 start = interactionPoint.position + 
-                        CalculateOffset(Vector3.Lerp(startPos, endPos, i / Mathf.Max(1f, rayAmount - 1)));
-
-                    if (!Physics.Raycast(start, 
-                        -interactionPoint.up, 
-                        out RaycastHit hit, 
-                        interactLength, 
-                        interactableLayer)) continue;
-
-                    _didHit = true;
-                    _raycastHit = hit;
-                    break;
-                }
-            }
-
-            qDebug.DisplayValue("_didHitObject", _didHit);
-
-            _hitInteractable = _raycastHit.transform?.GetComponent<IInteractable>();
-            _didHit = _hitInteractable != null;
-
+            DetectInteractables();
             qDebug.DisplayValue("_didHitInteractable", _didHit);
 
             if (_didHit != previousHit)
                 interactPrompt.ChangeState(_didHit);
         }
 
+        void DetectInteractables()
+        {
+            _didHit = Physics.Raycast(interactionPoint.position + CalculateOffset(additionalPos), 
+                -interactionPoint.forward, 
+                out _raycastHit, 
+                additionalInteractLength, 
+                interactableLayer);
+
+            if (CheckForInteractable(_raycastHit))
+                return;
+
+            for (int i = 0; i < rayAmount; i++)
+            {
+                Vector3 start = interactionPoint.position + 
+                    CalculateOffset(Vector3.Lerp(startPos, endPos, i / Mathf.Max(1f, rayAmount - 1)));
+
+                if (!Physics.Raycast(start, 
+                    -interactionPoint.up, 
+                    out RaycastHit hit, 
+                    interactLength, 
+                    interactableLayer)) continue;
+
+                _didHit = true;
+
+                if (CheckForInteractable(hit))
+                    return;
+            }
+
+
+            bool CheckForInteractable(RaycastHit hit)
+            {
+                qDebug.DisplayValue("_didHitObject", _didHit);
+
+                if (!_didHit)
+                    return false;
+
+                _hitInteractable = hit.transform?.GetComponent<IInteractable>();
+                _didHit = _hitInteractable != null && _hitInteractable.CanInteract();
+
+                if (_didHit)
+                    _raycastHit = hit;
+
+                return _didHit;
+            }
+        }
+
         private void Update()
         {
-            if (i_interact.GetInputDown())
+            if (i_interact.GetInputDown() || _forceClick)
                 Interact();
+
+            _forceClick = false;
         }
 
         private void OnDrawGizmos()
@@ -128,13 +148,19 @@ namespace Game.Interaction
             e_onInteract.Invoke(_hitInteractable);
         }
 
-        public void OverrideInteraction(IInteractionOverridable overridable) =>
+        public void OverrideInteraction(IInteractionOverridable overridable)
+        {
             _overrides.Add(overridable);
+        }
 
         public void RemoveInteractionOverride(IInteractionOverridable overridable)
         {
             if (_overrides.Contains(overridable))
                 _overrides.Remove(overridable);
         }
+
+        bool _forceClick;
+        void ForceClick() =>
+            _forceClick = true;
     }
 }
