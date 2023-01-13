@@ -103,10 +103,5 @@ namespace Game.Prompts
 
         void DestroyItem(PromptBarItem item) =>
             Destroy(item);
-
-        void Refresh()
-        {
-            LayoutRebuilder.ForceRebuildLayoutImmediate(transform as RectTransform);
-        }
     }
 }
