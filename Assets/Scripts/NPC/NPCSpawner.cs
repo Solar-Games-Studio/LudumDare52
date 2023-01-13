@@ -18,11 +18,6 @@ namespace Game.NPCs
         [SerializeField]
         float NPCSpeedMaxDeviation = 1.0f;
 
-        [SerializeField]
-        [EditorButton(nameof(NextCustomer))]
-        [EditorButton(nameof(SummonNPC))]
-        GameObject[] NPCPrefabs;
-
         Queue<NPC> customerQueue;
         NPC lastCustomer;
 
@@ -31,9 +26,10 @@ namespace Game.NPCs
             customerQueue = new Queue<NPC>();
         }
 
-        public void SummonNPC()
+        /// <returns>Spawned SCP</returns>
+        public NPC SummonNPC(NPC prefab)
         {
-            var spawnedNPCObject = Instantiate(DrawNPCPrefab());
+            var spawnedNPCObject = Instantiate(prefab);
             var spawnedNPC = spawnedNPCObject.GetComponent<NPC>();
             spawnedNPC.transform.position =
                 new Vector3(transform.position.x,
@@ -54,13 +50,7 @@ namespace Game.NPCs
 
             customerQueue.Enqueue(spawnedNPC);
             lastCustomer = spawnedNPC;
-        }
 
-        /// <returns>Returns the spawned SCP</returns>
-        public NPC SummonNPC(NPC prefab)
-        {
-            Debug.LogError("Jakubie zaprogramój to");
-            SummonNPC();
             return lastCustomer;
         }
 
@@ -70,12 +60,5 @@ namespace Game.NPCs
             if (customerQueue.Count > 0)
                 customerQueue.Peek().SetTarget(sellPoint);
         }
-
-        GameObject DrawNPCPrefab()
-        {
-            int index = Random.Range(0, NPCPrefabs.Length);
-            return NPCPrefabs[index];
-        }
-
     }
 }

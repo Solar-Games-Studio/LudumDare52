@@ -32,6 +32,37 @@ Transform:
   m_Father: {fileID: 3362859448327320464}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &387089283579625452
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5602490661731224892}
+  m_Layer: 0
+  m_Name: BubblePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5602490661731224892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387089283579625452}
+  m_LocalRotation: {x: -0.00000005960466, y: 0.7071069, z: -0.00000005960466, w: 0.7071067}
+  m_LocalPosition: {x: 0, y: 0.00815, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.010000002, z: 0.010000002}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2218880816320561142}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &1042294241381654617
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,7 +202,7 @@ GameObject:
   - component: {fileID: -6705574613306004130}
   - component: {fileID: 8346678430630433994}
   m_Layer: 0
-  m_Name: NPC1
+  m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,8 +238,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelAnimator: {fileID: 8346678430630433994}
+  bubblePosition: {fileID: 5602490661731224892}
   speed: 2
-  onNewCustomerArrived:
+  OnNewCustomerArrived:
+    m_PersistentCalls:
+      m_Calls: []
+  OnExit:
     m_PersistentCalls:
       m_Calls: []
 --- !u!95 &8346678430630433994
@@ -314,7 +349,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 571d3dede8e634940872adf946273996, type: 2}
+  - {fileID: 2100000, guid: 02cf6aa52c6aa7d4a8594190375be25e, type: 2}
   - {fileID: -7771323690311922985, guid: c2ca5aab934292e4abcb57d4e668a54c, type: 3}
   - {fileID: 9171952328373019990, guid: c2ca5aab934292e4abcb57d4e668a54c, type: 3}
   - {fileID: -2048830346878817264, guid: c2ca5aab934292e4abcb57d4e668a54c, type: 3}
@@ -457,6 +492,7 @@ Transform:
   - {fileID: 3362859448327320464}
   - {fileID: 3630944715671812924}
   - {fileID: 5643393914312504763}
+  - {fileID: 5602490661731224892}
   m_Father: {fileID: 7775511053406040518}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

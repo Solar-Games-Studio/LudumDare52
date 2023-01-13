@@ -11,33 +11,44 @@ namespace Game.NPCs
 
         [SerializeField]
         Animator modelAnimator;
-
-        float betweenDistance = 0.2f;
+        [SerializeField]
+        Transform bubblePosition;
         [SerializeField]
         float speed = 2.0f;
+
+        float betweenDistance = 0.2f;
         bool isMoving = true;
         bool hasArrived = false;
 
         public UnityEvent OnNewCustomerArrived;
         public UnityEvent<NPC> OnExit;
 
+        private void Start()
+        {
+            BubbleFactory.ShowBubbleInPosition(bubblePosition);
+        }
+
         private void FixedUpdate()
         {
-            if (Vector3.Distance(targetPoint.position, transform.position) > betweenDistance)
+            if (targetPoint == null)
+            {
+                Debug.LogError("NPC with no destination! Destroying...");
+                Destroy(gameObject);
+                return;
+            }
+                 
+            isMoving = Vector3.Distance(targetPoint.position, transform.position) > betweenDistance;
+            
+            if (isMoving)
             {
                 var direction = (targetPoint.position - transform.position).normalized;
                 transform.position += speed * Time.fixedDeltaTime * direction;
                 transform.rotation = Quaternion.LookRotation(direction);
-                isMoving = true;
             }
-            else
+            else if (targetPoint == exitPoint)
             {
-                isMoving = false;
-                if (targetPoint == exitPoint)
-                {
-                    OnExit.Invoke(this);
-                    Destroy(gameObject);
-                }
+                OnExit.Invoke(this);
+                Destroy(gameObject);
             }
 
             if (targetPoint == sellPoint)
@@ -54,7 +65,7 @@ namespace Game.NPCs
 
         private void Update()
         {
-            modelAnimator.SetFloat("Blend", isMoving ? 1 : 0);
+            modelAnimator?.SetFloat("Blend", isMoving ? 1 : 0);
         }
 
         public void GoAway()
