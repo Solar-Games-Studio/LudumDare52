@@ -11,5 +11,7 @@ namespace Game.Interaction
         {
             OnInteract.Invoke();
         }
+
+        public virtual bool CanInteract() => true;
     }
 }

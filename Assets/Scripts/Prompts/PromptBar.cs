@@ -8,7 +8,7 @@ namespace Game.Prompts
 {
     public class PromptBar : MonoBehaviour
     {
-        [SerializeField] Transform parent;
+        [SerializeField] RectTransform parent;
         [SerializeField] PromptBarItem promptPrefab;
         [EditorButton(nameof(RefreshPrompts))]
         [SerializeField] Prompt[] prompts;
@@ -82,9 +82,12 @@ namespace Game.Prompts
 
                 item.display.axisSprite = prompt.axisSprite;
                 item.display.ChangeInputMapItemTarget(prompt.item);
+                item.display.ForceRefresh();
                 item.text.text = prompt.text;
                 itemIndex++;
             }
+
+            LayoutRebuilder.ForceRebuildLayoutImmediate(parent);
         }
 
         PromptBarItem CreateItem()
