@@ -37,7 +37,6 @@ public class BubbleFactory : MonoBehaviour
         Bubble bubble = Instantiate(Singleton().GetBubblePrefab(type));
         bubble.transform.position = obj.transform.position + heightOffset * Vector3.up;
         bubble.transform.SetParent(obj.transform);
-        bubble.Show();
         return bubble;
     }
     public static Bubble ShowBubbleOnTransform(BubbleType type, Transform bubblePosition)
@@ -45,7 +44,6 @@ public class BubbleFactory : MonoBehaviour
         Bubble bubble = Instantiate(Singleton().GetBubblePrefab(type));
         bubble.transform.position = bubblePosition.position;
         bubble.transform.SetParent(bubblePosition.transform);
-        bubble.Show();
         return bubble;
     }
 }
