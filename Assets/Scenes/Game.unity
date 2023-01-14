@@ -619,6 +619,8 @@ MonoBehaviour:
   dialogueTimeLength: 5
   poolTimeline:
   - {fileID: 11400000, guid: eb69fd2dd8e9f994a9fddf166b75e658, type: 2}
+  - {fileID: 11400000, guid: 9ebb384a0d530b740a4c5005ef28defd, type: 2}
+  - {fileID: 11400000, guid: 522c36274a3d3164a8c6923dbb5b2c44, type: 2}
 --- !u!1 &106732274
 GameObject:
   m_ObjectHideFlags: 0

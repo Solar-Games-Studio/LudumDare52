@@ -6,6 +6,7 @@ using Game.Interaction;
 using System.Collections.Generic;
 using Game.Inventory;
 using UnityEngine.UI;
+using static Game.Interactables.CornCart;
 
 namespace Game.Interactables
 {
@@ -51,7 +52,7 @@ namespace Game.Interactables
         {
             var inventory = Player.PlayerReference.Singleton.GetBehaviour<CharacterInventory>();
 
-            if (!(inventory.HeldItem is HarvestableMaterialObject materialObject))
+            if (inventory.HeldItem is not HarvestableMaterialObject materialObject)
                 return true;
 
             if (!_isMakingPopcorn && materialObject.material == corn)
@@ -62,14 +63,9 @@ namespace Game.Interactables
                 return false;
             }
 
-            foreach (var usableMaterial in usableMaterials)
+            if (CanDepositMaterial(materialObject.material, out int i))
             {
-                if (usableMaterial.material != materialObject.material) continue;
-
-                if (usableMaterial.count >= usableMaterial.limit)
-                    return true;
-
-                usableMaterial.count++;
+                usableMaterials[i].count++;
                 inventory.RemoveItem();
                 Destroy(materialObject.gameObject);
                 return false;
@@ -133,6 +129,46 @@ namespace Game.Interactables
             base.Interact();
             if (_isMakingPopcorn)
                 StopMakingPopcorn();
+        }
+
+        public override bool CanInteract()
+        {
+            var inventory = Player.PlayerReference.Singleton.GetBehaviour<CharacterInventory>();
+
+            if (inventory.HeldItem is HarvestableMaterialObject materialObject)
+            {
+                if (CanDepositMaterial(materialObject.material))
+                    return true;
+
+                return materialObject.material == corn;
+            }
+
+            if (_isMakingPopcorn && inventory.HeldItem == null)
+                return true;
+
+            return false;
+        }
+
+        bool CanDepositMaterial(HarvestableMaterial material) =>
+            CanDepositMaterial(material, out _);
+
+        bool CanDepositMaterial(HarvestableMaterial material, out int usableMaterialIndex)
+        {
+            usableMaterialIndex = -1;
+
+            for (int i = 0; i < usableMaterials.Length; i++)
+            {
+                var usableMaterial = usableMaterials[i];
+                if (usableMaterial.material != material) continue;
+
+                if (usableMaterial.count >= usableMaterial.limit)
+                    return false;
+
+                usableMaterialIndex = i;
+                return true;
+            }
+
+            return false;
         }
 
         [System.Serializable]

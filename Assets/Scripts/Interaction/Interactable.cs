@@ -5,6 +5,8 @@ namespace Game.Interaction
 {
     public class Interactable : MonoBehaviour, IInteractable
     {
+        public bool IsHighlighted { get; set; }
+
         public UnityEvent OnInteract;
 
         public virtual void Interact()
@@ -13,5 +15,6 @@ namespace Game.Interaction
         }
 
         public virtual bool CanInteract() => true;
+        public virtual bool CanDisplayPrompt() => true;
     }
 }
