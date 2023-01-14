@@ -606,9 +606,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d217c23fb3994ee40bf7c09ea27d0cf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fazes:
+  - hasTimeLimit: 1
+    timeLimit: {x: 10, y: 10}
+    spawnNPCs: 0
+    firstNPCSpawnTime: 0
+    NPCSpawnTime: {x: 0, y: 0}
+  - hasTimeLimit: 0
+    timeLimit: {x: 0, y: 0}
+    spawnNPCs: 1
+    firstNPCSpawnTime: 0
+    NPCSpawnTime: {x: 50, y: 70}
   defaultNpcModel: {fileID: -6705574613306004130, guid: 70ab69cdf861d3944baaa2af1cbb6979, type: 3}
   npcSpawner: {fileID: 1019885453}
-  dialogueTimeLength: 0
+  dialogueTimeLength: 5
   poolTimeline:
   - {fileID: 11400000, guid: eb69fd2dd8e9f994a9fddf166b75e658, type: 2}
 --- !u!1 &106732274
