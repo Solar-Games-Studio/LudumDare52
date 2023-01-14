@@ -10,6 +10,9 @@ namespace Game.Ordering
         public enum OrderState { None, Waiting, Mad, }
         public enum FinishState { Correct, Left, }
 
+        [Label("Fazes")]
+        [SerializeField][ReorderableList] Faze[] fazes;
+
         [Label("Visual")]
         [SerializeField] NPC defaultNpcModel;
         [SerializeField] NPCSpawner npcSpawner;
@@ -35,11 +38,29 @@ namespace Game.Ordering
 
         List<NPC> _npcs = new List<NPC>();
 
+        int _faze = -1;
+        float _fazeStartTime;
+        float _fazeTimeLength;
+        float _npcLastSpawnTime;
+        float _npcSpawnTimeLength;
+
 
         private void Awake()
         {
             Singleton = this;
+            NextFaze();
             NextPool();
+        }
+
+        private void Update()
+        {
+            var faze = fazes[_faze];
+
+            if (faze.spawnNPCs && Time.time - _npcLastSpawnTime >= _npcSpawnTimeLength)
+                SpawnNpc();
+
+            if (faze.hasTimeLimit && Time.time - _fazeStartTime >= _fazeTimeLength)
+                NextFaze();
         }
 
         private void FixedUpdate()
@@ -57,6 +78,22 @@ namespace Game.Ordering
             }
         }
 
+        #region Fazes
+        public void NextFaze()
+        {
+            _faze = Mathf.Min(_faze + 1, fazes.Length - 1);
+            var faze = fazes[_faze];
+
+            _fazeStartTime = Time.time;
+            _fazeTimeLength = Random.Range(faze.timeLimit.x, faze.timeLimit.y);
+
+            ResetNPCTimer(true);
+
+            qDebug.Log($"[Faze] Started next faze id:{_faze}", "faze");
+        }
+        #endregion
+
+        #region Orders
         public void NextPool()
         {
             CurrentPool = Mathf.Min(CurrentPool + 1, poolTimeline.Length - 1);
@@ -108,18 +145,6 @@ namespace Game.Ordering
             State = OrderState.None;
         }
 
-        void GetMad()
-        {
-            qDebug.Log($"[Order Manager] Order state has been changed to mad", "order");
-            State = OrderState.Mad;
-        }
-
-        public void LeaveAbruptly()
-        {
-            State = OrderState.None;
-            FinishOrder(FinishState.Left);
-        }
-
         public void NextOrder()
         {
             if (_orders.Count == 0)
@@ -142,6 +167,20 @@ namespace Game.Ordering
 
             qDebug.Log($"[Order Manager] Moved to the next order '{CurrentOrder.name}:{CurrentOrder.GetInstanceID()}'", "order");
         }
+        #endregion
+
+        #region NPC
+        void GetMad()
+        {
+            qDebug.Log($"[Order Manager] Order state has been changed to mad", "order");
+            State = OrderState.Mad;
+        }
+
+        public void LeaveAbruptly()
+        {
+            State = OrderState.None;
+            FinishOrder(FinishState.Left);
+        }
 
         public void SpawnNpc()
         {
@@ -154,6 +193,17 @@ namespace Game.Ordering
             npc.OnNewCustomerArrived.AddListener(NPC_OnNewCustomerArrived);
 
             _npcs.Add(npc);
+            ResetNPCTimer();
+        }
+
+        void ResetNPCTimer(bool first = false)
+        {
+            var faze = fazes[_faze];
+            _npcLastSpawnTime = Time.time;
+
+            _npcSpawnTimeLength = first ? 
+                faze.firstNPCSpawnTime : 
+                Random.Range(faze.NPCSpawnTime.x, faze.NPCSpawnTime.y);
         }
 
         void NPC_OnExit(NPC npc)
@@ -164,6 +214,20 @@ namespace Game.Ordering
         void NPC_OnNewCustomerArrived()
         {
             NextOrder();
+        }
+        #endregion
+
+        [System.Serializable]
+        class Faze
+        {
+            [Label("Time")]
+            public bool hasTimeLimit = true;
+            [MinMaxSlider(2f, 180f)][HideIf(nameof(hasTimeLimit), false)] public Vector2 timeLimit = new Vector2(60f, 60f);
+
+            [Label("Spawning")]
+            public bool spawnNPCs;
+            [HideIf(nameof(spawnNPCs), false)] public float firstNPCSpawnTime;
+            [MinMaxSlider(2f, 180f)][HideIf(nameof(spawnNPCs), false)] public Vector2 NPCSpawnTime;
         }
     }
 }
