@@ -5,7 +5,7 @@ namespace Game.Interaction
 {
     public class Interactable : MonoBehaviour, IInteractable
     {
-        public bool IsHighlighted { get; set; }
+        public virtual bool IsHighlighted { get; set; }
 
         public UnityEvent OnInteract;
         public UnityEvent<bool> OnBubbleChangeState;

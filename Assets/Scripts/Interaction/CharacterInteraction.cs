@@ -49,10 +49,9 @@ namespace Game.Interaction
 
             if (_didHit != previousHit)
             {
-                interactPrompt.ChangeState(_didHit);
+                interactPrompt.ChangeState(_hitInteractable?.CanDisplayPrompt() == true);
                 _hitInteractable?.ChangeBubbleState(_didHit);
             }
-                interactPrompt.ChangeState(_hitInteractable?.CanDisplayPrompt() == true);
         }
 
         void DetectInteractables()

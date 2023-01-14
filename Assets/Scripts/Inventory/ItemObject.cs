@@ -30,6 +30,19 @@ namespace Game.Inventory
 
         Transform _followTarget;
 
+        public override bool IsHighlighted 
+        {
+            get
+            {
+                return base.IsHighlighted;
+            }
+            set
+            {
+                _refreshPrompt = true;
+                base.IsHighlighted = value;
+            }
+        }
+
         private void Reset()
         {
             rb = GetComponent<Rigidbody>();
@@ -50,9 +63,15 @@ namespace Game.Inventory
             }
         }
 
+        bool _refreshPrompt = false;
+
         private void FixedUpdate()
         {
-            prompt_pickup?.ChangeState(IsHighlighted);
+            if (_refreshPrompt)
+            {
+                prompt_pickup?.ChangeState(IsHighlighted);
+                _refreshPrompt = false;
+            }
         }
 
         public override bool CanDisplayPrompt() =>
