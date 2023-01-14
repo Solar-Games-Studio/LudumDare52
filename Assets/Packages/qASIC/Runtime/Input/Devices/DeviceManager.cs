@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using qASIC.ProjectSettings;
 using qASIC.Input.Update;
-using static UnityEditor.Progress;
 
 namespace qASIC.Input.Devices
 {

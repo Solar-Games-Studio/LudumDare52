@@ -1,5 +1,4 @@
-﻿#if UNITY_EDITOR
-using System;
+﻿using System;
 using UnityEngine;
 
 namespace qASIC.Input.Internal.KeyProviders
@@ -13,4 +12,3 @@ namespace qASIC.Input.Internal.KeyProviders
         public abstract string[] GetKeyList();
     }
 }
-#endif
