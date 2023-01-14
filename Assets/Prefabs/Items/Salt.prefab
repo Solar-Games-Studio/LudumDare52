@@ -83,6 +83,8 @@ MonoBehaviour:
   movementMultiplier: 1
   rb: {fileID: 8081311194004571275}
   coll: {fileID: 2083611910134265000}
+  prompt_pickup: {fileID: 11400000, guid: 537b4245e38b44b47843dbc16adb69a4, type: 2}
+  pickedUpLayer: 0
   material: {fileID: 11400000, guid: d1ba4e02235002946a6deeba25179bb5, type: 2}
 --- !u!1001 &6489812374261229475
 PrefabInstance:

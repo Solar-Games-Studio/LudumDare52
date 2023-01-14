@@ -83,6 +83,8 @@ MonoBehaviour:
   movementMultiplier: 1
   rb: {fileID: 8430240315220802815}
   coll: {fileID: 5197046255226216129}
+  prompt_pickup: {fileID: 11400000, guid: 537b4245e38b44b47843dbc16adb69a4, type: 2}
+  pickedUpLayer: 0
 --- !u!1 &8640613556520745042
 GameObject:
   m_ObjectHideFlags: 0

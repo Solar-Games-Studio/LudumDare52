@@ -20,6 +20,9 @@ namespace Game.Inventory
         [SerializeField] Rigidbody rb;
         [SerializeField] Collider coll;
 
+        [Label("Prompts")]
+        [SerializeField] Prompts.Prompt prompt_pickup;
+
         [Label("Layers")]
         [SerializeField] [Layer] int pickedUpLayer = 0;
 
@@ -46,6 +49,14 @@ namespace Game.Inventory
                 transform.eulerAngles = _followTarget.eulerAngles;
             }
         }
+
+        private void FixedUpdate()
+        {
+            prompt_pickup?.ChangeState(IsHighlighted);
+        }
+
+        public override bool CanDisplayPrompt() =>
+            prompt_pickup == null;
 
         public void SetFollowTarget(Transform transform) =>
             _followTarget = transform;

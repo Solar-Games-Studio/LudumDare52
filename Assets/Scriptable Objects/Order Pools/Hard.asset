@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a226348ae25e384b8c74bc3c1676030, type: 3}
-  m_Name: Easy
+  m_Name: Hard
   m_EditorClassIdentifier: 
   orderAmount: 4
   orders:
-  - {fileID: 11400000, guid: d0cfd7ce2e827164e9c553dffb00ea3a, type: 2}
-  - {fileID: 11400000, guid: e704808c15e400541acd50f07f0a7173, type: 2}
+  - {fileID: 11400000, guid: 308e3bd61cb21034794395929c3fe8d8, type: 2}
+  - {fileID: 11400000, guid: 792bf4e37f14c2d4199e0bf43b055b5f, type: 2}
+  - {fileID: 11400000, guid: d63c2cb00621418458f04f55abdbe3e1, type: 2}
   oneTimeOrders: []

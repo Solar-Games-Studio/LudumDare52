@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a226348ae25e384b8c74bc3c1676030, type: 3}
-  m_Name: Easy
+  m_Name: Medium
   m_EditorClassIdentifier: 
   orderAmount: 4
   orders:
-  - {fileID: 11400000, guid: d0cfd7ce2e827164e9c553dffb00ea3a, type: 2}
-  - {fileID: 11400000, guid: e704808c15e400541acd50f07f0a7173, type: 2}
+  - {fileID: 11400000, guid: 48068a8f324115a4eba24041afcca581, type: 2}
+  - {fileID: 11400000, guid: 56207644f2973264fbd85da60e241439, type: 2}
+  - {fileID: 11400000, guid: 63cae7f658268f54fb8f4da5bd19334b, type: 2}
+  - {fileID: 11400000, guid: 88569aeacde96ba44b92e96bacd8af57, type: 2}
   oneTimeOrders: []

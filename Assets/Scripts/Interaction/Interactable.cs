@@ -5,6 +5,8 @@ namespace Game.Interaction
 {
     public class Interactable : MonoBehaviour, IInteractable
     {
+        public bool IsHighlighted { get; set; }
+
         public UnityEvent OnInteract;
         public UnityEvent<bool> OnBubbleChangeState;
 
@@ -17,5 +19,6 @@ namespace Game.Interaction
             OnBubbleChangeState.Invoke(state);
         }
         public virtual bool CanInteract() => true;
+        public virtual bool CanDisplayPrompt() => true;
     }
 }

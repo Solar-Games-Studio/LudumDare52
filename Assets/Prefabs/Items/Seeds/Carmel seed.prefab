@@ -166,4 +166,6 @@ MonoBehaviour:
   movementMultiplier: 1
   rb: {fileID: 6150633330955766847}
   coll: {fileID: 6429301513124148483}
+  prompt_pickup: {fileID: 11400000, guid: 537b4245e38b44b47843dbc16adb69a4, type: 2}
+  pickedUpLayer: 0
   material: {fileID: 11400000, guid: efb7317f35b000f428afe0149823a2cd, type: 2}

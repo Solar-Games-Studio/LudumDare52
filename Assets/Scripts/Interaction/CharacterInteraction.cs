@@ -52,6 +52,7 @@ namespace Game.Interaction
                 interactPrompt.ChangeState(_didHit);
                 _hitInteractable?.ChangeBubbleState(_didHit);
             }
+                interactPrompt.ChangeState(_hitInteractable?.CanDisplayPrompt() == true);
         }
 
         void DetectInteractables()
@@ -61,6 +62,9 @@ namespace Game.Interaction
                 out _raycastHit, 
                 additionalInteractLength, 
                 interactableLayer);
+
+            if (_hitInteractable != null)
+                _hitInteractable.IsHighlighted = false;
 
             if (CheckForInteractable(_raycastHit))
                 return;
@@ -82,6 +86,8 @@ namespace Game.Interaction
                     return;
             }
 
+            _hitInteractable = null;
+
 
             bool CheckForInteractable(RaycastHit hit)
             {
@@ -94,7 +100,10 @@ namespace Game.Interaction
                 _didHit = _hitInteractable != null && _hitInteractable.CanInteract();
 
                 if (_didHit)
+                {
                     _raycastHit = hit;
+                    _hitInteractable.IsHighlighted = true;
+                }
 
                 return _didHit;
             }
