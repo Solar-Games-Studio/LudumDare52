@@ -5,5 +5,6 @@
         public void Interact();
 
         public bool CanInteract();
+        public void ChangeBubbleState(bool state);
     }
 }

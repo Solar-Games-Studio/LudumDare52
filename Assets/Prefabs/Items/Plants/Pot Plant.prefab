@@ -35,6 +35,7 @@ Transform:
   - {fileID: 4968006166140128495}
   - {fileID: 4968006165521504342}
   - {fileID: 4968006166064598409}
+  - {fileID: 1818137534732595036}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -53,6 +54,9 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
+  OnBubbleChangeState:
+    m_PersistentCalls:
+      m_Calls: []
   emptyModel: {fileID: 0}
   _plantableMaterials:
   - seed: {fileID: 11400000, guid: b6ca9d4eae90a15478d5a8e7b30f4558, type: 2}
@@ -68,6 +72,7 @@ MonoBehaviour:
     plantedModel: {fileID: 5744965734490657262}
     grownModel: {fileID: 5744965734716102451}
   harvestingTime: 1
+  bubblePosition: {fileID: 1818137534732595036}
 --- !u!65 &4862583800313746555
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -81,6 +86,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.63, y: 0.5, z: 0.48}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &6610648813883619635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1818137534732595036}
+  m_Layer: 6
+  m_Name: BubblePosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1818137534732595036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6610648813883619635}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.128, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4862583800313746554}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4862583800779434756
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ namespace Game.Harvestables
         [SerializeField] GameObject emptyModel;
         [SerializeField] PlantableMaterials[] _plantableMaterials;
         [SerializeField] float harvestingTime = 1.0f;
+        [SerializeField] Transform bubblePosition;
 
         List<HarvestableMaterial> _materials = new List<HarvestableMaterial>();
 
@@ -23,6 +24,7 @@ namespace Game.Harvestables
         int _materialIndex;
 
         GameObject _model;
+        Bubble bubble;
 
         private void Awake()
         {
@@ -95,6 +97,19 @@ namespace Game.Harvestables
             return _materials.Contains(seedObject.material);
         }
 
+        public override void ChangeBubbleState(bool state)
+        {
+            base.ChangeBubbleState(state);
+            if (state)
+            {
+                bubble = BubbleFactory.ShowBubbleOnTransform(BubbleType.Small, bubblePosition);
+            }
+            else
+            { 
+                bubble?.Hide();
+                bubble = null;
+            }
+        }
         void ChangeModel(GameObject newModel)
         {
             SetModelActive(false);

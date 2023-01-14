@@ -24,7 +24,8 @@ public class Margin
 public class Bubble : MonoBehaviour
 {
     [SerializeField]
-    SpriteRenderer background;
+    GameObject background;
+    Material backgroundMaterial;
     [SerializeField]
     SpriteRenderer pointer;
     [SerializeField]
@@ -46,15 +47,15 @@ public class Bubble : MonoBehaviour
     [SerializeField]
     float pointerOffset = 1.0f;
 
-    private delegate void ValueChangeDelegate(float t);
 
     private void Start()
     {
         rectScale = text.rectTransform.rect.size;
-        background.color = new Color(background.color.r, background.color.g, background.color.b, 0);
+        backgroundMaterial = background.GetComponent<Renderer>().material;
+        SetAlpha(backgroundMaterial, 0.0f);
         text.color = new Color(text.color.r, text.color.g, text.color.b, 0);
         pointer.color = new Color(pointer.color.r, pointer.color.g, pointer.color.b, 0);
-        SlideInRectangle();
+        Show();
     }
     private void Update()
     {
@@ -62,55 +63,70 @@ public class Bubble : MonoBehaviour
         text.rectTransform.sizeDelta = rectScale * background.transform.localScale - textMargin.GetDeltaSize();
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0, transform.rotation.eulerAngles.z);
     }
-    
+
+    public void Show()
+    {
+        SlideInRectangle();
+    }
+    public void Hide()
+    {
+        Debug.Log("To implement");
+    }
+
+    #region Animations
+    private delegate void ValueChangeDelegate(float t, object animationObject);
+
     void SlideInRectangle()
     {
         AnimationCurve curve = AnimationCurve.EaseInOut(0.0f, 0.0f, slideInDuration, 1.0f);
         Vector3 startRectPosition = background.transform.localPosition;
-        ValueChangeDelegate onChange = (float t) =>
+        ValueChangeDelegate onChange = (float t, object animationObject) =>
         {
-            Color newColor = background.color;
-            newColor.a = t;
-            background.color = newColor;
+            SetAlpha(backgroundMaterial, t);
 
             Vector3 offset = Vector3.Lerp(new Vector3(backgroundOffset, 0.0f, 0.0f), Vector3.zero, t);
             background.transform.localPosition = startRectPosition + offset;
         };
-        StartCoroutine(AnimateFloat(curve, onChange, () => { FadeInText(); SlideInPointer(); }));
+        StartCoroutine(AnimateFloat(curve, backgroundMaterial, onChange, () => { FadeInText(); SlideInPointer(); }));
     }
     void FadeInText()
     {
         AnimationCurve curve = AnimationCurve.EaseInOut(0.0f, 0.0f, fadeInDuration, 1.0f);
-        ValueChangeDelegate onChange = (float t) =>
+        ValueChangeDelegate onChange = (float t, object _) =>
         {
             Color newColor = text.color;
             newColor.a = t;
             text.color = newColor;
         };
-        StartCoroutine(AnimateFloat(curve, onChange));
+        StartCoroutine(AnimateFloat(curve, null, onChange));
     }
-    
     void SlideInPointer()
     {
         AnimationCurve curve = AnimationCurve.EaseInOut(0.0f, 0.0f, slideInDuration, 1.0f);
         Vector3 startPointerPosition = pointer.transform.localPosition;
         pointer.color = new Color(pointer.color.r, pointer.color.g, pointer.color.b, 1.0f);
-        ValueChangeDelegate onChange = (float t) =>
+        ValueChangeDelegate onChange = (float t, object _) =>
         {
-            Vector3 offset = Vector3.Lerp(new Vector3(0.0f, 1.0f, 0.0f), Vector3.zero, t);
+            Vector3 offset = Vector3.Lerp(new Vector3(0.0f, pointerOffset, 0.0f), Vector3.zero, t);
             pointer.transform.localPosition = startPointerPosition + offset;
         };
-        StartCoroutine(AnimateFloat(curve, onChange));
+        StartCoroutine(AnimateFloat(curve, null, onChange));
     }
-    IEnumerator AnimateFloat(AnimationCurve curve, ValueChangeDelegate onValueChanged, Action onAnimationEnd = null)
+    IEnumerator AnimateFloat(AnimationCurve curve, object animationObject, ValueChangeDelegate onValueChanged, Action onAnimationEnd = null)
     {
         for (float t = 0.0f; t <= curve.keys[^1].time; t += Time.deltaTime)
         {
-            onValueChanged(curve.Evaluate(t));
+            onValueChanged(curve.Evaluate(t), animationObject);
             yield return new WaitForEndOfFrame();
         }
         onAnimationEnd?.Invoke();
     }
 
-
+    void SetAlpha(Material material, float alpha)
+    {
+        Color newColor = material.color;
+        newColor.a = alpha;
+        material.color = newColor;
+    }
+    #endregion
 }

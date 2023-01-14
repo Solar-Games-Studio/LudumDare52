@@ -25,7 +25,7 @@ namespace Game.NPCs
 
         private void Start()
         {
-            BubbleFactory.ShowBubbleInPosition(bubblePosition);
+            BubbleFactory.ShowBubbleOnTransform(BubbleType.Big, bubblePosition);
         }
 
         private void FixedUpdate()

@@ -48,7 +48,10 @@ namespace Game.Interaction
             qDebug.DisplayValue("_didHitInteractable", _didHit);
 
             if (_didHit != previousHit)
+            {
                 interactPrompt.ChangeState(_didHit);
+                _hitInteractable?.ChangeBubbleState(_didHit);
+            }
         }
 
         void DetectInteractables()
