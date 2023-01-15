@@ -197,6 +197,8 @@ namespace Game.Ordering
 
             _npcs.Add(npc);
             ResetNPCTimer();
+
+            qDebug.Log("[Order Manager] NPC spawned", "npc");
         }
 
         void ResetNPCTimer(bool first = false)

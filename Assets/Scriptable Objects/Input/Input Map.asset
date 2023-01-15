@@ -29,6 +29,10 @@ MonoBehaviour:
     items:
     - rid: 7525326017866760192
     - rid: 7525326017866760193
+  - itemName: UI
+    guid: c89847d9-99ce-4cae-ba2e-bfc129619794
+    items:
+    - rid: 7525326217136046080
   references:
     version: 2
     RefIds:
@@ -118,3 +122,10 @@ MonoBehaviour:
         - key_gamepad/X
         - key_keyboard/Q
         - key_keyboard/X
+    - rid: 7525326217136046080
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: HUD
+        guid: 75469e49-85e7-4eac-830f-e4cc1713e419
+        keys:
+        - key_keyboard/F2
