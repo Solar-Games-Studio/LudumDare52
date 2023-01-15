@@ -109,6 +109,7 @@ namespace qASIC.Input.Devices
 
         public override void Update()
         {
+            Debug.Log($"Keyboard Update");
             foreach (var key in _AvaliableKeys)
             {
                 string keyName = GetKeyName(key);

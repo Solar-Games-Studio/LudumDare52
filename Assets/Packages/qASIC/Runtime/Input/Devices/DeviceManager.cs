@@ -42,15 +42,15 @@ namespace qASIC.Input.Devices
                     InputUpdateManager.OnUpdate += item.Update;
             }
 
-            foreach (var item in Devices)
-            {
-#if UNITY_EDITOR
-                if (Application.isPlaying)
-                    UnityEditor.EditorApplication.update += item.Update;
-                else
-#endif
-                    InputUpdateManager.OnUpdate += item.Update;
-            }
+//            foreach (var item in Devices)
+//            {
+//#if UNITY_EDITOR
+//                if (Application.isPlaying)
+//                    UnityEditor.EditorApplication.update += item.Update;
+//                else
+//#endif
+//                    InputUpdateManager.OnUpdate += item.Update;
+//            }
 
             qDebug.LogInternal("[Device Manager] Initialization complete");
         }
