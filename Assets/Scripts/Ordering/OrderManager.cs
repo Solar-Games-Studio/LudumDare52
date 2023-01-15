@@ -117,6 +117,9 @@ namespace Game.Ordering
             qDebug.Log($"[Order Manager] Pool finished, moved to the next pool '{pool.name}:{pool.GetInstanceID()}'", "order");
         }
 
+        void FinishOrder() =>
+            FinishOrder(FinishState.Correct);
+
         public void FinishOrder(FinishState finishState = FinishState.Correct)
         {
             if (CurrentOrder == null)
@@ -138,7 +141,7 @@ namespace Game.Ordering
                     dialogueoptions[Random.Range(0, dialogueoptions.Length)];
 
                 _npcs[0].DisplayDialogue(dialogue, dialogueTimeLength);
-                _npcs[0].GoAway();
+                npcSpawner.NextCustomer();
                 _npcs.RemoveAt(0);
             }
 
@@ -184,7 +187,7 @@ namespace Game.Ordering
 
         public void SpawnNpc()
         {
-            if (_orders.Count < _npcs.Count)
+            if (_orders.Count <= _npcs.Count)
                 return;
 
             var order = _orders[_npcs.Count];

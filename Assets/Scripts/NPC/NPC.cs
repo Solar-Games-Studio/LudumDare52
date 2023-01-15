@@ -31,11 +31,7 @@ namespace Game.NPCs
         private void FixedUpdate()
         {
             if (targetPoint == null)
-            {
-                Debug.LogError("NPC with no destination! Destroying...");
-                Destroy(gameObject);
-                return;
-            }
+                targetPoint = exitPoint;
                  
             isMoving = Vector3.Distance(targetPoint.position, transform.position) > betweenDistance;
             

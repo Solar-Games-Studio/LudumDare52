@@ -40,13 +40,8 @@ namespace Game.NPCs
             spawnedNPC.SetSellPoint(sellPoint);
             spawnedNPC.SetExitPoint(exitPoint);
 
-            if (customerQueue.Count > 0)
-                spawnedNPC.SetTarget(lastCustomer.transform);
-            else
-            {
-                spawnedNPC.SetTarget(sellPoint);
-                spawnedNPC.SetBetweenDistance(betweenDistance);
-            }
+            spawnedNPC.SetTarget(lastCustomer == null ? sellPoint : lastCustomer.transform);
+            spawnedNPC.SetBetweenDistance(betweenDistance);
 
             customerQueue.Enqueue(spawnedNPC);
             lastCustomer = spawnedNPC;
@@ -54,11 +49,14 @@ namespace Game.NPCs
             return lastCustomer;
         }
 
-        void NextCustomer()
+        public void NextCustomer()
         {
             customerQueue.Dequeue().GoAway();
-            if (customerQueue.Count > 0)
-                customerQueue.Peek().SetTarget(sellPoint);
+
+            if (customerQueue.Count == 0) return;
+
+            lastCustomer = customerQueue.Peek();
+            lastCustomer.SetTarget(sellPoint);
         }
     }
 }
