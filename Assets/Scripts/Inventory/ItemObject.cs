@@ -77,6 +77,10 @@ namespace Game.Inventory
         public override bool CanDisplayPrompt() =>
             prompt_pickup == null;
 
+        public override bool CanInteract() =>
+            base.CanInteract() &&
+            Player.PlayerReference.Singleton.GetBehaviour<CharacterInventory>().HeldItem == null;
+
         public void SetFollowTarget(Transform transform) =>
             _followTarget = transform;
 

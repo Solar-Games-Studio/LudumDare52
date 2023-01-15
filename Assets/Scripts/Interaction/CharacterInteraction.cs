@@ -9,6 +9,9 @@ namespace Game.Interaction
 {
     public class CharacterInteraction : MonoBehaviour
     {
+        public IInteractable TargetInteractable => _hitInteractable;
+        public Transform Target => _raycastHit.transform;
+
         [Label("Settings")]
         [DynamicHelp(nameof(GetHelpText))]
         [SerializeField] Transform interactionPoint;

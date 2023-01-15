@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f142e96e968dbd43a5357133c2a11f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0.8, z: 0}
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -810,6 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a02fd4b5294e1e48b97685753fbf0ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0.8, z: 0}
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -4720,6 +4722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5297a5589c853b48a3f89c5834d2b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0.8, z: 0}
   OnInteract:
     m_PersistentCalls:
       m_Calls: []

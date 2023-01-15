@@ -1,4 +1,6 @@
-﻿namespace Game.Interaction
+﻿using UnityEngine;
+
+namespace Game.Interaction
 {
     public interface IInteractable
     {
@@ -9,5 +11,6 @@
         public bool CanDisplayPrompt();
         
         public bool IsHighlighted { get; set; }
+        public Vector3 MarkerPosition { get; }
     }
 }

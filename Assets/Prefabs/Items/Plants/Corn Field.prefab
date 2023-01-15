@@ -49,7 +49,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40aaec5180050c3409dc6134893f77ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 1, z: 0}
   OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   emptyModel: {fileID: 0}
@@ -59,6 +63,7 @@ MonoBehaviour:
     plantedModel: {fileID: 935473081920770221}
     grownModel: {fileID: 935473081551631578}
   harvestingTime: 1
+  bubblePosition: {fileID: 0}
 --- !u!65 &935473080884948344
 BoxCollider:
   m_ObjectHideFlags: 0

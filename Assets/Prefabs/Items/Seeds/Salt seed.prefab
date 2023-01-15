@@ -159,7 +159,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d772617759891ea4aa76b8ac6d80a8e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0.5, z: 0}
   OnInteract:
+    m_PersistentCalls:
+      m_Calls: []
+  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemName: Salt

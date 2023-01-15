@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 8785531562753097163}
   - component: {fileID: 2336807348458042789}
   - component: {fileID: 548769033}
+  - component: {fileID: 1822640592450252165}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -120,7 +121,6 @@ MonoBehaviour:
   speed: 5
   turnSmoothTime: 0.05
   gravity: 2
-  animationTransitionTime: 0
 --- !u!114 &8785531562753097163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,6 +187,20 @@ MonoBehaviour:
   playerReference: {fileID: 0}
   modelAnimator: {fileID: 1502644956}
   animationTransitionTime: 0.1
+--- !u!114 &1822640592450252165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8785531562753097154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b403a8db8d16b9f4caf91937ebe1a26e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerReference: {fileID: 0}
+  characterInteraction: {fileID: 8785531562753097163}
 --- !u!1001 &6187544657231937090
 PrefabInstance:
   m_ObjectHideFlags: 0
