@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using qASIC;
 using Game.NPCs;
+using Game.Harvestables.Materials;
 
 namespace Game.Ordering
 {
@@ -30,9 +31,9 @@ namespace Game.Ordering
         public int CurrentPool { get; private set; } = -1;
         public int CurrentPoolOrder { get; private set; } = -1;
         public Order CurrentOrder { get; private set; }
-        public int CurrentOrderItemAmount { get; private set; }
         public float OrderStartTime { get; private set; }
         public OrderState State { get; private set; }
+
 
         List<Order> _orders = new List<Order>();
 
@@ -162,13 +163,45 @@ namespace Game.Ordering
             CurrentOrder = _orders[0];
             _orders.RemoveAt(0);
 
-            CurrentOrderItemAmount = 0;
             OrderStartTime = Time.time;
 
+            Preparation = new List<PreparationItem>();
             foreach (var item in CurrentOrder.popcorns)
-                CurrentOrderItemAmount += item.amount;
+                for (int i = 0; i < item.amount; i++)
+                    Preparation.Add(new PreparationItem(item));
 
             qDebug.Log($"[Order Manager] Moved to the next order '{CurrentOrder.name}:{CurrentOrder.GetInstanceID()}'", "order");
+        }
+        #endregion
+
+        #region Preparation
+        public List<PreparationItem> Preparation { get; set; }
+
+        public void FinishPreparingItem(PreparationItem item)
+        {
+            int targetIndex = -1;
+
+            for (int i = 0; i < Preparation.Count; i++)
+            {
+                if (!Preparation[i].IsEqual(item))
+                    continue;
+
+                targetIndex = i;
+                break;
+            }
+
+            if (targetIndex == -1)
+            {
+                //Wrong
+                return;
+            }
+
+            Preparation.RemoveAt(targetIndex);
+
+            if (Preparation.Count == 0)
+            {
+                FinishOrder();
+            }
         }
         #endregion
 
@@ -233,6 +266,45 @@ namespace Game.Ordering
             public bool spawnNPCs;
             [HideIf(nameof(spawnNPCs), false)] public float firstNPCSpawnTime;
             [MinMaxSlider(2f, 180f)][HideIf(nameof(spawnNPCs), false)] public Vector2 NPCSpawnTime;
+        }
+
+        public class PreparationItem
+        {
+            public PreparationItem() { }
+
+            public PreparationItem(Order.Popcorn popcorn)
+            {
+                burned = popcorn.burnt;
+                materials = new List<HarvestableMaterial>(popcorn.materials);
+            }
+
+            public bool burned;
+            public List<HarvestableMaterial> materials = new List<HarvestableMaterial>();
+
+            public bool IsEqual(PreparationItem item)
+            {
+                if (item == null) return false;
+
+                List<HarvestableMaterial> noncomparedMaterials = new List<HarvestableMaterial>(materials);
+                bool containsSameMaterials = true;
+
+                foreach (var material in item.materials)
+                {
+                    if (!noncomparedMaterials.Contains(material))
+                    {
+                        containsSameMaterials = false;
+                        break;
+                    }
+
+                    noncomparedMaterials.RemoveAt(noncomparedMaterials.IndexOf(material));
+                }
+
+                if (containsSameMaterials)
+                    containsSameMaterials = noncomparedMaterials.Count == 0;
+
+                return burned == item.burned &&
+                    containsSameMaterials;
+            }
         }
     }
 }

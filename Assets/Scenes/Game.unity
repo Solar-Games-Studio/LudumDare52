@@ -162,6 +162,7 @@ MonoBehaviour:
   OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
+  givePrompt: {fileID: 11400000, guid: 25bc7e64c9eac104e8f8a566202894ae, type: 2}
 --- !u!65 &1253464
 BoxCollider:
   m_ObjectHideFlags: 0

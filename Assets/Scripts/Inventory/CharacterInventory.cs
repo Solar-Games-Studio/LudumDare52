@@ -3,13 +3,14 @@ using Game.Interaction;
 using Game.Character;
 using qASIC.Input;
 using Game.Prompts;
+using qASIC;
 
 namespace Game.Inventory
 {
     public class CharacterInventory : Player.PlayerBehaviour, IInteractionOverridable
     {
         [Label("Throwing")]
-        [SerializeField] Character.CharacterMovement movement;
+        [SerializeField] CharacterMovement movement;
         [SerializeField] float movementForceMultiplier = 6f;
         [SerializeField] Vector3 force;
         
@@ -26,6 +27,9 @@ namespace Game.Inventory
         [SerializeField] Prompt prompt_throw;
 
         public ItemObject HeldItem { get; private set; }
+
+        bool _updatePromptsNextFixedUpdate;
+
 
         private void Reset()
         {
@@ -46,8 +50,13 @@ namespace Game.Inventory
         private void FixedUpdate()
         {
             bool isHolding = HeldItem != null;
-            prompt_drop.ChangeState(isHolding);
-            prompt_throw.ChangeState(isHolding);
+            qDebug.DisplayValue(nameof(isHolding), isHolding);
+
+            if (_updatePromptsNextFixedUpdate)
+            {
+                SetPrompts(isHolding);
+                _updatePromptsNextFixedUpdate = false;
+            }
         }
 
         public void Throw()
@@ -63,7 +72,9 @@ namespace Game.Inventory
         public void HandleInteractionInput(IInteractable interactable)
         {     
             if (interactable is IItemInteractable itemInteractable && !itemInteractable.ItemInteract())
+            {
                 return;
+            }
 
             if (interactable is IItemHolder itemHolder && itemHolder.CanHold())
             {
@@ -72,6 +83,14 @@ namespace Game.Inventory
             }
 
             UnEquipItem();
+        }
+
+        public void HandleHighlight(IInteractable interactable)
+        {
+            var canDisplayDropPrompt = interactable is not IItemInteractable itemInteractable || itemInteractable.CanDisplayDropPrompt();
+            qDebug.DisplayValue(nameof(canDisplayDropPrompt), canDisplayDropPrompt);
+
+            prompt_drop.ChangeState(HeldItem != null && canDisplayDropPrompt);
         }
 
         public void OnInteract(IInteractable interactable)
@@ -90,12 +109,13 @@ namespace Game.Inventory
             HeldItem = item;
             HeldItem.ChangeState(ItemObject.State.PickedUp);
             HeldItem.SetFollowTarget(itemHolder);
+
             interaction.OverrideInteraction(this);
+            _updatePromptsNextFixedUpdate = true;
         }
 
         void UnEquipItem()
         {
-            interaction.RemoveInteractionOverride(this);
             characterAnimation?.SetHoldingState(false);
             RemoveItem();
         }
@@ -110,6 +130,7 @@ namespace Game.Inventory
             HeldItem = null;
 
             interaction.RemoveInteractionOverride(this);
+            _updatePromptsNextFixedUpdate = true;
         }
 
         public ItemObject RemoveItem()
@@ -121,9 +142,17 @@ namespace Game.Inventory
             HeldItem.SetFollowTarget(null);
             characterAnimation?.SetHoldingState(false);
             HeldItem = null;
+
             interaction.RemoveInteractionOverride(this);
+            _updatePromptsNextFixedUpdate = true;
 
             return item;
+        }
+
+        void SetPrompts(bool state)
+        {
+            prompt_drop.ChangeState(state);
+            prompt_throw.ChangeState(state);
         }
     }
 }

@@ -65,9 +65,6 @@ namespace Game.Interaction
                 additionalInteractLength, 
                 interactableLayer);
 
-            if (_hitInteractable != null)
-                _hitInteractable.IsHighlighted = false;
-
             if (CheckForInteractable(_raycastHit))
                 return;
 
@@ -88,7 +85,7 @@ namespace Game.Interaction
                     return;
             }
 
-            _hitInteractable = null;
+            SetInteractable(null);
 
 
             bool CheckForInteractable(RaycastHit hit)
@@ -98,16 +95,35 @@ namespace Game.Interaction
                 if (!_didHit)
                     return false;
 
-                _hitInteractable = hit.transform?.GetComponent<IInteractable>();
-                _didHit = _hitInteractable != null && _hitInteractable.CanInteract();
+                var interactable = hit.transform?.GetComponent<IInteractable>();
+                _didHit = interactable != null && interactable.CanInteract();
 
                 if (_didHit)
                 {
                     _raycastHit = hit;
-                    _hitInteractable.IsHighlighted = true;
+                    SetInteractable(interactable);
                 }
 
                 return _didHit;
+            }
+
+            void SetInteractable(IInteractable interactable)
+            {
+                if (_hitInteractable == interactable)
+                    return;
+
+                if (_hitInteractable != null)
+                    _hitInteractable.IsHighlighted = false;
+
+                _hitInteractable = interactable;
+
+                if (interactable != null)
+                    interactable.IsHighlighted = true;
+
+                if (_overrides.Count != 0)
+                    _overrides[_overrides.Count - 1].HandleHighlight(interactable);
+
+                interactPrompt?.ChangeState(interactable?.CanDisplayPrompt() == true);
             }
         }
 

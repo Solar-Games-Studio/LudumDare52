@@ -74,6 +74,22 @@ namespace Game.Interactables
             return true;
         }
 
+        public bool CanDisplayDropPrompt()
+        {
+            var inventory = Player.PlayerReference.Singleton.GetBehaviour<CharacterInventory>();
+
+            if (inventory.HeldItem is not HarvestableMaterialObject materialObject)
+                return true;
+
+            if (!_isMakingPopcorn && materialObject.material == corn)
+                return false;
+
+            if (CanDepositMaterial(materialObject.material))
+                return false;
+
+            return true;
+        }
+
         public void CloseUI()
         {
             Character.CharacterMovement.ChangeMultiplier(GetInstanceID().ToString(), 1f);

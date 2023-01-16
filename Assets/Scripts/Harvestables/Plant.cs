@@ -74,6 +74,17 @@ namespace Game.Harvestables
             return true;
         }
 
+        public bool CanDisplayDropPrompt()
+        {
+            if (_isGrowing)
+                return true;
+
+            var inventory = Player.PlayerReference.Singleton.GetBehaviour<CharacterInventory>();
+
+            return !(inventory.HeldItem is SeedObject seedObject &&
+                _plantableMaterials.Select(x => x.seed).Contains(seedObject.material));
+        }
+
         public override void Interact()
         {
             base.Interact();
