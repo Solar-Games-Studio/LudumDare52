@@ -135,7 +135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionPoint: {fileID: 8785531562753097166}
   rayAmount: 8
-  additionalPos: {x: 0, y: 0, z: 0}
+  additionalPos: {x: 0, y: 0.1, z: 0}
   additionalInteractLength: 1.2
   startPos: {x: 0, y: 1.4, z: 0.1}
   endPos: {x: 0, y: 1.4, z: -1.2}
