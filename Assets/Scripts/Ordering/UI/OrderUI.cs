@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Game.Ordering
 {
@@ -26,6 +27,22 @@ namespace Game.Ordering
 
         string _text;
 
+        private void Start()
+        {
+            OrderManager.Singleton.OnFinishPreparingItem += OrderManager_OnFinishPreparingItem;
+            OrderManager.Singleton.OnNextOrder += OrderManager_OnNextOrder;
+        }
+
+        void OrderManager_OnNextOrder(Order order)
+        {
+            RebuildText(order, new List<OrderManager.PreparationItem>());
+        }
+
+        void OrderManager_OnFinishPreparingItem(OrderManager.PreparationItem item)
+        {
+            RebuildText(OrderManager.Singleton.CurrentOrder, OrderManager.Singleton.Preparation);
+        }
+
         private void Update()
         {
             var manager = OrderManager.Singleton;
@@ -35,11 +52,10 @@ namespace Game.Ordering
                 return;
             }
 
-            RebuildText(manager.CurrentOrder);
             text.text = _text;
         }
 
-        public void RebuildText(Order order)
+        public void RebuildText(Order order, List<OrderManager.PreparationItem> preparation)
         {
             if (order == null)
             {
@@ -58,7 +74,13 @@ namespace Game.Ordering
                         string.Empty :
                         $"{orderIngriedientStart}{string.Join(orderIngriedientSeparator, ingriedients)}";
 
-                    var text = $"{string.Format(orderStartFormat, 0, x.amount)}{ingriedientsText}";
+                    var preparationTemplate = new OrderManager.PreparationItem(x);
+
+                    int preparationCount = preparation
+                        .Where(x => x.IsEqual(preparationTemplate))
+                        .Count();
+
+                    var text = $"{string.Format(orderStartFormat, preparationCount, x.amount)}{ingriedientsText}";
                     return text;
                 })
                 .ToArray();

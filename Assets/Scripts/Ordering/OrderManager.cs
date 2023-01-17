@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using qASIC;
 using Game.NPCs;
 using Game.Harvestables.Materials;
+using System;
+
+using URandom = UnityEngine.Random;
 
 namespace Game.Ordering
 {
@@ -86,7 +89,7 @@ namespace Game.Ordering
             var faze = fazes[_faze];
 
             _fazeStartTime = Time.time;
-            _fazeTimeLength = Random.Range(faze.timeLimit.x, faze.timeLimit.y);
+            _fazeTimeLength = URandom.Range(faze.timeLimit.x, faze.timeLimit.y);
 
             ResetNPCTimer(true);
 
@@ -95,6 +98,9 @@ namespace Game.Ordering
         #endregion
 
         #region Orders
+        public event Action<OrderState> OnFinishOrder;
+        public event Action<Order> OnNextOrder;
+
         public void NextPool()
         {
             CurrentPool = Mathf.Min(CurrentPool + 1, poolTimeline.Length - 1);
@@ -110,10 +116,10 @@ namespace Game.Ordering
             int randomOrderCount = pool.orderAmount - pool.oneTimeOrders.Length;
 
             for (int i = 0; i < randomOrderCount; i++)
-                _orders.Add(pool.orders[Random.Range(0, pool.orders.Length)]);
+                _orders.Add(pool.orders[URandom.Range(0, pool.orders.Length)]);
 
             foreach (var item in pool.oneTimeOrders)
-                _orders.Insert(Random.Range(0, _orders.Count), item);
+                _orders.Insert(URandom.Range(0, _orders.Count), item);
 
             qDebug.Log($"[Order Manager] Pool finished, moved to the next pool '{pool.name}:{pool.GetInstanceID()}'", "order");
         }
@@ -126,8 +132,6 @@ namespace Game.Ordering
             if (CurrentOrder == null)
                 return;
 
-            qDebug.Log($"[Order Manager] Order finished, finish state: {finishState}", "order");
-
             if (_npcs.Count > 0)
             {
                 string[] dialogueoptions = finishState switch
@@ -139,7 +143,7 @@ namespace Game.Ordering
 
                 string dialogue = dialogueoptions.Length == 0 ?
                     "[Order] There was an error retrieving the correct dialogue set" :
-                    dialogueoptions[Random.Range(0, dialogueoptions.Length)];
+                    dialogueoptions[URandom.Range(0, dialogueoptions.Length)];
 
                 _npcs[0].DisplayDialogue(dialogue, dialogueTimeLength);
                 npcSpawner.NextCustomer();
@@ -147,6 +151,9 @@ namespace Game.Ordering
             }
 
             State = OrderState.None;
+            OnFinishOrder?.Invoke(State);
+
+            qDebug.Log($"[Order Manager] Order finished, finish state: {finishState}", "order");
         }
 
         public void NextOrder()
@@ -170,12 +177,16 @@ namespace Game.Ordering
                 for (int i = 0; i < item.amount; i++)
                     Preparation.Add(new PreparationItem(item));
 
+            OnNextOrder?.Invoke(CurrentOrder);
             qDebug.Log($"[Order Manager] Moved to the next order '{CurrentOrder.name}:{CurrentOrder.GetInstanceID()}'", "order");
         }
         #endregion
 
         #region Preparation
         public List<PreparationItem> Preparation { get; set; }
+
+        public event Action<PreparationItem> OnFinishPreparingItem;
+        public event Action<PreparationItem> OnFailFinishPreparingItem;
 
         public void FinishPreparingItem(PreparationItem item)
         {
@@ -193,10 +204,12 @@ namespace Game.Ordering
             if (targetIndex == -1)
             {
                 //Wrong
+                OnFailFinishPreparingItem?.Invoke(item);
                 return;
             }
 
             Preparation.RemoveAt(targetIndex);
+            OnFinishPreparingItem?.Invoke(item);
 
             if (Preparation.Count == 0)
             {
@@ -240,8 +253,8 @@ namespace Game.Ordering
             _npcLastSpawnTime = Time.time;
 
             _npcSpawnTimeLength = first ? 
-                faze.firstNPCSpawnTime : 
-                Random.Range(faze.NPCSpawnTime.x, faze.NPCSpawnTime.y);
+                faze.firstNPCSpawnTime :
+                URandom.Range(faze.NPCSpawnTime.x, faze.NPCSpawnTime.y);
         }
 
         void NPC_OnExit(NPC npc)
