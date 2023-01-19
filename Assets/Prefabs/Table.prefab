@@ -93,9 +93,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8149742252527380664}
   - component: {fileID: 8572026659592206193}
-  - component: {fileID: 105072560308186349}
   m_Layer: 6
-  m_Name: Counter
+  m_Name: Table
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,23 +129,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.14, y: 1.21, z: 0.75}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &105072560308186349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8814217143681987074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f142e96e968dbd43a5357133c2a11f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  markerOffset: {x: 0, y: 0.9, z: 0}
-  OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
-    m_PersistentCalls:
-      m_Calls: []
-  givePrompt: {fileID: 11400000, guid: 25bc7e64c9eac104e8f8a566202894ae, type: 2}
