@@ -6,7 +6,7 @@ namespace Game.Harvestables.Materials
     public class HarvestableMaterial : ScriptableObject
     {
         public string materialName;
-        public Sprite image;
+        [AssetPreview] public Sprite image;
 
         public float growTime;
     }

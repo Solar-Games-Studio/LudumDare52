@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Carmel
   m_EditorClassIdentifier: 
   materialName: Carmel
-  image: {fileID: 0}
-  growTime: 10
+  image: {fileID: 21300000, guid: 0f5917f58310fe24eb8526b32e17ed8c, type: 3}
+  growTime: 20

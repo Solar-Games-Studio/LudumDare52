@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Butter
   m_EditorClassIdentifier: 
   materialName: Butter
-  image: {fileID: 0}
+  image: {fileID: 21300000, guid: e018c893f04238848adafc996b0a8454, type: 3}
   growTime: 10
