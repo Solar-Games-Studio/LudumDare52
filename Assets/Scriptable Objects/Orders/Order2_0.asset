@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7aaff935756cd346b8080b64501eaf3, type: 3}
   m_Name: Order2_0
   m_EditorClassIdentifier: 
-  canGetMad: 1
+  weight: 1
+  model: {fileID: 0}
+  canGetMad: 0
+  canLeaveAbruptly: 0
   satisfiedTime: 120
   madTime: 40
   popcorns:

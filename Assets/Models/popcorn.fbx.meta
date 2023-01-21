@@ -3,7 +3,22 @@ guid: 0e71994f69d500f4fbdfaf83ad3862eb
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: popcorn
+    second: {fileID: 2100000, guid: b0789280a59321245ac9b8b00dd3e2ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: popcornstand body
+    second: {fileID: 2100000, guid: 0b957f48fdbb1024c906688f2624863e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: roof
+    second: {fileID: 2100000, guid: 65c39cc06e8938f4dab5827df80568dc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

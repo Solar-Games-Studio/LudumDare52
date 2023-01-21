@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weight: 1
   model: {fileID: 0}
-  canGetMad: 1
+  canGetMad: 0
   canLeaveAbruptly: 0
   satisfiedTime: 120
   madTime: 40
