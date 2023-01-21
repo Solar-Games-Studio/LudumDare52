@@ -11,9 +11,10 @@ namespace Game.Harvestables
 {
     public class Plant : Interactable, IItemInteractable
     {
+        const float HARVESTING_TIME = 0.2f;
+
         [SerializeField] GameObject emptyModel;
         [SerializeField] PlantableMaterials[] _plantableMaterials;
-        [SerializeField] float harvestingTime = 1.0f;
         [SerializeField] Transform bubblePosition;
 
         List<HarvestableMaterial> _materials = new List<HarvestableMaterial>();
@@ -125,10 +126,9 @@ namespace Game.Harvestables
             var playerReference = Player.PlayerReference.Singleton;
 
             _isPlanted = false;
-            playerReference.GetBehaviour<CharacterAnimation>().SetHarvestingState(true);
-            playerReference.GetBehaviour<CharacterMovement>().LockMovement();
+            playerReference.GetBehaviour<CharacterAnimation>().Harvest();
 
-            yield return new WaitForSeconds(harvestingTime);
+            yield return new WaitForSeconds(HARVESTING_TIME);
             
             Harvest();
         }
@@ -136,8 +136,6 @@ namespace Game.Harvestables
         {
             var playerReference = Player.PlayerReference.Singleton;
 
-            playerReference.GetBehaviour<CharacterAnimation>().SetHarvestingState(false);
-            playerReference.GetBehaviour<CharacterMovement>().UnlockMovement();
             var inventory = playerReference.GetBehaviour<CharacterInventory>();
 
             var seed = _plantableMaterials[_materialIndex];

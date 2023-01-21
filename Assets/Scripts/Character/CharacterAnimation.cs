@@ -11,11 +11,9 @@ namespace Game.Character
         
         bool isMoving;
         bool isHolding;
-        bool isHarvesting;
 
         public void Update()
         {
-            modelAnimator.SetBool("IsHarvesting", isHarvesting);
             modelAnimator.SetBool("IsHolding", isHolding);
             modelAnimator.SetFloat("Blend", isMoving ? 1.0f : 0.0f, animationTransitionTime, Time.deltaTime);
         }
@@ -28,9 +26,9 @@ namespace Game.Character
         {
             isHolding = state;
         }
-        public void SetHarvestingState(bool state)
+        public void Harvest()
         {
-            isHarvesting = state;
+            modelAnimator.SetTrigger("Harvest");
         }
 
     }

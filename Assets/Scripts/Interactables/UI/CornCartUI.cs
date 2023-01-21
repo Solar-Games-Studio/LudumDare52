@@ -47,7 +47,10 @@ namespace Game.Interactables.UI
                 LayoutRebuilder.ForceRebuildLayoutImmediate(button);
                 _buttonFix = false;
             }
+        }
 
+        private void LateUpdate()
+        {
             if (_ignoreFrameInput)
             {
                 _ignoreFrameInput = false;

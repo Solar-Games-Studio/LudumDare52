@@ -38,8 +38,8 @@ namespace Game.Interactables
 
         private void Awake()
         {
-            if (timerSlider != null)
-                timerSlider.gameObject.SetActive(false);
+            if (toggle != null)
+                toggle.gameObject.SetActive(false);
         }
 
         private void Update()

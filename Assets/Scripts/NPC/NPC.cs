@@ -31,7 +31,7 @@ namespace Game.NPCs
         private void FixedUpdate()
         {
             if (targetPoint == null)
-                targetPoint = exitPoint;
+                targetPoint = sellPoint;
                  
             isMoving = Vector3.Distance(targetPoint.position, transform.position) > betweenDistance;
             
@@ -50,7 +50,6 @@ namespace Game.NPCs
             {
                 if (!hasArrived)
                 {
-                    Debug.Log("Arrived");
                     OnNewCustomerArrived.Invoke();
                     transform.Rotate(new Vector3(0, -90, 0));
                     hasArrived = true;
