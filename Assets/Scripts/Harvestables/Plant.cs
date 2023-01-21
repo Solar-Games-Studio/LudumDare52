@@ -108,19 +108,6 @@ namespace Game.Harvestables
             return _materials.Contains(seedObject.material);
         }
 
-        public override void ChangeBubbleState(bool state)
-        {
-            base.ChangeBubbleState(state);
-            if (state)
-            {
-                bubble = BubbleFactory.ShowBubbleOnTransform(BubbleType.Small, bubblePosition);
-            }
-            else
-            { 
-                bubble?.Hide();
-                bubble = null;
-            }
-        }
         void ChangeModel(GameObject newModel)
         {
             SetModelActive(false);

@@ -53,7 +53,6 @@ namespace Game.Interaction
             if (_didHit != previousHit)
             {
                 interactPrompt.ChangeState(_hitInteractable?.CanDisplayPrompt() == true);
-                _hitInteractable?.ChangeBubbleState(_didHit);
             }
         }
 

@@ -45,7 +45,7 @@ namespace Game.Interactables
                     materials = popcorn.materials,
                 });
 
-                Destroy(inventory.HeldItem.gameObject);
+                Destroy(inventory.RemoveItem().gameObject);
                 return false;
             }
 

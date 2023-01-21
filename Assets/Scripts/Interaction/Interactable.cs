@@ -16,7 +16,6 @@ namespace Game.Interaction
 
         [Label("Events")]
         public UnityEvent OnInteract;
-        public UnityEvent<bool> OnBubbleChangeState;
 
         private void OnDrawGizmosSelected()
         {
@@ -27,11 +26,6 @@ namespace Game.Interaction
         public virtual void Interact()
         {
             OnInteract.Invoke();
-        }
-
-        public virtual void ChangeBubbleState(bool state)
-        {
-            OnBubbleChangeState.Invoke(state);
         }
 
         public virtual bool CanInteract() => true;
