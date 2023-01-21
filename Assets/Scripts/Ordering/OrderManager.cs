@@ -4,7 +4,7 @@ using qASIC;
 using Game.NPCs;
 using Game.Harvestables.Materials;
 using System;
-using System.Linq;
+using UnityEngine.Events;
 
 using URandom = UnityEngine.Random;
 
@@ -29,6 +29,9 @@ namespace Game.Ordering
         [EditorButton(nameof(NextOrder))]
         [EditorButton(nameof(NextPool))]
         public OrderPool[] poolTimeline;
+
+        [Label("Events")]
+        [SerializeField] UnityEvent OnFinish;
 
         public static OrderManager Singleton { get; private set; }
 
@@ -162,7 +165,17 @@ namespace Game.Ordering
             State = OrderState.None;
             OnFinishOrder?.Invoke(State);
 
+            if (CurrentPool >= poolTimeline.Length - 1 &&
+                _orders.Count == 0)
+                End();
+
             qDebug.Log($"[Order Manager] Order finished, finish state: {finishState}", "order");
+        }
+
+        public void End()
+        {
+            OnFinish.Invoke();
+            qDebug.Log($"Thank you for playing!", "info");
         }
 
         public void NextOrder()

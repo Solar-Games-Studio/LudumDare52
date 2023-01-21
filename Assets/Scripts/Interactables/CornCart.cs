@@ -15,6 +15,7 @@ namespace Game.Interactables
         [Label("UI")]
         [SerializeField] UIToggleCallback UI;
         [SerializeField] Slider timerSlider;
+        [SerializeField] GameObject toggle;
 
         [Label("Materials")]
         [SerializeField] HarvestableMaterial corn;
@@ -103,7 +104,7 @@ namespace Game.Interactables
 
             _popcornMaterials = new List<HarvestableMaterial>();
             _isMakingPopcorn = true;
-            timerSlider?.gameObject.SetActive(true);
+            toggle.SetActive(true);
             _startTime = Time.time;
 
             foreach (var material in materials)
@@ -118,7 +119,7 @@ namespace Game.Interactables
             var inventory = Player.PlayerReference.Singleton.GetBehaviour<CharacterInventory>();
 
             _isMakingPopcorn = false;
-            timerSlider?.gameObject.SetActive(false);
+            toggle.SetActive(false);
             float t = Time.time - _startTime;
             if (t < prepareTime)
             {
