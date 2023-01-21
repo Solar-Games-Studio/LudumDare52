@@ -3,30 +3,43 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.Pool;
 using System;
+using System.Linq;
 
-namespace Game.Prompts
+namespace Game.Prompts.UI
 {
     public class PromptBar : MonoBehaviour
     {
         [SerializeField] RectTransform parent;
         [SerializeField] PromptBarItem promptPrefab;
         [EditorButton(nameof(RefreshPrompts))]
+        [EditorButton(nameof(RebuildVisibleStates))]
         [SerializeField] Prompt[] prompts;
 
         ObjectPool<PromptBarItem> _prefabPool;
 
         List<PromptBarItem> _items = new List<PromptBarItem>();
         List<bool> _states = new List<bool>();
+        List<bool> _visibleStates = new List<bool>();
 
         bool _refreshNextFrame;
+
+        static event Action OnRefresh;
+
+        public static int MinOverrideLayer { get; set; } = 0;
 
         private void Awake()
         {
             _prefabPool = new ObjectPool<PromptBarItem>(CreateItem, TakeItemFromPool, ReturnItemToPool, DestroyItem);
+            OnRefresh += () =>
+            {
+                RebuildVisibleStates();
+                RefreshPrompts();
+            };
 
             for (int i = 0; i < prompts.Length; i++)
             {
                 _states.Add(false);
+                _visibleStates.Add(false);
 
                 var prompt = prompts[i];
                 prompts[i].OnChangeState += (state) => ChangePromptState(prompt, state);
@@ -42,6 +55,11 @@ namespace Game.Prompts
             }
         }
 
+        public static void Refresh()
+        {
+            OnRefresh?.Invoke();
+        }
+
         private void ChangePromptState(Prompt prompt, bool state)
         {
             int index = Array.IndexOf(prompts, prompt);
@@ -51,23 +69,53 @@ namespace Game.Prompts
             if (isVisible == state) return;
             _states[index] = state;
 
-            switch (state)
+            _refreshNextFrame = true;
+            RebuildVisibleStates();
+        }
+
+        void RebuildVisibleStates()
+        {
+            int overrideLayer = MinOverrideLayer;
+
+            for (int i = 0; i < prompts.Length; i++)
             {
-                case true:
-                    var item = _prefabPool.Get();
-                    _items.Add(item);
-                    break;
-                case false:
-                    int lastItemIndex = _items.Count - 1;
-
-                    var deleteItem = _items[lastItemIndex];
-                    _items.RemoveAt(lastItemIndex);
-
-                    _prefabPool.Release(deleteItem);
-                    break;
+                if (!_states[i]) continue;
+                if (prompts[i].overrideLayer > overrideLayer)
+                    overrideLayer = prompts[i].overrideLayer;
             }
 
-            _refreshNextFrame = true;
+            for (int i = 0; i < prompts.Length; i++)
+                _visibleStates[i] = _states[i] && prompts[i].overrideLayer >= overrideLayer;
+
+            var newItemCount = _visibleStates.Where(x => x).Count();
+            int difference = Mathf.Abs(_visibleStates.Where(x => x).Count() - _items.Count);
+
+            if (difference == 0)
+                return;
+
+            switch (newItemCount > _items.Count)
+            {
+                case true:
+                    for (int i = 0; i < difference; i++)
+                    {
+                        var item = _prefabPool.Get();
+                        _items.Add(item);
+                    }
+
+                    break;
+                case false:
+                    for (int i = 0; i < difference; i++)
+                    {
+                        int lastItemIndex = _items.Count - 1;
+
+                        var deleteItem = _items[lastItemIndex];
+                        _items.RemoveAt(lastItemIndex);
+
+                        _prefabPool.Release(deleteItem);
+                    }
+
+                    break;
+            }
         }
 
         public void RefreshPrompts()
@@ -75,7 +123,7 @@ namespace Game.Prompts
             int itemIndex = 0;
             for (int i = 0; i < prompts.Length; i++)
             {
-                if (!_states[i]) continue;
+                if (!_visibleStates[i]) continue;
 
                 var item = _items[itemIndex];
                 var prompt = prompts[i];

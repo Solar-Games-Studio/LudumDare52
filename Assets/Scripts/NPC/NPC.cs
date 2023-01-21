@@ -25,7 +25,7 @@ namespace Game.NPCs
 
         private void Start()
         {
-            BubbleFactory.ShowBubbleOnTransform(BubbleType.Big, bubblePosition);
+            //BubbleFactory.ShowBubbleOnTransform(BubbleType.Big, bubblePosition);
         }
 
         private void FixedUpdate()
@@ -77,7 +77,7 @@ namespace Game.NPCs
 
         public void DisplayDialogue(string text, float time)
         {
-            Debug.LogError("Jakubie to te? napraw");
+            
         }
     }
 }

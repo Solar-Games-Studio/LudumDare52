@@ -33,6 +33,12 @@ MonoBehaviour:
     guid: c89847d9-99ce-4cae-ba2e-bfc129619794
     items:
     - rid: 7525326217136046080
+    - rid: 7525326351514730496
+    - rid: 7525326351514730497
+    - rid: 7525326351514730502
+    - rid: 7525326352589258752
+    - rid: 7525326352589258753
+    - rid: 7525326352589258754
   references:
     version: 2
     RefIds:
@@ -129,3 +135,52 @@ MonoBehaviour:
         guid: 75469e49-85e7-4eac-830f-e4cc1713e419
         keys:
         - key_keyboard/F2
+    - rid: 7525326351514730496
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Order
+        guid: e2476df4-3091-4cf7-bef8-5742dd1f274f
+        keys:
+        - key_gamepad/LeftBumper
+        - key_keyboard/Tab
+    - rid: 7525326351514730497
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Popcorn Ingredient 0
+        guid: 3fa35ef0-a24c-44b0-a9b2-bb5ac65b08df
+        keys:
+        - key_gamepad/DPadLeft
+        - key_keyboard/Alpha1
+    - rid: 7525326351514730502
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Popcorn Ingredient 1
+        guid: 289fdaa5-5445-4bd2-8c3e-a12d510deed9
+        keys:
+        - key_gamepad/DPadUp
+        - key_keyboard/Alpha2
+    - rid: 7525326352589258752
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Popcorn Ingredient 2
+        guid: 937f09ba-8f5c-4b19-aabb-702e29457d27
+        keys:
+        - key_keyboard/Alpha3
+        - key_gamepad/DPadRight
+    - rid: 7525326352589258753
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Popcorn create
+        guid: 52e56bb5-e715-4042-b652-a65171da47ee
+        keys:
+        - key_keyboard/Return
+        - key_gamepad/A
+        - key_keyboard/C
+    - rid: 7525326352589258754
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Popcorn close
+        guid: b425a527-d4da-498d-ac44-30f699c98586
+        keys:
+        - key_keyboard/Escape
+        - key_gamepad/B

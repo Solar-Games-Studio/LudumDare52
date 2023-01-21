@@ -17,5 +17,8 @@ namespace Game.Harvestables
             var obj = Instantiate(item);
             inventory.EquipItem(obj);
         }
+
+        public override bool CanInteract() =>
+            PlayerReference.Singleton.GetBehaviour<CharacterInventory>().HeldItem == null;
     }
 }

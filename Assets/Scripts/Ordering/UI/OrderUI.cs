@@ -2,11 +2,20 @@ using TMPro;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
+using qASIC.Input;
+using DG.Tweening;
 
 namespace Game.Ordering
 {
     public class OrderUI : MonoBehaviour
     {
+        [Label("Visiblity")]
+        [SerializeField] RectTransform iconRect;
+        [SerializeField] RectTransform windowRect;
+        [SerializeField] float transitionDuration = 0.5f;
+        [SerializeField] InputMapItemReference i_toggle;
+
+        [Label("Orders")]
         [SerializeField] TMP_Text text;
 
         [Help("0 - order")]
@@ -26,6 +35,17 @@ namespace Game.Ordering
         [SerializeField] string orderIngriedientSeparator = " and ";
 
         string _text;
+        bool _visible;
+        float _windowXPosition;
+        float _iconYPosition;
+
+        private void Awake()
+        {
+            _windowXPosition = windowRect.anchoredPosition.x;
+            _iconYPosition = iconRect.anchoredPosition.x;
+
+            windowRect.anchoredPosition = new Vector2(-_windowXPosition, windowRect.anchoredPosition.y);
+        }
 
         private void Start()
         {
@@ -53,6 +73,9 @@ namespace Game.Ordering
             }
 
             text.text = _text;
+
+            if (i_toggle.GetInputDown())
+                ToggleVisibility();
         }
 
         public void RebuildText(Order order, List<OrderManager.PreparationItem> preparation)
@@ -80,8 +103,6 @@ namespace Game.Ordering
                         .Where(x => x.IsEqual(preparationTemplate))
                         .Count();
 
-                    Debug.Log(preparationCount);
-
                     var text = $"{string.Format(orderStartFormat, preparationCount, x.amount)}{ingriedientsText}";
                     return text;
                 })
@@ -89,6 +110,27 @@ namespace Game.Ordering
 
             _text = string.Join('\n', items);
             _text = string.Format(textFormat, _text);
+        }
+
+        public void ToggleVisibility() =>
+            ToggleVisibility(!_visible);
+
+        public void ToggleVisibility(bool state)
+        {
+            if (_visible == state)
+                return;
+
+            _visible = state;
+
+            DOTween.To(() => windowRect.anchoredPosition.x,
+                x => windowRect.anchoredPosition = new Vector2(x, windowRect.anchoredPosition.y),
+                _windowXPosition * (state ? 1f : -1f),
+                transitionDuration);
+
+            DOTween.To(() => iconRect.anchoredPosition.x,
+                y => iconRect.anchoredPosition = new Vector2(y, iconRect.anchoredPosition.y),
+                _iconYPosition * (state ? -1 : 1f),
+                transitionDuration);
         }
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using qASIC.Input;
 using System.Collections.Generic;
+using Game.Player;
 
 namespace Game.Character
 {
@@ -37,6 +38,7 @@ namespace Game.Character
         {
             ResetMultiplier();
             characterController = GetComponent<CharacterController>();
+            PlayerReference.Singleton.CanMove = FinalSpeedMultiplier != 0f;
         }
 
 
@@ -78,14 +80,16 @@ namespace Game.Character
                 foreach (var item in _speedMultipliers)
                     FinalSpeedMultiplier *= item.Value;
 
-                Player.PlayerReference.Singleton.CanMove = true;
+                if (PlayerReference.Singleton != null)
+                    PlayerReference.Singleton.CanMove = FinalSpeedMultiplier != 0f;
                 return;
             }
 
             _speedMultipliers.Add(indentifier, value);
             FinalSpeedMultiplier *= value;
 
-            Player.PlayerReference.Singleton.CanMove = FinalSpeedMultiplier != 0f;
+            if (PlayerReference.Singleton != null)
+                PlayerReference.Singleton.CanMove = FinalSpeedMultiplier != 0f;
         }
 
         public static void ResetMultiplier()

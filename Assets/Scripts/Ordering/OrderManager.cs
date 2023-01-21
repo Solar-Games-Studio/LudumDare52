@@ -32,6 +32,7 @@ namespace Game.Ordering
 
         public static OrderManager Singleton { get; private set; }
 
+        public bool Running { get; private set; } = true;
         public int CurrentPool { get; private set; } = -1;
         public int CurrentPoolOrder { get; private set; } = -1;
         public Order CurrentOrder { get; private set; }
@@ -104,7 +105,14 @@ namespace Game.Ordering
 
         public void NextPool()
         {
-            CurrentPool = Mathf.Min(CurrentPool + 1, poolTimeline.Length - 1);
+            if (CurrentPool + 1 >= poolTimeline.Length)
+            {
+                Running = false;
+                qDebug.Log($"[Order Manager] Finished pools", "order");
+                return;
+            }
+
+            CurrentPool++;
 
             var pool = poolTimeline[CurrentPool];
             Debug.Assert(pool.orders.Length > 0, "Order queue cannot be empty!");
