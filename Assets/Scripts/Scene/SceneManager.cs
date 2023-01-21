@@ -118,6 +118,7 @@ namespace Game.Scene
 
             UnitySceneManager.UnloadSceneAsync(CurrentScene, UnloadSceneOptions.UnloadAllEmbeddedSceneObjects);
             UnitySceneManager.LoadScene(scene, LoadSceneMode.Additive);
+            new GameObject().AddComponent<SceneManagerObject>().sceneName = scene;
 
             CurrentScene = scene;
             CurrentPreset = preset;
