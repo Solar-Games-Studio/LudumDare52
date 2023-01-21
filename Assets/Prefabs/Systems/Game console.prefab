@@ -1108,6 +1108,7 @@ GameObject:
   - component: {fileID: 8893613932255433451}
   - component: {fileID: 8893613932255433450}
   - component: {fileID: 8893613932255433449}
+  - component: {fileID: 4999022577598514269}
   m_Layer: 0
   m_Name: Game console
   m_TagString: Untagged
@@ -1166,10 +1167,37 @@ MonoBehaviour:
   keyMode: 0
   OnChangeState:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4999022577598514269}
+        m_TargetAssemblyTypeName: Game.Character.CharacterChangeSpeed, Game.Character
+        m_MethodName: ChangeSpeed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   mode: 0
   item:
     guid: 870198d5-9452-4db1-9087-679f9cbe4193
+--- !u!114 &4999022577598514269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8893613932255433448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6352a0f5006c3b4a8adc77645088e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  modifierName: console
+  trueValue: 0
+  falseValue: 1
 --- !u!1 &8893613932262263875
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using qASIC;
 using Game.NPCs;
 using Game.Harvestables.Materials;
 using System;
+using System.Linq;
 
 using URandom = UnityEngine.Random;
 
@@ -268,7 +269,7 @@ namespace Game.Ordering
         }
         #endregion
 
-        [System.Serializable]
+        [Serializable]
         class Faze
         {
             [Label("Time")]
@@ -281,6 +282,7 @@ namespace Game.Ordering
             [MinMaxSlider(2f, 180f)][HideIf(nameof(spawnNPCs), false)] public Vector2 NPCSpawnTime;
         }
 
+        [Serializable]
         public class PreparationItem
         {
             public PreparationItem() { }

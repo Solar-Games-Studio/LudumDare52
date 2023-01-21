@@ -78,11 +78,14 @@ namespace Game.Character
                 foreach (var item in _speedMultipliers)
                     FinalSpeedMultiplier *= item.Value;
 
+                Player.PlayerReference.Singleton.CanMove = true;
                 return;
             }
 
             _speedMultipliers.Add(indentifier, value);
             FinalSpeedMultiplier *= value;
+
+            Player.PlayerReference.Singleton.CanMove = FinalSpeedMultiplier != 0f;
         }
 
         public static void ResetMultiplier()

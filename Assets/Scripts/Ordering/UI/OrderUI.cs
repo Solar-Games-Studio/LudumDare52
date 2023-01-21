@@ -35,7 +35,7 @@ namespace Game.Ordering
 
         void OrderManager_OnNextOrder(Order order)
         {
-            RebuildText(order, new List<OrderManager.PreparationItem>());
+            RebuildText(order, OrderManager.Singleton.Preparation);
         }
 
         void OrderManager_OnFinishPreparingItem(OrderManager.PreparationItem item)
@@ -76,9 +76,11 @@ namespace Game.Ordering
 
                     var preparationTemplate = new OrderManager.PreparationItem(x);
 
-                    int preparationCount = preparation
+                    int preparationCount = x.amount - preparation
                         .Where(x => x.IsEqual(preparationTemplate))
                         .Count();
+
+                    Debug.Log(preparationCount);
 
                     var text = $"{string.Format(orderStartFormat, preparationCount, x.amount)}{ingriedientsText}";
                     return text;

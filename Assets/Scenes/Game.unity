@@ -504,9 +504,7 @@ MonoBehaviour:
   npcSpawner: {fileID: 1019885453}
   dialogueTimeLength: 5
   poolTimeline:
-  - {fileID: 11400000, guid: eb69fd2dd8e9f994a9fddf166b75e658, type: 2}
-  - {fileID: 11400000, guid: 9ebb384a0d530b740a4c5005ef28defd, type: 2}
-  - {fileID: 11400000, guid: 522c36274a3d3164a8c6923dbb5b2c44, type: 2}
+  - {fileID: 11400000, guid: 8498f7e3f9afb4a49a75f6ef64680268, type: 2}
 --- !u!1 &106732274
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,9 +695,6 @@ MonoBehaviour:
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
-  OnBubbleChangeState:
-    m_PersistentCalls:
-      m_Calls: []
   UI: {fileID: 11400000, guid: b788022e0213a044cb7382bcffd79fb9, type: 2}
   timerSlider: {fileID: 822428376}
   corn: {fileID: 11400000, guid: 7aa3bb8c270f43c49a91eec1481ae344, type: 2}
@@ -714,7 +709,7 @@ MonoBehaviour:
     count: 0
     limit: 2
   cornObject: {fileID: 8940849585380061514, guid: d8d523d3f1ddf12459f2539a5d9d6876, type: 3}
-  popcornObject: {fileID: 4412646191152708332, guid: 699ac5e8526e93e49a392ae6a6542049, type: 3}
+  popcornObject: {fileID: 5190147411519940874, guid: e991502ab4c561a458fbc1344385e4a7, type: 3}
   burnedObject: {fileID: 8759230172011305612, guid: eb2dfd9239bd5744aad5bdfe6750fe19, type: 3}
   prepareTime: 30
   overcoockedTime: 10

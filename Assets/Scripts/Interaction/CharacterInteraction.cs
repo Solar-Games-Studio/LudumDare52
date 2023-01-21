@@ -7,7 +7,7 @@ using Game.Prompts;
 
 namespace Game.Interaction
 {
-    public class CharacterInteraction : MonoBehaviour
+    public class CharacterInteraction : Player.PlayerBehaviour
     {
         public IInteractable TargetInteractable => _hitInteractable;
         public Transform Target => _raycastHit.transform;
@@ -128,7 +128,7 @@ namespace Game.Interaction
 
         private void Update()
         {
-            if (i_interact.GetInputDown() || _forceClick)
+            if ((i_interact.GetInputDown() && playerReference.CanMove) || _forceClick)
                 Interact();
 
             _forceClick = false;

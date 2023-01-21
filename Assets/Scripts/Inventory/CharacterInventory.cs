@@ -43,7 +43,7 @@ namespace Game.Inventory
 
         private void Update()
         {
-            if (HeldItem != null && i_throw.GetInputDown())
+            if (HeldItem != null && i_throw.GetInputDown() && playerReference.CanMove)
                 Throw();
         }
 

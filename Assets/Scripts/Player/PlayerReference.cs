@@ -10,6 +10,8 @@ namespace Game.Player
 
         Dictionary<Type, PlayerBehaviour> _behaviours = new Dictionary<Type, PlayerBehaviour>();
 
+        public bool CanMove { get; set; }
+
         private void Awake()
         {
             Singleton = this;
