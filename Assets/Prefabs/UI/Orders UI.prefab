@@ -426,7 +426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iconRect: {fileID: 1932203963}
   windowRect: {fileID: 5262502081744337071}
-  transitionDuration: 0.5
+  transitionDuration: 0.4
   i_toggle:
     guid: e2476df4-3091-4cf7-bef8-5742dd1f274f
   notification: {fileID: 127107065419913749}
@@ -595,8 +595,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190310
-  m_fontColor: {r: 0.9024719, g: 0, b: 0, a: 1}
+    rgba: 4278190312
+  m_fontColor: {r: 0.90995395, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
