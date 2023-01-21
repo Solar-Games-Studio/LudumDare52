@@ -516,38 +516,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1746750962}
     m_Modifications:
-    - target: {fileID: 1763144407, guid: 79cf2ab93bb3ed3418fe36288fe11e33, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 1763144407, guid: 79cf2ab93bb3ed3418fe36288fe11e33, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 1763144409, guid: 79cf2ab93bb3ed3418fe36288fe11e33, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: bac6c4847fc4614458192b3410233532, type: 3}
-    - target: {fileID: 1932203963, guid: 79cf2ab93bb3ed3418fe36288fe11e33, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 130
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932203963, guid: 79cf2ab93bb3ed3418fe36288fe11e33, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 130
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932203963, guid: 79cf2ab93bb3ed3418fe36288fe11e33, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 105
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932203963, guid: 79cf2ab93bb3ed3418fe36288fe11e33, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -95
-      objectReference: {fileID: 0}
-    - target: {fileID: 1932203964, guid: 79cf2ab93bb3ed3418fe36288fe11e33, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: a96ce65646cd33143a132619282efb10, type: 3}
     - target: {fileID: 4607745778199348890, guid: 79cf2ab93bb3ed3418fe36288fe11e33, type: 3}
       propertyPath: m_Name
       value: Orders

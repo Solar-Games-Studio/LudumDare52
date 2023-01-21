@@ -13,7 +13,14 @@ namespace Game.Ordering
         [SerializeField] RectTransform iconRect;
         [SerializeField] RectTransform windowRect;
         [SerializeField] float transitionDuration = 0.5f;
+        [Space]
         [SerializeField] InputMapItemReference i_toggle;
+
+        [Label("Notification")]
+        [SerializeField] CanvasGroup notification;
+        [SerializeField] float notificationAppearDuration;
+        [SerializeField] float notificationHideDuration;
+        [SerializeField] Vector2 notificationFlyInPositionOffset = new Vector2(0f, -20f);
 
         [Label("Orders")]
         [SerializeField] TMP_Text text;
@@ -39,10 +46,13 @@ namespace Game.Ordering
         float _windowXPosition;
         float _iconYPosition;
 
+        bool _notificationVisible;
+
         private void Awake()
         {
             _windowXPosition = windowRect.anchoredPosition.x;
             _iconYPosition = iconRect.anchoredPosition.x;
+            notification.alpha = 0f;
 
             windowRect.anchoredPosition = new Vector2(-_windowXPosition, windowRect.anchoredPosition.y);
         }
@@ -56,6 +66,24 @@ namespace Game.Ordering
         void OrderManager_OnNextOrder(Order order)
         {
             RebuildText(order, OrderManager.Singleton.Preparation);
+
+            if (!_visible && !_notificationVisible)
+            {
+                _notificationVisible = true;
+                var rect = notification.transform as RectTransform;
+                var pos = rect.anchoredPosition;
+
+                rect.anchoredPosition += notificationFlyInPositionOffset;
+                DOTween.To(() => rect.anchoredPosition,
+                    x => rect.anchoredPosition = x,
+                    pos,
+                    notificationHideDuration);
+
+                DOTween.To(() => notification.alpha,
+                    x => notification.alpha = x,
+                    1f,
+                    notificationHideDuration);
+            }
         }
 
         void OrderManager_OnFinishPreparingItem(OrderManager.PreparationItem item)
@@ -131,6 +159,15 @@ namespace Game.Ordering
                 y => iconRect.anchoredPosition = new Vector2(y, iconRect.anchoredPosition.y),
                 _iconYPosition * (state ? -1 : 1f),
                 transitionDuration);
+
+            if (_notificationVisible)
+            {
+                _notificationVisible = false;
+                DOTween.To(() => notification.alpha,
+                    x => notification.alpha = x,
+                    0f,
+                    notificationHideDuration);
+            }
         }
     }
 }

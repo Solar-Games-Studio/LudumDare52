@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 1493755960165175158}
   - component: {fileID: 1493755960165175159}
   - component: {fileID: 787413154}
-  - component: {fileID: 787413155}
+  - component: {fileID: 1493755959517542361}
   m_Layer: 0
   m_Name: End screen
   m_TagString: Untagged
@@ -297,8 +297,8 @@ MonoBehaviour:
   OnContinue:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 787413155}
-        m_TargetAssemblyTypeName: qASIC.LoadScene, qASIC
+      - m_Target: {fileID: 1493755959517542361}
+        m_TargetAssemblyTypeName: Game.Scene.LoadScene, Game.Scene
         m_MethodName: Load
         m_Mode: 5
         m_Arguments:
@@ -309,7 +309,7 @@ MonoBehaviour:
           m_StringArgument: Menu
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &787413155
+--- !u!114 &1493755959517542361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -318,9 +318,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1493755960165175112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea576fe4b5ecb241ad58ec42c1247e6, type: 3}
+  m_Script: {fileID: 11500000, guid: d34e7064c2aeff0498f0d409b317959e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scene: 
 --- !u!1 &1493755960347208685
 GameObject:
   m_ObjectHideFlags: 0
