@@ -150,7 +150,7 @@ namespace Game.Interactables.UI
 
         public void Close()
         {
-            _cornCart.CloseUI();
+            _cornCart?.CloseUI();
         }
     }
 }

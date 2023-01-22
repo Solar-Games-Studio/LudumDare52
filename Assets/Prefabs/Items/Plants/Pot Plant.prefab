@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &556028245538523621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2484295752471590704}
+  - component: {fileID: 3412285359704476699}
+  m_Layer: 0
+  m_Name: Collision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2484295752471590704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556028245538523621}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4862583800313746554}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3412285359704476699
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556028245538523621}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.35, y: 2, z: 0.35}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4862583800313746552
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,7 +55,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4862583800313746554}
   - component: {fileID: 4862583800313746553}
-  - component: {fileID: 4862583800313746555}
   - component: {fileID: 7482953509394160823}
   m_Layer: 6
   m_Name: Pot Plant
@@ -37,6 +81,7 @@ Transform:
   - {fileID: 4968006165521504342}
   - {fileID: 4968006166064598409}
   - {fileID: 1818137534732595036}
+  - {fileID: 2484295752471590704}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52,11 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40aaec5180050c3409dc6134893f77ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  markerOffset: {x: 0, y: 0.4, z: 0}
+  markerOffset: {x: 0, y: 0.6, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   emptyModel: {fileID: 0}
@@ -73,21 +115,7 @@ MonoBehaviour:
     finalProduct: {fileID: 8954442977559281083, guid: 124ceeec910f3584cb1c48cfef3a6b91, type: 3}
     plantedModel: {fileID: 5744965734490657262}
     grownModel: {fileID: 5744965734716102451}
-  harvestingTime: 1
   bubblePosition: {fileID: 1818137534732595036}
---- !u!65 &4862583800313746555
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4862583800313746552}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.35, y: 0.5, z: 0.35}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &7482953509394160823
 CapsuleCollider:
   m_ObjectHideFlags: 0
