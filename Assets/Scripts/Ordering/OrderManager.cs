@@ -169,6 +169,9 @@ namespace Game.Ordering
                 _orders.Count == 0)
                 End();
 
+            if (_orders.Count == 0)
+                NextPool();
+
             qDebug.Log($"[Order Manager] Order finished, finish state: {finishState}", "order");
         }
 
