@@ -143,6 +143,7 @@ namespace qASIC.Input.Devices
                 case GamepadButton.RightStickLeft:
                     return true;
                 default:
+                    Debug.Log($"false: {button}");
                     return false;
             }
         }

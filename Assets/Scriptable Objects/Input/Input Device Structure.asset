@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   providers:
   - rid: 7525326016482115584
-  - rid: 7525326016482115585
+  - rid: 7525326377233154049
   references:
     version: 2
     RefIds:
@@ -22,7 +22,7 @@ MonoBehaviour:
       type: {class: UIMKeyboardProvider, ns: qASIC.Input.Devices, asm: qASIC}
       data:
         name: UIM Keyboard Provider
-    - rid: 7525326016482115585
+    - rid: 7525326377233154049
       type: {class: XInputGamepadProvider, ns: qASIC.XInput.Devices, asm: qASIC.XInput}
       data:
         name: XInput Gamepad Provider

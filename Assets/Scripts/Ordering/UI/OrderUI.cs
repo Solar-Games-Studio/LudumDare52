@@ -75,6 +75,7 @@ namespace Game.Ordering
 
         void OrderManager_OnNextOrder(Order order)
         {
+            _showCompleted = false;
             RebuildText(order, OrderManager.Singleton.Preparation);
 
             if (!_visible && !_notificationVisible)

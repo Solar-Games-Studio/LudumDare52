@@ -24,6 +24,7 @@ PluginImporter:
         Exclude OSXIntel: 1
         Exclude OSXIntel64: 1
         Exclude OSXUniversal: 1
+        Exclude WebGL: 1
         Exclude Win: 0
         Exclude Win64: 0
   - first:
@@ -42,7 +43,7 @@ PluginImporter:
   - first:
       Any: 
     second:
-      enabled: 1
+      enabled: 0
       settings: {}
   - first:
       Editor: Editor
