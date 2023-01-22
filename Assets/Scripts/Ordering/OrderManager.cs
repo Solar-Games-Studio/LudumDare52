@@ -258,7 +258,8 @@ namespace Game.Ordering
 
         public void SpawnNpc()
         {
- 
+            if (_orders.Count <= _npcs.Count)
+                return;
 
             var order = _orders[_npcs.Count];
             var npc = npcSpawner.SummonNPC(order.model ?? defaultNpcModel);

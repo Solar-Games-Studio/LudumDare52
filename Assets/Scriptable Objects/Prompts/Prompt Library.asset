@@ -65,25 +65,25 @@ MonoBehaviour:
       value: {fileID: 21300000, guid: 1e748be0b90f78c409f76f1ae10aa2c0, type: 3}
     - key: key_gamepad/start
       value: {fileID: 21300000, guid: c969e0791806b5041a1903f6baefba1c, type: 3}
-    - key: key_keyboard/Alpha0
+    - key: key_keyboard/alpha0
       value: {fileID: 21300000, guid: fd222c4ab111b6a40aa89a0b4a505f20, type: 3}
-    - key: key_keyboard/Alpha1
+    - key: key_keyboard/alpha1
       value: {fileID: 21300000, guid: cc20d7bb3df6cc042a1070a7db7de11c, type: 3}
-    - key: key_keyboard/Alpha2
+    - key: key_keyboard/alpha2
       value: {fileID: 21300000, guid: d569930df60c3ae4b8c6210ac657861c, type: 3}
-    - key: key_keyboard/Alpha3
+    - key: key_keyboard/alpha3
       value: {fileID: 21300000, guid: 0b477f6a2c846cc479edf977a8a5768c, type: 3}
-    - key: key_keyboard/Alpha4
+    - key: key_keyboard/alpha4
       value: {fileID: 21300000, guid: 9dea7523d7f7a454ab145de08c4c64f7, type: 3}
-    - key: key_keyboard/Alpha5
+    - key: key_keyboard/alpha5
       value: {fileID: 21300000, guid: a5f4526a62bfe2c40b90aa845d8203c3, type: 3}
-    - key: key_keyboard/Alpha6
+    - key: key_keyboard/alpha6
       value: {fileID: 21300000, guid: 866107a51559a1a448db6d36997001aa, type: 3}
-    - key: key_keyboard/Alpha7
+    - key: key_keyboard/alpha7
       value: {fileID: 21300000, guid: bdaaf0ac1bc26164fbc15d6afb811b9b, type: 3}
-    - key: key_keyboard/Alpha8
+    - key: key_keyboard/alpha8
       value: {fileID: 21300000, guid: 41e8c2963175e6440a131ae7cc5c96b5, type: 3}
-    - key: key_keyboard/Alpha9
+    - key: key_keyboard/alpha9
       value: {fileID: 21300000, guid: 947a57af396da7c46aabe5b11fa08f6c, type: 3}
     - key: key_keyboard/f1
       value: {fileID: 21300000, guid: c37cdc036bb2edf4e85346132913ac80, type: 3}
@@ -239,7 +239,7 @@ MonoBehaviour:
       value: {fileID: 21300000, guid: bac6c4847fc4614458192b3410233532, type: 3}
     - key: key_keyboard/tilde
       value: {fileID: 21300000, guid: dc8946f09df62714b978d0dd521b276e, type: 3}
-    - key: key_keyboard/Backquote
+    - key: key_keyboard/backquote
       value: {fileID: 21300000, guid: dc8946f09df62714b978d0dd521b276e, type: 3}
     error: 0
   axisDictionary:
