@@ -153,10 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50990364434e7f04597bd8930fe5cbb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   item: {fileID: 6429301513124148495, guid: bf6c49464dc1d76499e723ac58dd1957, type: 3}
@@ -414,14 +412,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a02fd4b5294e1e48b97685753fbf0ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   UI: {fileID: 11400000, guid: b788022e0213a044cb7382bcffd79fb9, type: 2}
   timerSlider: {fileID: 723128981}
+  toggle: {fileID: 0}
   corn: {fileID: 11400000, guid: 7aa3bb8c270f43c49a91eec1481ae344, type: 2}
   usableMaterials:
   - material: {fileID: 11400000, guid: b6ca9d4eae90a15478d5a8e7b30f4558, type: 2}
@@ -469,10 +466,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a16b8c7c9f96ed42bc75af333164d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemName: item
@@ -807,10 +802,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a16b8c7c9f96ed42bc75af333164d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemName: item
@@ -1152,10 +1145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50990364434e7f04597bd8930fe5cbb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   item: {fileID: 4371397447686157356, guid: 4f41f80e7f57fa2439b8024ee9850f78, type: 3}
@@ -1219,10 +1210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a16b8c7c9f96ed42bc75af333164d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemName: item
@@ -1880,10 +1869,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50990364434e7f04597bd8930fe5cbb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   item: {fileID: 4685147157239508983, guid: f6aa3da5d7212c64793aeeef91f6cbf2, type: 3}
@@ -2037,6 +2024,7 @@ GameObject:
   - component: {fileID: 963194229}
   - component: {fileID: 963194230}
   - component: {fileID: 963194231}
+  - component: {fileID: 963194232}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2126,7 +2114,7 @@ MonoBehaviour:
   offsetFromCharacter: {x: 0, y: 7, z: -4}
   smoothTime: 0.1
   offsetMagnitude: 0.3
-  cam: {fileID: 0}
+  cam: {fileID: 963194227}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2174,6 +2162,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 963194227}
   scpslModeTargetFramerate: 16
+--- !u!114 &963194232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7d8fcc5aff07a441befd58f05b3eb2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 963194229}
+  zoomMin: {x: 0, y: 0, z: -1.06}
+  zoomMax: {x: 0, y: 4.75, z: -3.11}
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  startZoom: 1
+  scrollSpeed: 0.06
+  buttonSpeed: 2
+  i_zoom:
+    guid: e975d248-49b8-45a4-bfff-1cc026efcb5f
 --- !u!1 &1206031715
 GameObject:
   m_ObjectHideFlags: 0
@@ -3077,10 +3109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5297a5589c853b48a3f89c5834d2b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemHolder: {fileID: 897250331}
@@ -3135,10 +3165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40aaec5180050c3409dc6134893f77ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   emptyModel: {fileID: 0}
@@ -3159,7 +3187,6 @@ MonoBehaviour:
     finalProduct: {fileID: 8462338998514566501, guid: 8e8fac182b898bd4f9744debafa5b7fa, type: 3}
     plantedModel: {fileID: 660201275}
     grownModel: {fileID: 572704270}
-  harvestingTime: 1
   bubblePosition: {fileID: 0}
 --- !u!65 &1890427252
 BoxCollider:
@@ -3236,10 +3263,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a16b8c7c9f96ed42bc75af333164d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemName: item
@@ -3324,10 +3349,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50990364434e7f04597bd8930fe5cbb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   item: {fileID: 1013341056931240436, guid: acf4e97954e6ea345bcfbe7e855442a4, type: 3}
@@ -3578,10 +3601,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d772617759891ea4aa76b8ac6d80a8e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemName: Corn
@@ -3779,10 +3800,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a16b8c7c9f96ed42bc75af333164d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemName: Salt
@@ -4064,10 +4083,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3768df92624f04eb091459d0a43592, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemName: Die Katze
@@ -4306,10 +4323,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d772617759891ea4aa76b8ac6d80a8e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemName: Salt
@@ -4472,10 +4487,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d772617759891ea4aa76b8ac6d80a8e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemName: Carmel
@@ -4545,10 +4558,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d772617759891ea4aa76b8ac6d80a8e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemName: Butter
@@ -4586,10 +4597,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a16b8c7c9f96ed42bc75af333164d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemName: Butter
@@ -4964,10 +4973,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a16b8c7c9f96ed42bc75af333164d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemName: Carmel
@@ -5037,10 +5044,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a16b8c7c9f96ed42bc75af333164d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemName: Carmel
@@ -5171,10 +5176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a16b8c7c9f96ed42bc75af333164d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  markerOffset: {x: 0, y: 0, z: 0}
   OnInteract:
-    m_PersistentCalls:
-      m_Calls: []
-  OnBubbleChangeState:
     m_PersistentCalls:
       m_Calls: []
   itemName: Salt

@@ -19,6 +19,8 @@ namespace Game.Character
 
         public Camera cam;
 
+        public Vector3 OffsetFromCharacter { get => offsetFromCharacter; set => offsetFromCharacter = value; }
+
         public static CharacterCamera Singleton { get; private set; }
 
         private void Awake()

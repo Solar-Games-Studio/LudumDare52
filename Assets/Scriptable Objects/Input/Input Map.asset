@@ -24,6 +24,9 @@ MonoBehaviour:
     - rid: 7525326016482115590
     - rid: 7525326027426103296
     - rid: 7525326027426103297
+    - rid: 7525326368441630720
+    - rid: 7525326369024638976
+    - rid: 7525326368441630721
   - itemName: Debug
     guid: 58aa86f9-0300-4c91-ade9-605932074ed6
     items:
@@ -184,3 +187,24 @@ MonoBehaviour:
         keys:
         - key_keyboard/Escape
         - key_gamepad/B
+    - rid: 7525326368441630720
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Zoom in
+        guid: 7e58379b-d22d-496d-a07d-c2fbbd647cf9
+        keys:
+        - key_gamepad/RightStickUp
+    - rid: 7525326368441630721
+      type: {class: InputBinding, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Zoom out
+        guid: 7b5e67b0-6c28-409d-80e2-93a0b7e76afd
+        keys:
+        - key_gamepad/RightStickDown
+    - rid: 7525326369024638976
+      type: {class: Input1DAxis, ns: qASIC.Input.Map, asm: qASIC}
+      data:
+        itemName: Zoom
+        guid: e975d248-49b8-45a4-bfff-1cc026efcb5f
+        positiveGuid: 7e58379b-d22d-496d-a07d-c2fbbd647cf9
+        negativeGuid: 7b5e67b0-6c28-409d-80e2-93a0b7e76afd
