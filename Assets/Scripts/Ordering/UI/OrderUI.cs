@@ -23,12 +23,16 @@ namespace Game.Ordering
         [SerializeField] Vector2 notificationFlyInPositionOffset = new Vector2(0f, -20f);
 
         [Label("Orders")]
+        [SerializeField] float showCompletedDuration = 7f;
         [SerializeField] TMP_Text text;
+        [SerializeField] TMP_Text noOrdersText;
 
         [Help("0 - order")]
         [Space]
         [TextArea]
         [SerializeField] string textFormat = "Orders:\n{0}";
+
+        [SerializeField] string finishedIngredientFormat = "<s>{0}</s>";
 
         [Help("0 - item amount\n" +
             "1 - total item amount")]
@@ -48,6 +52,9 @@ namespace Game.Ordering
 
         bool _notificationVisible;
 
+        bool _showCompleted;
+        float _completeTime;
+
         private void Awake()
         {
             _windowXPosition = windowRect.anchoredPosition.x;
@@ -61,6 +68,9 @@ namespace Game.Ordering
         {
             OrderManager.Singleton.OnFinishPreparingItem += OrderManager_OnFinishPreparingItem;
             OrderManager.Singleton.OnNextOrder += OrderManager_OnNextOrder;
+            OrderManager.Singleton.OnFinishOrder += OrderManager_FinishOrder;
+
+            RebuildText(null, new List<OrderManager.PreparationItem>());
         }
 
         void OrderManager_OnNextOrder(Order order)
@@ -77,18 +87,26 @@ namespace Game.Ordering
                 DOTween.To(() => rect.anchoredPosition,
                     x => rect.anchoredPosition = x,
                     pos,
-                    notificationHideDuration);
+                    notificationAppearDuration);
 
                 DOTween.To(() => notification.alpha,
                     x => notification.alpha = x,
                     1f,
-                    notificationHideDuration);
+                    notificationAppearDuration);
             }
         }
 
         void OrderManager_OnFinishPreparingItem(OrderManager.PreparationItem item)
         {
             RebuildText(OrderManager.Singleton.CurrentOrder, OrderManager.Singleton.Preparation);
+        }
+
+        void OrderManager_FinishOrder(Order order, OrderManager.OrderState state)
+        {
+            _showCompleted = true;
+            _completeTime = Time.time;
+            RebuildText(order, new List<OrderManager.PreparationItem>(), true);
+            HideNotification();
         }
 
         private void Update()
@@ -100,17 +118,25 @@ namespace Game.Ordering
                 return;
             }
 
-            text.text = _text;
+            if (_showCompleted && Time.time - _completeTime >= showCompletedDuration)
+            {
+                RebuildText(null, new List<OrderManager.PreparationItem>());
+                _showCompleted = false;
+            }
 
             if (i_toggle.GetInputDown())
                 ToggleVisibility();
         }
 
-        public void RebuildText(Order order, List<OrderManager.PreparationItem> preparation)
+        public void RebuildText(Order order, List<OrderManager.PreparationItem> preparation, bool completed = false)
         {
+            text.gameObject.SetActive(order != null);
+            noOrdersText.gameObject.SetActive(order == null);
+
             if (order == null)
             {
                 _text = string.Empty;
+                text.text = _text;
                 return;
             }
 
@@ -132,12 +158,18 @@ namespace Game.Ordering
                         .Count();
 
                     var text = $"{string.Format(orderStartFormat, preparationCount, x.amount)}{ingriedientsText}";
+
+                    if (preparationCount >= x.amount || completed)
+                        text = string.Format(finishedIngredientFormat, text);
+
                     return text;
                 })
                 .ToArray();
 
             _text = string.Join('\n', items);
             _text = string.Format(textFormat, _text);
+
+            text.text = _text;
         }
 
         public void ToggleVisibility() =>
@@ -161,13 +193,16 @@ namespace Game.Ordering
                 transitionDuration);
 
             if (_notificationVisible)
-            {
-                _notificationVisible = false;
-                DOTween.To(() => notification.alpha,
-                    x => notification.alpha = x,
-                    0f,
-                    notificationHideDuration);
-            }
+                HideNotification();
+        }
+
+        void HideNotification()
+        {
+            _notificationVisible = false;
+            DOTween.To(() => notification.alpha,
+                x => notification.alpha = x,
+                0f,
+                notificationHideDuration);
         }
     }
 }

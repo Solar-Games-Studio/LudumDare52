@@ -103,7 +103,7 @@ namespace Game.Ordering
         #endregion
 
         #region Orders
-        public event Action<OrderState> OnFinishOrder;
+        public event Action<Order, OrderState> OnFinishOrder;
         public event Action<Order> OnNextOrder;
 
         public void NextPool()
@@ -163,7 +163,7 @@ namespace Game.Ordering
             }
 
             State = OrderState.None;
-            OnFinishOrder?.Invoke(State);
+            OnFinishOrder?.Invoke(CurrentOrder, State);
 
             if (CurrentPool >= poolTimeline.Length - 1 &&
                 _orders.Count == 0)
