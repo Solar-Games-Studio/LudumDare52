@@ -16,6 +16,7 @@ namespace Game.UI
         {
             target.values = Screen.resolutions
                 .Select(x => $"{x.width}x{x.height}")
+                .Distinct()
                 .ToArray();
         }
     }

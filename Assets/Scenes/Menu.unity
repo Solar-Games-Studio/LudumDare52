@@ -3904,9 +3904,8 @@ MonoBehaviour:
   optionName: fullscreen
   save: 1
   values:
-  - ExclusiveFullScreen|Exclusive Fullscreen
-  - FullScreenWindow|Fullscreen Window
-  - Windowed
+  - true
+  - false
 --- !u!1 &481747871
 GameObject:
   m_ObjectHideFlags: 0
@@ -4859,7 +4858,7 @@ RectTransform:
   m_GameObject: {fileID: 994856317}
   m_LocalRotation: {x: 0, y: 0, z: 0.08715578, w: 0.9961947}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.80058765, y: 0.80058765, z: 0.80058765}
+  m_LocalScale: {x: 0.99848634, y: 0.99848634, z: 0.99848634}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1224506126}
